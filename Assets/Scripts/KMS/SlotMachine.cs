@@ -1,26 +1,48 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
+[System.Serializable]
+public class SlotTextGroup
+{
+    public TMP_Text topText;
+    public TMP_Text centerText;
+    public TMP_Text bottomText;
+}
 public class SlotMachine : MonoBehaviour
 {
     [SerializeField] private int slotCount = 3; // 슬롯의 갯수 지정
     [SerializeField] private float spinSpeed = 20f; // 슬롯의 숫자 지정하기 전에 돌아가는 속도
-    [SerializeField] private TMP_Text[] slotTexts; // 슬롯 텍스트를 3개로 우선 할당함돠
+    [SerializeField] private SlotTextGroup[] slotTextGroups; // 인스펙터에서 슬롯 개수만큼 할당
 
     private SlotInfo slotInfo;
+    Canvas _slotCanvas;
     private int currentSlotIndex;
     private bool isSpinning; //회전하고 있음
-    private int[] displayValues; // 화면에 나타나는 숫자
+    private int[,] displayValues; // [slotIndex, position(0:top,1:center,2:bottom)]
 
     /// <summary>
     /// 시작할때 한번 초기화
     /// </summary>
     void Start()
     {
+        _slotCanvas = FindAnyObjectByType<UI_Slot_Canvas>().GetComponent<Canvas>();
+        ShowSlotUI();
+    }
+    /// <summary>
+    /// 초기화 되어야할 파친코 시스템 
+    /// </summary>
+    public void ShowSlotUI()
+    {
+        _slotCanvas.enabled = true;
         slotInfo = new SlotInfo(slotCount);
-        displayValues = new int[slotCount];
+        displayValues = new int[slotCount, 3];
         currentSlotIndex = 0;
         isSpinning = true;
+    }
+    public void HideSlotUI()
+    {
+        _slotCanvas.enabled = false;
     }
 
     /// <summary>
@@ -28,7 +50,7 @@ public class SlotMachine : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (isSpinning)
+        if (!isSpinning) return;
             SpinAllUnfixedSlots();
         if (Input.GetKeyDown(KeyCode.Space))
             ConfirmCurrentSlot();
@@ -41,8 +63,15 @@ public class SlotMachine : MonoBehaviour
     {
         for (int i = currentSlotIndex; i < slotCount; i++)
         {
-            displayValues[i] = Random.Range(1, 10);
-            slotTexts[i].text = displayValues[i].ToString();
+            // 밑으로 숫자 이동: center -> bottom, top -> center, new random -> top
+            displayValues[i, 2] = displayValues[i, 1];
+            displayValues[i, 1] = displayValues[i, 0];
+            displayValues[i, 0] = Random.Range(1, 10);
+
+            // UI 업데이트
+            slotTextGroups[i].topText.text = displayValues[i, 0].ToString();
+            slotTextGroups[i].centerText.text = displayValues[i, 1].ToString();
+            slotTextGroups[i].bottomText.text = displayValues[i, 2].ToString();
         }
     }
     /// <summary>
@@ -50,15 +79,16 @@ public class SlotMachine : MonoBehaviour
     /// </summary>
     void ConfirmCurrentSlot()
     {
-        int finalValue = displayValues[currentSlotIndex];
+        int finalValue = displayValues[currentSlotIndex, 1];
         slotInfo.SetValue(currentSlotIndex, finalValue);
 
-        // UI에 확정값을 큰 변화없이 지정해줌 / 나중에는 슬롯 내부의 회전을 통해서 보여주도록 수정 진행
-        slotTexts[currentSlotIndex].text = finalValue.ToString();
-
+        // 중앙 텍스트 강조
+        slotTextGroups[currentSlotIndex].centerText.color = Color.black;
+        
         currentSlotIndex++;
         if (currentSlotIndex >= slotCount)
         {
+            //디버깅 해봤을때 이 친구가 뭔가 발목이 될거 같아서 미리 표시해두는겁니다. 혹시나,,,
             isSpinning = false;
             OnAllSlotsConfirmed();
         }
@@ -68,9 +98,11 @@ public class SlotMachine : MonoBehaviour
     /// </summary>
     void OnAllSlotsConfirmed()
     {
+        //콘솔창에 확인용으로 잠깐 쓴겁니다. 지우셔도 되요.
         int first = slotInfo.GetValue(0);
         int second = slotInfo.GetValue(1);
         int third = slotInfo.GetValue(2);
+
         Debug.Log($"{first} , {second}, {third}");
 
         Managers.TurnManager.ChangeState(new AttackState(slotInfo));

@@ -45,8 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotCount: 3
-  spinSpeed: 20
-  slotTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spinSpeed: 1
+  slotTextGroups:
+  - topText: {fileID: 0}
+    centerText: {fileID: 0}
+    bottomText: {fileID: 0}
+  - topText: {fileID: 0}
+    centerText: {fileID: 0}
+    bottomText: {fileID: 0}
+  - topText: {fileID: 0}
+    centerText: {fileID: 0}
+    bottomText: {fileID: 0}
