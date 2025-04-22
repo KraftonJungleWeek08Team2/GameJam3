@@ -5,7 +5,7 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }
 
-    [SerializeField] private GameObject noteObject;
+    //[SerializeField] private GameObject noteObject;
     [SerializeField] private int musicIndex;
     private MusicInfo currentMusicInfo;
 
@@ -46,6 +46,7 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
+        musicIndex = 0;
         SetMusic(musicIndex);
         StartMusic();
     }
@@ -56,9 +57,13 @@ public class MusicManager : MonoBehaviour
         CheckPosition();
     }
 
+/// <summary>
+/// Set Music Info Only to this clas's properties.
+/// </summary>
+/// <param name="index"></param>
     public void SetMusic(int index)
     {
-        currentMusicInfo = Resources.Load<MusicInfo>("SongInfos/" + index);
+        currentMusicInfo = Resources.Load<MusicInfo>("KHW/MusicInfos/MusicInfo " + index);
         if (currentMusicInfo == null)
         {
             return;
@@ -78,14 +83,14 @@ public class MusicManager : MonoBehaviour
     public void StartMusic()
     {
         startTime = AudioSettings.dspTime + startDelay;
-        musicSource.PlayScheduled(startTime);
-        Debug.Log($"startTime: {startTime}");
+        musicSource.PlayScheduled(startTime); //delay start time.
     }
 
     private void LoopControl()
     {
         if (musicSource.timeSamples >= loopEndSamples)
         {
+            Debug.Log("Music Looped!");
             musicSource.timeSamples -= loopLengthSamples;
             startTime += (loopEndTime - loopStartTime);
         }
@@ -105,7 +110,7 @@ public class MusicManager : MonoBehaviour
             {
                 lastBeatTrigger = onPointTime;
                 OnBeatAction?.Invoke(newBeat);
-                Instantiate(noteObject);
+                //Instantiate(noteObject);
             }
 
             float midPointTime = (newBeat + 0.5f) * noteInterval;
@@ -130,9 +135,9 @@ public class MusicManager : MonoBehaviour
             return 0f;
         }
 
+        //currentPosition => 노래에서 현재 위치, currentbeattime -> 현재 비트의 노래기반 시간. 그 차이를 계산.
         float currentBeatTime = (currentBeat) * noteInterval;
         float offset = currentPosition - currentBeatTime;
-        Debug.Log($"���� ���: ���� ��ġ: {currentPosition:F3} | ���� ����: {currentBeatTime:F3} | ����: {offset:F3}");
         return offset;
     }
 }
