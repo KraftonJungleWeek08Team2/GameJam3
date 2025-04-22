@@ -30,7 +30,6 @@ public class TargetGroupManager
     /// <summary>
     /// 존재 체크 후 타겟 그룹에 멤버를 제거합니다.
     /// </summary>
-    /// <param name="target"></param>
     public void RemoveMember(Transform target)
     {
         if (ContainsTarget(target))
