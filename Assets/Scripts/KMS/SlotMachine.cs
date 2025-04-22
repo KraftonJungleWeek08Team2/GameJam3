@@ -22,6 +22,7 @@ public class SlotMachine : MonoBehaviour
         currentSlotIndex = 0;
         isSpinning = true;
     }
+
     /// <summary>
     /// 슬롯이 돌아가게 실행이 되며 스페이스바를 누르면 하나씩 지정이됩니당.
     /// </summary>
