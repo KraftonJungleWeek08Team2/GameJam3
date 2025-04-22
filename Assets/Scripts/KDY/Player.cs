@@ -61,6 +61,10 @@ public class Player : MonoBehaviour, IDamageable
     {
         hp -= amount;
         _animator.SetTrigger("TakeDamage");
+    }
+    
+    public void IsDie()
+    {
         if (hp <= 0)
         {
             Die();

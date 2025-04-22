@@ -8,6 +8,12 @@ public interface IDamageable
     void TakeDamage(int amount);
     
     /// <summary>
+    /// 사망 확인
+    /// 데미지 다 받은 후 처리하려고 분리
+    /// </summary>
+    void IsDie();
+    
+    /// <summary>
     /// 사망처리
     /// </summary>
     void Die();

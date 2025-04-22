@@ -7,6 +7,10 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         hp -= amount;
+    }
+    
+    public void IsDie()
+    {
         if (hp <= 0)
         {
             Die();
