@@ -72,5 +72,7 @@ public class SlotMachine : MonoBehaviour
         int second = slotInfo.GetValue(1);
         int third = slotInfo.GetValue(2);
         Debug.Log($"{first} , {second}, {third}");
+
+        Managers.TurnManager.ChangeState(new AttackState(slotInfo));
     }
 }
