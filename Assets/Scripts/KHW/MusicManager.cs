@@ -1,3 +1,4 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using UnityEngine;
 
@@ -5,7 +6,9 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }
 
-    //[SerializeField] private GameObject noteObject;
+    [SerializeField] private GameObject noteObject;
+    [SerializeField] private GameObject beatBarPanel;
+    //[SerializeField] private Image centralBarImage;
     [SerializeField] private int musicIndex;
     private MusicInfo currentMusicInfo;
 
@@ -110,7 +113,7 @@ public class MusicManager : MonoBehaviour
             {
                 lastBeatTrigger = onPointTime;
                 OnBeatAction?.Invoke(newBeat);
-                //Instantiate(noteObject);
+                Instantiate(noteObject, beatBarPanel.transform);
             }
 
             float midPointTime = (newBeat + 0.5f) * noteInterval;
