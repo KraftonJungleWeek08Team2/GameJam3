@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour, IDamageable
     private Animator _animator;
     [SerializeField] float moveSpeed;
 
-
     // 스포너에서 값 넘겨줌
     public void Init(EnemyInfo data)
     {

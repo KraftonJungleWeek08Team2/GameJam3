@@ -21,6 +21,8 @@ public class TurnManager
         _slotMachine = GameObject.FindAnyObjectByType<SlotMachine>();
         _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarPanelBehaviour>();
 
+        /*CurrentEnemy = new Enemy();
+        CurrentEnemy.hp = 100;*/
         _currentState = new MoveState();
     }
 
@@ -66,27 +68,28 @@ public class TurnManager
     {
         if (CurrentEnemy.hp <= 0)
         {
-            // 적의 hp가 0 이하라면 죽음 처리하고 MoveState로 전환
-            Managers.CameraManager.RemoveMember(CurrentEnemy.transform);
-
+            // TODO : 나중에 Enemy 추가되면 살려야 하는 코드
+            //Managers.CameraManager.RemoveMember(CurrentEnemy.transform);
+            Debug.Log("Log : hp가 0 이하");
             CurrentEnemy.Die();
             CurrentEnemy = null;
             ChangeState(new MoveState());
+            
         }
         else
         {
             if (IsFullCombo)
             {
+                Debug.Log("Log : 풀콤");
                 // 풀 콤보라면, 다시 슬롯머신 상태로
                 IsFullCombo = false;
                 ChangeState(new SlotState());
             }
             else
             {
+                Debug.Log("Log : 넉백");
                 // 풀 콤보가 아니라면, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
-
-
-                ChangeState(new MoveState());
+                ChangeState(new KnockBackState());
             }
         }
     }
