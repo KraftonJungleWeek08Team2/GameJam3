@@ -6,7 +6,12 @@ public class AttackState : ITurnState
         Managers.InputManager.RhythmAttackEnable(true); // InputManager의 액션 맵을 RhythmAttack으로 변경
     }
 
-    public void ExecuteState()
+    public void UpdateState()
+    {
+
+    }
+
+    public void FixedUpdateState()
     {
 
     }

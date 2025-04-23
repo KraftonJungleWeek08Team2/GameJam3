@@ -14,7 +14,7 @@ public class SlotState : ITurnState
         Managers.TurnManager.SlotMachine.ShowSlotUI();      // 슬롯 머신 동작 시작
     }
 
-    public void ExecuteState()
+    public void UpdateState()
     {
 
     }
@@ -23,5 +23,10 @@ public class SlotState : ITurnState
     {
         Managers.TurnManager.SlotMachine.HideSlotUI();  // 슬롯 머신 끄기
         Managers.InputManager.SlotEnable(false);        // InputManager의 액션 맵 구독 끊기
-    } 
+    }
+
+    public void FixedUpdateState()
+    {
+
+    }
 }

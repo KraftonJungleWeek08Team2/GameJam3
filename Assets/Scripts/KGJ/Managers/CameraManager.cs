@@ -7,6 +7,7 @@ public class CameraManager
     CinemachineTargetGroup _targetGroup;
     CinemachineCamera _moveCamera;
     CinemachineCamera _battleCamera;
+    CinemachineImpulseSource _shakeImpulse;
 
     /// <summary>
     /// 타겟 그룹에 플레이어를 추가합니다.

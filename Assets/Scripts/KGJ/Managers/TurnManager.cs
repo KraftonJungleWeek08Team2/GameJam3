@@ -24,9 +24,14 @@ public class TurnManager
         _currentState = new MoveState();
     }
 
-    public void ExecuteState()
+    public void UpdateState()
     {
-        CurrentState?.ExecuteState();
+        CurrentState?.UpdateState();
+    }
+
+    public void FixedUpdateState()
+    {
+        CurrentState?.FixedUpdateState();
     }
 
     public void ChangeState(ITurnState newState)
