@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class BeatBarDisappear : MonoBehaviour
+public class AccuracyTextBehaviour : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Destroy(gameObject, MusicManager.Instance.noteInterval * 4);   
+        Destroy(gameObject, 0.3f);
     }
 
     // Update is called once per frame

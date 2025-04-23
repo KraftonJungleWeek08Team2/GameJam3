@@ -5,10 +5,6 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }
-
-    [SerializeField] private GameObject noteObject;
-    [SerializeField] private GameObject beatBarPanel;
-    //[SerializeField] private Image centralBarImage;
     [SerializeField] private int musicIndex;
     private MusicInfo currentMusicInfo;
 
@@ -23,12 +19,18 @@ public class MusicManager : MonoBehaviour
     private int loopLengthSamples;
 
     private double startTime;
-    private int currentBeat;
+    public int currentBeat; //onnextbeat때 1 증가.
     private int lastReportedBeat = -1;
     private float currentPosition;
     private float lastMidPointTrigger = -1f;
     private float lastBeatTrigger = -1f;
+    /// <summary>
+    /// 비트 사이에 중앙에 해당하는 시간에서 트리거되는 액션
+    /// </summary>
     public Action<int> OnNextBeatAction;
+    /// <summary>
+    /// 비트에 해당하는 시간에서 트리거되는 액션
+    /// </summary>
     public Action<int> OnBeatAction;  
 
     private void Awake()
@@ -113,7 +115,6 @@ public class MusicManager : MonoBehaviour
             {
                 lastBeatTrigger = onPointTime;
                 OnBeatAction?.Invoke(newBeat);
-                Instantiate(noteObject, beatBarPanel.transform);
             }
 
             float midPointTime = (newBeat + 0.5f) * noteInterval;
@@ -131,16 +132,24 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    public float GetTimingOffset()
+public float GetTimingOffset()
+{
+    if (!musicSource.isPlaying || currentPosition <= 0f)
     {
-        if (!musicSource.isPlaying)
-        {
-            return 0f;
-        }
-
-        //currentPosition => 노래에서 현재 위치, currentbeattime -> 현재 비트의 노래기반 시간. 그 차이를 계산.
-        float currentBeatTime = (currentBeat) * noteInterval;
-        float offset = currentPosition - currentBeatTime;
-        return offset;
+        return 0f;
     }
+
+    // 실시간 비트 계산
+    int currentBeat = (int)(currentPosition / noteInterval);
+    float currentBeatTime = currentBeat * noteInterval;
+    float offset = currentPosition - currentBeatTime;
+
+    // 오프셋 정규화
+    if (offset > noteInterval / 2)
+        offset -= noteInterval;
+    else if (offset < -noteInterval / 2)
+        offset += noteInterval;
+
+    return offset;
+}
 }
