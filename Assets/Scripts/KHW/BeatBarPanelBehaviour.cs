@@ -178,7 +178,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             }
 
         }
-        else if(accuracy <= 0.6 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
+        else if(accuracy <= 0.6 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //bad.
         {
             currentBeatInputted = true;
             isFullCombo = false;
@@ -193,7 +193,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         }
         else if(currentBeatInputted) //중복 입력
         {   
-            isFullCombo = false;
+            //isFullCombo = false;
             Instantiate(breakText, accuracyPos);
         }
     }
