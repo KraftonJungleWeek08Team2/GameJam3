@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotCount: 3
-  spinSpeed: 1
+  spinSpeed: 0.1
   slotTextGroups:
   - topText: {fileID: 0}
     centerText: {fileID: 0}
@@ -56,3 +56,4 @@ MonoBehaviour:
   - topText: {fileID: 0}
     centerText: {fileID: 0}
     bottomText: {fileID: 0}
+  resultUIManager: {fileID: 0}
