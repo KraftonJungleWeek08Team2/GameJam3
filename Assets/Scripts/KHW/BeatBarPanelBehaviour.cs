@@ -31,6 +31,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     {
         beatBarCanvas.enabled = true;
         InitializePropertiesOther(slotInfo);
+        baseBeat = MusicManager.Instance.currentBeat + 6; //노트 도달 4비트. 여유 2비트.
     }
 
     public void HideBeatBar()
@@ -54,14 +55,17 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         breakText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/MissTextObject");
         musicManager.OnNextBeatAction += UpdateCurrentBeat;
         musicManager.OnBeatAction += GenerateNewNote;
-        baseBeat = MusicManager.Instance.currentBeat + 6; //노트 도달 4비트. 여유 2비트.
+
+        Managers.InputManager.OnRhythmAttackEvent += Attack;
 
         beatBarCanvas = transform.parent.GetComponent<Canvas>();
         beatBarCanvas.enabled = false;
+
+        
     }
 
 /// <summary>
-/// slotInfo로부터 공격비트 숫자를 얻어오는 함수.. 노트가 가운데 도달하기까지는 4비트.
+/// slotInfo로부터 공격비트 숫자를 얻어오는 함수.. 노트가 가운데 도달하기까지는 margin bit.
 /// </summary>
     bool GetIsAttackBeatCount(int currentBeat)
     {
@@ -119,7 +123,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 /// <summary>
 /// Triggered By PlayerInput Component.
 /// </summary>
-    void OnAttack() 
+    void Attack() 
     {
         Debug.Log("현재 비트 : " + currentMusicBeat);
         
@@ -148,5 +152,10 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         }
 
         
+    }
+
+    void DisableBeatBar()
+    {
+
     }
 }
