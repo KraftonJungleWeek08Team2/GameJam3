@@ -11,12 +11,14 @@ public class SlotTextGroup
 }
 public class SlotMachine : MonoBehaviour
 {
+    [SerializeField] private TMP_Text timerText;
     [SerializeField] private int slotCount = 3; // 슬롯의 갯수 지정
     [SerializeField] private float spinSpeed = 0.1f; // 슬롯의 숫자 돌아가는 속도 조절 가능(간격이다보니 짧을 수록 빨라집니다.)
     [SerializeField] private SlotTextGroup[] slotTextGroups; // 인스펙터에서 슬롯 개수만큼 할당
     [SerializeField] private ResultUIManager resultUIManager; // 또 다른 유아이(결과 유아이)를 키기위한 선언
 
     //경과 시간 추가
+    private float maxSlotTime = 5f;
     private float slotTimeout = 5f; // 제한 시간
     private float slotTimer = 0f;   // 경과 시간
 
@@ -47,9 +49,22 @@ public class SlotMachine : MonoBehaviour
     /// <summary>
     /// 초기화 되어야할 파친코 시스템 
     /// </summary>
-    public void ShowSlotUI()
+    public void ShowSlotUI(bool isOneMore)
     {
-        slotTimer = 0f; // 슬롯 시간을 0으로 
+        if (isOneMore)
+        {
+            if (slotTimeout > 1f)
+            { 
+                slotTimeout -= 1f;
+                Debug.Log($"[KGJ] : {slotTimeout}");
+            }
+        }
+        else
+        {
+            slotTimeout = maxSlotTime; // 슬롯 제한시간 초기화
+        }
+
+            slotTimer = 0f; // 슬롯 시간을 0으로 
         _slotCanvas.enabled = true;
         slotInfo = new SlotInfo(slotCount);
         displayValues = new int[slotCount, 3];
@@ -63,9 +78,11 @@ public class SlotMachine : MonoBehaviour
         currentSlotIndex = 0;
         isSpinning = true;
         Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
+        // 타이머 기능
+
     }
     public void HideSlotUI()
-    {
+    {            
         Managers.InputManager.OnSlotEvent -= ConfirmCurrentSlot;
         _slotCanvas.enabled = false;
     }
@@ -75,17 +92,23 @@ public class SlotMachine : MonoBehaviour
     /// </summary>
     void Update()
     {
+        //슬롯 변화 속도 조절을 위한 타임
         if (!isSpinning) return;
-        // 타이머를 누적하고요
+
         spinTimer += Time.deltaTime;
-        //0.5초의 간격이 지나면 로직을 실행함돠
+
         if(spinTimer >= spinSpeed)
         {
             spinTimer = 0f;
             SpinAllUnfixedSlots();
         }
-        //제한시간과 
         slotTimer += Time.deltaTime;
+        //남은 시간을 계산 하는거
+        float timeLeft = slotTimeout - slotTimer;
+        int secondsLeft = Mathf.CeilToInt(Mathf.Max(timeLeft, 0f)); // 정수로 변환
+        timerText.text = secondsLeft.ToString();   // 정수로 표시
+
+        // 남은 시간 계산 & 표시
         if (slotTimer >= slotTimeout)
         {
             ForceEndWithZeros(); // 제한시간 초과 시 강제 종료
