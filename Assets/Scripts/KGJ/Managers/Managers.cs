@@ -41,6 +41,11 @@ public class Managers : MonoBehaviour
     void Update()
     {
         // TurnManager의 현재 상태를 실행
-        _turnManager.ExecuteState();
+        _turnManager.UpdateState();
+    }
+
+    void FixedUpdate()
+    {
+        _turnManager.FixedUpdateState();
     }
 }
