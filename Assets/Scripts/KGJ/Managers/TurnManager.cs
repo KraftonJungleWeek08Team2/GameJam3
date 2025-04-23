@@ -73,6 +73,9 @@ public class TurnManager
             //Managers.CameraManager.RemoveMember(CurrentEnemy.transform);
             Debug.Log("Log : hp가 0 이하");
             CurrentEnemy.Die();
+
+            // EnemySpawner에서 적을 생성해줌
+            // 생성한 적을 CurrentEnemy에 넣어줌
             CurrentEnemy = null;
             ChangeState(new MoveState());
             
