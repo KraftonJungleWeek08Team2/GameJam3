@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 770240877615373714, guid: 5934ebc692c9f0a45abc0164216bacf8, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 770240877615373714, guid: 5934ebc692c9f0a45abc0164216bacf8, type: 3}
       propertyPath: m_SizeDelta.y
@@ -97,6 +97,22 @@ PrefabInstance:
       value: 'Miss
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492834612048418898, guid: 5934ebc692c9f0a45abc0164216bacf8, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492834612048418898, guid: 5934ebc692c9f0a45abc0164216bacf8, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.205793
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492834612048418898, guid: 5934ebc692c9f0a45abc0164216bacf8, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492834612048418898, guid: 5934ebc692c9f0a45abc0164216bacf8, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278203647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

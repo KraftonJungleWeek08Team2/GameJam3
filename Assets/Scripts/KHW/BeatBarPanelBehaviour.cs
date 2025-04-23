@@ -152,43 +152,49 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         Debug.Log("정확도 : " + accuracy);
 
-        if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
+        if(accuracy > 0.9 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
         {
             Managers.TurnManager.CurrentEnemy.TakeDamage(2);
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
-                Debug.Log("Log : 마지막 비트 입력 성공 퍼펙트");
+                //Debug.Log("Log : 마지막 비트 입력 성공 퍼펙트");
                 Managers.TurnManager.IsFullCombo = isFullCombo;
                 Managers.TurnManager.EndAttackState();
             }
 
         } 
-        else if(accuracy > 0.4 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
+        else if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
         {   
             Managers.TurnManager.CurrentEnemy.TakeDamage(1);
             currentBeatInputted = true;
             Instantiate(goodText, accuracyPos);
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
-                Debug.Log("Log : 마지막 비트 입력 성공");
+                //Debug.Log("Log : 마지막 비트 입력 성공");
                 Managers.TurnManager.IsFullCombo = isFullCombo;
                 Managers.TurnManager.EndAttackState();
             }
 
         }
+        else if(accuracy <= 0.6 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
+        {
+            currentBeatInputted = true;
+            isFullCombo = false;
+            Instantiate(breakText, accuracyPos);
+        }
         else if(!GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //아닌데 누름.
         {
             currentBeatInputted = true;
             isFullCombo = false;
-            Debug.Log("miss input.");
+            //Debug.Log("miss input.");
             Instantiate(breakText, accuracyPos);
         }
         else if(currentBeatInputted) //중복 입력
         {   
             isFullCombo = false;
-            //Instantiate(breakText, accuracyPos);
+            Instantiate(breakText, accuracyPos);
         }
     }
 
