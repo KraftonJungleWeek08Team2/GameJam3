@@ -96,6 +96,7 @@ public class SlotMachine : MonoBehaviour
     void ConfirmCurrentSlot()
     {
         int finalValue = displayValues[currentSlotIndex, 1];
+        //Debug.Log($"{displayValues[currentSlotIndex, 1]}, {currentSlotIndex}");
         slotInfo.SetValue(currentSlotIndex, finalValue);
 
         // 중앙 텍스트 강조
