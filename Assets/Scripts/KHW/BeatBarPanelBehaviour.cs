@@ -152,7 +152,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         Debug.Log("정확도 : " + accuracy);
 
-        if(accuracy > 0.9 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
+        if(accuracy > 0.8 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
         {
             Managers.TurnManager.CurrentEnemy.TakeDamage(2);
             currentBeatInputted = true;
@@ -166,10 +166,11 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             }
 
         } 
-        else if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
+        else if(accuracy > 0.6 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
         {   
             Managers.TurnManager.CurrentEnemy.TakeDamage(1);
             currentBeatInputted = true;
+            SoundManager.Instance.PlayGoodSound();
             Instantiate(goodText, accuracyPos);
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {

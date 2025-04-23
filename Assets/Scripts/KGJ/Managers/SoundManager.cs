@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip perfectSound;
     [Tooltip("퍼펙트 사운드 볼륨")]
     [SerializeField] private float perfectSoundVolume;
+    [Tooltip("굿 사운드 볼륨")]
+    [SerializeField] private float goodSoundVolume;
 
     private void Awake()
     {
@@ -24,6 +26,11 @@ public class SoundManager : MonoBehaviour
     public void PlayPerfectSound()
     {
         PlayerSoundEffect(perfectSound, perfectSoundVolume);
+    }
+
+    public void PlayGoodSound()
+    {
+        PlayerSoundEffect(perfectSound, goodSoundVolume);
     }
 
     private void PlayerSoundEffect(AudioClip clip, float volume)

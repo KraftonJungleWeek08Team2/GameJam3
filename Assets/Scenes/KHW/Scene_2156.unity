@@ -1564,7 +1564,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1589,7 +1589,7 @@ Transform:
   m_GameObject: {fileID: 1438976813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.63100004, z: -10}
+  m_LocalPosition: {x: -1, y: -0.86899996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2565,10 +2565,14 @@ PrefabInstance:
     - target: {fileID: 67643460717032821, guid: 24fe66c2249eb754597dfd0d20b16684, type: 3}
       propertyPath: perfectSound
       value: 
-      objectReference: {fileID: 8300000, guid: 2ae4c7fbcfb0248418aee3bd5d9fff03, type: 3}
+      objectReference: {fileID: 8300000, guid: e50068582e780a44484d8940832efbb5, type: 3}
+    - target: {fileID: 67643460717032821, guid: 24fe66c2249eb754597dfd0d20b16684, type: 3}
+      propertyPath: goodSoundVolume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 67643460717032821, guid: 24fe66c2249eb754597dfd0d20b16684, type: 3}
       propertyPath: perfectSoundVolume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 67643460717032821, guid: 24fe66c2249eb754597dfd0d20b16684, type: 3}
       propertyPath: soundEffectudioSource
