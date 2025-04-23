@@ -138,6 +138,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1020322933760903250, guid: deea270f7a6ced24da6ddf7aaf239f28, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1098639
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020322933760903250, guid: deea270f7a6ced24da6ddf7aaf239f28, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.01085186
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020322933760903250, guid: deea270f7a6ced24da6ddf7aaf239f28, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.072325885
+      objectReference: {fileID: 0}
     - target: {fileID: 2184228273542793267, guid: deea270f7a6ced24da6ddf7aaf239f28, type: 3}
       propertyPath: m_Name
       value: Player
@@ -152,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3137046982378117290, guid: deea270f7a6ced24da6ddf7aaf239f28, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.75
+      value: -1.869
       objectReference: {fileID: 0}
     - target: {fileID: 3137046982378117290, guid: deea270f7a6ced24da6ddf7aaf239f28, type: 3}
       propertyPath: m_LocalPosition.z
@@ -738,6 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 927297181}
   - component: {fileID: 927297180}
+  - component: {fileID: 927297182}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -815,6 +828,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &927297182
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927297179}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1150137093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2605698525701542424, guid: 629d93deec2ad004594c9b8eda4720a7, type: 3}
@@ -941,7 +1000,7 @@ Transform:
   m_GameObject: {fileID: 1438976813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -1.75, z: -10}
+  m_LocalPosition: {x: -1, y: -1.869, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1125,6 +1184,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5736900761883527079, guid: 25712d5f10242124285fccdfcf8aa94b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.869
+      objectReference: {fileID: 0}
     - target: {fileID: 8690892993284878815, guid: 25712d5f10242124285fccdfcf8aa94b, type: 3}
       propertyPath: m_Name
       value: CameraController
@@ -1153,7 +1216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1180925409177643725, guid: 629d93deec2ad004594c9b8eda4720a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.75
+      value: -1.869
       objectReference: {fileID: 0}
     - target: {fileID: 1180925409177643725, guid: 629d93deec2ad004594c9b8eda4720a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1290,7 +1353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7062093056177428679, guid: aee7827c8e03be64d9ec8dcfa580b0d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.75
+      value: -1.869
       objectReference: {fileID: 0}
     - target: {fileID: 7062093056177428679, guid: aee7827c8e03be64d9ec8dcfa580b0d1, type: 3}
       propertyPath: m_LocalPosition.z

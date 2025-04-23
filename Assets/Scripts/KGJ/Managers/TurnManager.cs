@@ -24,9 +24,14 @@ public class TurnManager
         _currentState = new MoveState();
     }
 
-    public void ExecuteState()
+    public void UpdateState()
     {
-        CurrentState?.ExecuteState();
+        CurrentState?.UpdateState();
+    }
+
+    public void FixedUpdateState()
+    {
+        CurrentState?.FixedUpdateState();
     }
 
     public void ChangeState(ITurnState newState)
@@ -79,6 +84,8 @@ public class TurnManager
             else
             {
                 // 풀 콤보가 아니라면, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
+
+
                 ChangeState(new MoveState());
             }
         }
