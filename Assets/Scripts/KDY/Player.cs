@@ -46,6 +46,7 @@ public class Player : MonoBehaviour, IDamageable
         hp -= amount;
         _animator.SetTrigger("TakeDamage");
         OnPlayerDamageEvent?.Invoke();
+        IsDie();
     }
     
     public void IsDie()
