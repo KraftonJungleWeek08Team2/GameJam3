@@ -112,12 +112,12 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         Debug.Log("정확도 : " + accuracy);
 
-        if(accuracy > 0.75 && GetIsAttackBeatCount(currentMusicBeat - 4) && !currentBeatInputted) //Perfect Attack.
+        if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat - 4) && !currentBeatInputted) //Perfect Attack.
         {
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
         } 
-        else if(accuracy > 0.5 && GetIsAttackBeatCount(currentMusicBeat - 4) && !currentBeatInputted)
+        else if(accuracy > 0.4 && GetIsAttackBeatCount(currentMusicBeat - 4) && !currentBeatInputted)
         {   
             currentBeatInputted = true;
             Instantiate(goodText, accuracyPos);
