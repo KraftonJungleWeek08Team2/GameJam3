@@ -159,6 +159,11 @@ public class SlotMachine : MonoBehaviour
             StartCoroutine(WaitOneFrame());
     }
 
+    public void HideResult()
+    {
+        resultUIManager.Hide();
+    }
+
     IEnumerator WaitOneFrame()
     {
         yield return new WaitForSeconds(0.1f);

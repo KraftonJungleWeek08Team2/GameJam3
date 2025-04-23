@@ -21,5 +21,6 @@ public class AttackState : ITurnState
     {
         Managers.TurnManager.BeatBarPanelBehaviour.HideBeatBar(); // BeatBar 끄기
         Managers.InputManager.RhythmAttackEnable(false); // InputManager의 액션 맵 구독 끊기
+        Managers.TurnManager.SlotMachine.HideResult(); // SlotMachine 결과 숨기기
     }
 }
