@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rhythm_Mother_scale_0: 1133673093890934786
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
