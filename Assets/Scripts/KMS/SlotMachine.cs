@@ -53,6 +53,13 @@ public class SlotMachine : MonoBehaviour
         _slotCanvas.enabled = true;
         slotInfo = new SlotInfo(slotCount);
         displayValues = new int[slotCount, 3];
+        for (int i = 0; i < slotCount; i++)
+        {
+            for (int j = 0; j < slotCount; j++)
+            {
+                displayValues[i, j] = 1; // 슬롯의 숫자 초기화
+            }
+        }
         currentSlotIndex = 0;
         isSpinning = true;
         Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
@@ -136,7 +143,7 @@ public class SlotMachine : MonoBehaviour
         {
             slotInfo.SetValue(i, 0);
             slotTextGroups[i].centerText.text = "0";
-            slotTextGroups[i].centerText.color = Color.gray;
+            //slotTextGroups[i].centerText.color = Color.gray;
         }
 
         OnAllSlotsConfirmed();

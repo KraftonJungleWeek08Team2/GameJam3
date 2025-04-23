@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuUIManager : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class MenuUIManager : MonoBehaviour
 
     public void StartGame()
     {
-        //TODO: 금지씨 게임시작을 넣어주세요
+        SceneManager.LoadScene("MainScene");
     }
     public void HowtoplayGame() 
     {
