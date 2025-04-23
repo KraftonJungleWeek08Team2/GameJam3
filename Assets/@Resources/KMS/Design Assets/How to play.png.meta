@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 7767f6aa5bbef7a44836c4905da88d75
+guid: a99e4676e6fd95a49842f2882e47765d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1308625392336909538
-    second: sword_Side_0
+      213: -2473107945352221674
+    second: How to play_0
+  - first:
+      213: -168960891464324070
+    second: How to play_1
+  - first:
+      213: -2454236314018857527
+    second: How to play_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,23 +119,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sword_Side_0
+      name: How to play_0
       rect:
         serializedVersion: 2
-        x: 182
+        x: 0
         y: 0
-        width: 171
-        height: 858
+        width: 536
+        height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e43c466cdb292210800000000000000
-      internalID: 1308625392336909538
+      spriteID: 61ca5124d61cdadd0800000000000000
+      internalID: -2473107945352221674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: How to play_1
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 17
+        width: 106
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ce553e6fab7adf0800000000000000
+      internalID: -168960891464324070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: How to play_2
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 0
+        width: 201
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cdba04531dc0fdd0800000000000000
+      internalID: -2454236314018857527
       vertices: []
       indices: 
       edges: []
@@ -138,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0a0b9a72a2d4eaa4eb529f1fdced6325
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sword_Side_0: 1308625392336909538
+      How to play_0: -2473107945352221674
+      How to play_1: -168960891464324070
+      How to play_2: -2454236314018857527
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

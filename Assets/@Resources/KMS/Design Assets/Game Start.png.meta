@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 7767f6aa5bbef7a44836c4905da88d75
+guid: f8c22ecc4a6349f4fba5ed63c0c3ebb7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1308625392336909538
-    second: sword_Side_0
+      213: 8663077342332791935
+    second: Game Start_0
+  - first:
+      213: 513034700267159687
+    second: Game Start_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,23 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sword_Side_0
+      name: Game Start_0
       rect:
         serializedVersion: 2
-        x: 182
+        x: 0
         y: 0
-        width: 171
-        height: 858
+        width: 488
+        height: 74
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e43c466cdb292210800000000000000
-      internalID: 1308625392336909538
+      spriteID: f7c2b73a1fe693870800000000000000
+      internalID: 8663077342332791935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Start_1
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 0
+        width: 249
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7808fda775aae1700800000000000000
+      internalID: 513034700267159687
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b6d89c79ede4f9e4da1cbd5ed8437ebe
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sword_Side_0: 1308625392336909538
+      Game Start_0: 8663077342332791935
+      Game Start_1: 513034700267159687
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
