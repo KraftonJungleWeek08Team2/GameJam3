@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IDamageable
     [Tooltip("애니메이터 컴포넌트")]
     [SerializeField] private Animator _animator;
 
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         hp = maxHp;
