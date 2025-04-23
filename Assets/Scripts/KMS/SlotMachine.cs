@@ -17,6 +17,7 @@ public class SlotMachine : MonoBehaviour
     [SerializeField] private ResultUIManager resultUIManager; // 또 다른 유아이(결과 유아이)를 키기위한 선언
 
     //경과 시간 추가
+    private float maxSlotTime = 5f;
     private float slotTimeout = 5f; // 제한 시간
     private float slotTimer = 0f;   // 경과 시간
 
@@ -47,9 +48,22 @@ public class SlotMachine : MonoBehaviour
     /// <summary>
     /// 초기화 되어야할 파친코 시스템 
     /// </summary>
-    public void ShowSlotUI()
+    public void ShowSlotUI(bool isOneMore)
     {
-        slotTimer = 0f; // 슬롯 시간을 0으로 
+        if (isOneMore)
+        {
+            if (slotTimeout > 1f)
+            { 
+                slotTimeout -= 1f;
+                Debug.Log($"[KGJ] : {slotTimeout}");
+            }
+        }
+        else
+        {
+            slotTimeout = maxSlotTime; // 슬롯 제한시간 초기화
+        }
+
+            slotTimer = 0f; // 슬롯 시간을 0으로 
         _slotCanvas.enabled = true;
         slotInfo = new SlotInfo(slotCount);
         displayValues = new int[slotCount, 3];
