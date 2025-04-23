@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -12,11 +11,12 @@ public class SlotTextGroup
 public class SlotMachine : MonoBehaviour
 {
     [SerializeField] private int slotCount = 3; // 슬롯의 갯수 지정
-    [SerializeField] private float spinSpeed = 20f; // 슬롯의 숫자 지정하기 전에 돌아가는 속도
+    [SerializeField] private float spinSpeed = 0.1f; // 슬롯의 숫자 돌아가는 속도 조절 가능(간격이다보니 짧을 수록 빨라집니다.)
     [SerializeField] private SlotTextGroup[] slotTextGroups; // 인스펙터에서 슬롯 개수만큼 할당
 
     private SlotInfo slotInfo;
-    Canvas _slotCanvas;
+    private Canvas _slotCanvas;
+    private float spinTimer; // Time.deltatime 활용해서 속도 조절
     private int currentSlotIndex;
     private bool isSpinning; //회전하고 있음
     private int[,] displayValues; // [slotIndex, position(0:top,1:center,2:bottom)]
@@ -46,12 +46,19 @@ public class SlotMachine : MonoBehaviour
     }
 
     /// <summary>
-    /// 슬롯이 돌아가게 실행이 되며 스페이스바를 누르면 하나씩 지정이됩니당.
+    /// 슬롯이 spinSpeed의 속도로 돌아가며 스페이스바를 누르면 하나씩 지정이됩니당.
     /// </summary>
     void Update()
     {
         if (!isSpinning) return;
+        // 타이머를 누적하고요
+        spinTimer += Time.deltaTime;
+        //0.5초의 간격이 지나면 로직을 실행함돠
+        if(spinTimer >= spinSpeed)
+        {
+            spinTimer = 0f;
             SpinAllUnfixedSlots();
+        }
         if (Input.GetKeyDown(KeyCode.Space))
             ConfirmCurrentSlot();
     }
