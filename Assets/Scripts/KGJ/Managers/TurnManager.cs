@@ -18,7 +18,6 @@ public class TurnManager
     public ParallaxBackground ParallaxBackground => _parallaxBackground;
     ParallaxBackground _parallaxBackground;
 
-    public EnemySpawner EnemySpawner => _enemySpawner;
     EnemySpawner _enemySpawner;
 
     public void Init()
@@ -61,8 +60,7 @@ public class TurnManager
         else
         {
             // 슬롯머신 실패시, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
-            // TODO : 현재 적의 공격력만큼 데미지를 주어야함
-            Player.TakeDamage(1);
+            Player.TakeDamage(CurrentEnemy.damage);
             ChangeState(new KnockBackState());
         }
     }
@@ -72,7 +70,6 @@ public class TurnManager
         if (CurrentEnemy.hp <= 0)
         {
             Managers.CameraManager.RemoveMember(CurrentEnemy.transform);
-            Debug.Log("Log : hp가 0 이하");
             CurrentEnemy.Die();
 
             // EnemySpawner에서 적을 생성하고 CurrentEnemy에 넣어줌
@@ -85,14 +82,12 @@ public class TurnManager
         {
             if (IsFullCombo)
             {
-                Debug.Log("Log : 풀콤");
                 // 풀 콤보라면, 다시 슬롯머신 상태로
                 IsFullCombo = false;
                 ChangeState(new SlotState());
             }
             else
             {
-                Debug.Log("Log : 넉백");
                 // 풀 콤보가 아니라면, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
                 ChangeState(new KnockBackState());
             }

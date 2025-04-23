@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyInfo _data;
     public int hp { get; private set; }
+    public int damage { get; private set; }
     private Animator _animator;
     private float _moveSpeed;
     
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         _data      = data;
         hp = data.maxHp;
+        damage = data.damage;
         _moveSpeed = data.moveSpeed;
         isMoving   = true;
     }
@@ -26,9 +28,10 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Update()
     {
         if (isMoving)
-        {
             Move();
-        }
+
+        if (transform.position.x < -20)
+            Destroy(gameObject);
     }
 
     private void Move()
