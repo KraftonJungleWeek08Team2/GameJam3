@@ -19,12 +19,25 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     [SerializeField] private SlotInfo currentSlotInfo; //받아올 슬롯의 정보를 가진 struct.
     [SerializeField] private List<int> attackBeatCounts; 
     [SerializeField] private bool currentBeatInputted; // 현재 비트에 입력이 있었는가?
+    [SerializeField] private Canvas beatBarCanvas;
+
     void Start()
     {
         InitializePropertiesSelf();
         currentSlotInfo = new SlotInfo(2);
         currentSlotInfo.SetValue(0, 5); //임시
         currentSlotInfo.SetValue(1, 3);
+    }
+
+    public void ShowBeatBar(SlotInfo slotInfo)
+    {
+        beatBarCanvas.enabled = true;
+        InitializePropertiesOther(slotInfo);
+    }
+
+    public void HideBeatBar()
+    {
+        beatBarCanvas.enabled = false;
     }
 
     public void InitializePropertiesOther(SlotInfo slotInfo)
@@ -45,7 +58,9 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         musicManager.OnNextBeatAction += UpdateCurrentBeat;
         musicManager.OnBeatAction += GenerateNewNote;
         baseBeat = MusicManager.Instance.currentBeat + 6; //노트 도달 4비트. 여유 2비트.
-        
+
+        beatBarCanvas = transform.parent.GetComponent<Canvas>();
+        beatBarCanvas.enabled = false;
     }
 
 /// <summary>
@@ -94,6 +109,9 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         currentMusicBeat = currentBeat;
     }
 
+    // 끝나는 시점에서 호출
+    // Managers.TurnManager.IsFullCombo = true;
+    // Managers.TurnManager.EndAttackState();
 
     void Update()
     {

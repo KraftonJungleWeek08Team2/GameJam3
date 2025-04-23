@@ -31,6 +31,7 @@ public class Managers : MonoBehaviour
     {
         TurnManager.Init();
         CameraManager.Init();
+        TurnManager.ChangeState(new SlotState());
     }
 
     void Update()
