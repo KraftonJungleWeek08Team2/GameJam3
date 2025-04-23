@@ -584,6 +584,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2886419675686732135, guid: c3b8f922a2b862a449bc574af43996a0, type: 3}
+      propertyPath: spinSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2886419675686732135, guid: c3b8f922a2b862a449bc574af43996a0, type: 3}
       propertyPath: slotTextGroups.Array.data[0].topText
       value: 
       objectReference: {fileID: 526024917}
