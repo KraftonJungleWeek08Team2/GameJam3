@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IDamageable
 
     int attackIndex = 0; // 공격 인덱스
 
-    public Action OnPlayerDamageEvent;
+    public Action<int> OnPlayerDamageEvent;
 
     private void Awake()
     {
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         hp -= amount;
         _animator.SetTrigger("TakeDamage");
-        OnPlayerDamageEvent?.Invoke();
+        OnPlayerDamageEvent?.Invoke(amount);
         IsDie();
     }
     

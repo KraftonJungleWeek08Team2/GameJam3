@@ -60,7 +60,6 @@ public class TurnManager
         else
         {
             // 슬롯머신 실패시, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
-            Player.TakeDamage(CurrentEnemy.damage);
             ChangeState(new KnockBackState());
         }
     }
