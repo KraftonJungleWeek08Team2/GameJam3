@@ -157,6 +157,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             Managers.TurnManager.CurrentEnemy.TakeDamage(2);
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
+            SoundManager.Instance.PlayPerfectSound();
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
                 //Debug.Log("Log : 마지막 비트 입력 성공 퍼펙트");
