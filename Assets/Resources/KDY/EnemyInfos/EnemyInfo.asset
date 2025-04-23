@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyName: "\uBC84\uC12F"
   maxHp: 1000
   damage: 10
-  moveSpeed: 7
+  moveSpeed: 4
   icon: {fileID: 5827293808285669160, guid: de12e198e53aa3e498455c681a237665, type: 3}
   prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
