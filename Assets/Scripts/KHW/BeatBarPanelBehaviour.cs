@@ -40,7 +40,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             totalBeatOfSlotInfo += currentSlotInfo.GetValue(i);
         }
         endBeat = baseBeat + totalBeatOfSlotInfo;
-        
+        isFullCombo = true;
         Managers.InputManager.OnRhythmAttackEvent += Attack;
     }
 
