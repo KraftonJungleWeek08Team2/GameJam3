@@ -14,6 +14,7 @@ public class SlotMachine : MonoBehaviour
     [SerializeField] private float spinSpeed = 0.1f; // 슬롯의 숫자 돌아가는 속도 조절 가능(간격이다보니 짧을 수록 빨라집니다.)
     [SerializeField] private SlotTextGroup[] slotTextGroups; // 인스펙터에서 슬롯 개수만큼 할당
 
+    public SlotInfo SlotInfo => slotInfo;
     private SlotInfo slotInfo;
     private Canvas _slotCanvas;
     private float spinTimer; // Time.deltatime 활용해서 속도 조절
@@ -24,11 +25,17 @@ public class SlotMachine : MonoBehaviour
     /// <summary>
     /// 시작할때 한번 초기화
     /// </summary>
-    void Start()
+    void Awake()
     {
         _slotCanvas = FindAnyObjectByType<UI_Slot_Canvas>().GetComponent<Canvas>();
-        ShowSlotUI();
+        if (_slotCanvas == null)
+        {
+            Debug.LogError("UI_Slot_Canvas not found");
+            return;
+        }
+        //ShowSlotUI();
     }
+
     /// <summary>
     /// 초기화 되어야할 파친코 시스템 
     /// </summary>
@@ -39,9 +46,13 @@ public class SlotMachine : MonoBehaviour
         displayValues = new int[slotCount, 3];
         currentSlotIndex = 0;
         isSpinning = true;
+        Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
+
+
     }
     public void HideSlotUI()
     {
+        Managers.InputManager.OnSlotEvent -= ConfirmCurrentSlot;
         _slotCanvas.enabled = false;
     }
 
@@ -59,8 +70,6 @@ public class SlotMachine : MonoBehaviour
             spinTimer = 0f;
             SpinAllUnfixedSlots();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-            ConfirmCurrentSlot();
     }
 
     /// <summary>
@@ -100,6 +109,7 @@ public class SlotMachine : MonoBehaviour
             OnAllSlotsConfirmed();
         }
     }
+
     /// <summary>
     /// 최종적으로 만들어졌고 전달해야할 슬롯의 숫자값
     /// </summary>
@@ -110,8 +120,8 @@ public class SlotMachine : MonoBehaviour
         int second = slotInfo.GetValue(1);
         int third = slotInfo.GetValue(2);
 
-        Debug.Log($"{first} , {second}, {third}");
+        //Debug.Log($"{first} , {second}, {third}");
 
-        Managers.TurnManager.ChangeState(new AttackState(slotInfo));
+        Managers.TurnManager.EndSlotState();
     }
 }

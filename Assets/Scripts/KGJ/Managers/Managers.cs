@@ -11,8 +11,11 @@ public class Managers : MonoBehaviour
     public static TurnManager TurnManager => _turnManager;
     static TurnManager _turnManager = new TurnManager();
 
-    public static TargetGroupManager TargetGroupManager => _targetGroupManager;
-    static TargetGroupManager _targetGroupManager = new TargetGroupManager();
+    public static CameraManager CameraManager => _cameraManager;
+    static CameraManager _cameraManager = new CameraManager();
+
+    public static InputManager InputManager => _inputManager;
+    static InputManager _inputManager = new InputManager();
 
     void Awake()
     {
@@ -30,7 +33,9 @@ public class Managers : MonoBehaviour
     void Start()
     {
         TurnManager.Init();
-        TargetGroupManager.Init();
+        CameraManager.Init();
+        InputManager.Init();
+        TurnManager.ChangeState(new SlotState());
     }
 
     void Update()

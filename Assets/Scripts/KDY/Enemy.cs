@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public int hp{ get; private set; }
+    [SerializeField] float moveSpeed;
+
+    public int hp { get; private set; }
 
     public void TakeDamage(int amount)
     {
@@ -20,5 +22,10 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Die()
     {
         Debug.Log("Enemy has died.");
+    }
+
+    void Update()
+    {
+
     }
 }

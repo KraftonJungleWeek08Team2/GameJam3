@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerInputSystem_Action",
     "maps": [
         {
             "name": "Slot",
@@ -70,6 +70,17 @@
                     "name": "",
                     "id": "778f9912-c6d5-49b1-8968-296666086e1c",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "01526bc5-a6b7-412d-830b-b75cf8260707",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -1,18 +1,31 @@
+using UnityEngine;
+
 public class SlotState : ITurnState
 {
-    // SlotMachine 받아옴
-
     public void EnterState()
     {
+        Managers.InputManager.SlotEnable(true);
+        Managers.TurnManager.Player.Idle();
         // SlotMachine 시작함
+        if (Managers.TurnManager.CurrentEnemy != null)
+        {
+            Managers.CameraManager.AddMember(Managers.TurnManager.CurrentEnemy.transform, 0.5f, 1f);
+        }
+        
+        Managers.CameraManager.ChangeBattleCamera(true);
+
+        Managers.TurnManager.SlotMachine.ShowSlotUI();
+        Debug.Log("ShowSlotUI");
     }
 
     public void ExecuteState()
     {
+
     }
 
     public void ExitState()
     {
-        // SlotMachine 결과를 넘겨줌
-    }
+        Managers.TurnManager.SlotMachine.HideSlotUI();
+        Managers.InputManager.SlotEnable(false);
+    } 
 }
