@@ -220,6 +220,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 339175632163511054, guid: 996929d40b1cac340bcdc1996fa53af8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4308744630976841934, guid: 996929d40b1cac340bcdc1996fa53af8, type: 3}
       propertyPath: m_Name
       value: UI_Slot_Canvas
@@ -419,7 +423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &107121920
 RectTransform:
   m_ObjectHideFlags: 0
@@ -735,7 +739,7 @@ PrefabInstance:
     - target: {fileID: 2886419675686732135, guid: c3b8f922a2b862a449bc574af43996a0, type: 3}
       propertyPath: timerText
       value: 
-      objectReference: {fileID: 107121921}
+      objectReference: {fileID: 757086335}
     - target: {fileID: 2886419675686732135, guid: c3b8f922a2b862a449bc574af43996a0, type: 3}
       propertyPath: resultUIManager
       value: 
@@ -958,6 +962,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682307561}
   m_CullTransparentMesh: 1
+--- !u!114 &757086335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 104718560757055363, guid: 996929d40b1cac340bcdc1996fa53af8, type: 3}
+  m_PrefabInstance: {fileID: 67560081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &783458244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5572921268873561108, guid: 7de0bd5c6c777e84790f5c3aca9eba4a, type: 3}
