@@ -13,7 +13,7 @@ public class KnockBackState : ITurnState
     {
         _initPositionX = Managers.TurnManager.Player.transform.position.x; // 초기 위치 저장
         Managers.CameraManager.ChangeBattleCamera(false); // 카메라를 MoveCamera로 변경
-        Managers.TurnManager.Player.TakeDamage(10); // TODO : 현재 적의 공격력만큼 데미지를 주어야함
+        Managers.TurnManager.Player.TakeDamage(Managers.TurnManager.CurrentEnemy.damage);
         _rb = Managers.TurnManager.Player.GetComponent<Rigidbody2D>();
         _knockbackTimer = _knockbackDuration;
         _rb.AddForce(Vector2.left * _knockbackForce, ForceMode2D.Impulse); // 넉백 방향으로 힘을 가함

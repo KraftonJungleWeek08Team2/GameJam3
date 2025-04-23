@@ -146,15 +146,6 @@ public class SlotMachine : MonoBehaviour
     /// </summary>
     void OnAllSlotsConfirmed()
     {
-        //콘솔창에 확인용으로 잠깐 쓴겁니다. 지우셔도 되요.
-        int[] result = new int[slotCount];
-        for (int i = 0; i < slotCount; i++)
-            result[i] = slotInfo.GetValue(i); 
-
-        // 전달 후
-        resultUIManager.ShowResult(result);
-
-        //Debug.Log($"{first} , {second}, {third}");
         if (_coroutine == null)
             StartCoroutine(WaitOneFrame());
     }
@@ -166,9 +157,26 @@ public class SlotMachine : MonoBehaviour
 
     IEnumerator WaitOneFrame()
     {
+        int[] result = new int[slotCount];
+        for (int i = 0; i < slotCount; i++)
+            result[i] = slotInfo.GetValue(i);
+
         yield return new WaitForSeconds(0.1f);
+
+        if (IsSlotSuccess())
+            resultUIManager.ShowResult(result);
         Managers.TurnManager.EndSlotState();
         _coroutine = null;
+    }
+
+    bool IsSlotSuccess()
+    {
+        for (int i = 0; i < slotInfo.SlotCount; i++)
+        {
+            if (slotInfo.GetValue(i) == 0)
+                return false;
+        }
+        return true;
     }
 
     private void OnDisable()
