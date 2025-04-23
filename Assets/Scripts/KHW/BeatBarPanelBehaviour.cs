@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Build.Content;
 using UnityEngine;
 
 /// <summary>
@@ -36,29 +34,26 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         InitializePropertiesOther(slotInfo);
         baseBeat = MusicManager.Instance.currentBeat + noteMargin; //노트 도달 4비트. 여유 2비트.
 
+        Managers.InputManager.OnRhythmAttackEvent += Attack;
 
-
-        int totalBeatOfSlotInfo = 0; // 초기값 1 제거
+        int totalBeatOfSlotInfo = 1; // 초기값 1 제거
         for (int i = 0; i < currentSlotInfo.SlotCount; i++)
         {
             totalBeatOfSlotInfo += currentSlotInfo.GetValue(i);
         }
-        totalBeatOfSlotInfo += currentSlotInfo.SlotCount; // 각 슬롯 간 휴식 비트(1비트) 추가
         endBeat = baseBeat + totalBeatOfSlotInfo;
         
     }
 
     public void HideBeatBar() //비트바 활종.
     {
+        Debug.Log("log : Hide Beat Bar");
         //INPUT 구독 제거?
         Managers.InputManager.OnRhythmAttackEvent -= Attack;
         // 끝나는 시점에서 호출
-        Managers.TurnManager.IsFullCombo = isFullCombo;
-        Managers.TurnManager.EndAttackState();
+        
+        //Managers.TurnManager.EndAttackState();
         beatBarCanvas.enabled = false;
-
-
-   
     }
 
     public void InitializePropertiesOther(SlotInfo slotInfo)
@@ -78,12 +73,8 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         musicManager.OnNextBeatAction += UpdateCurrentBeat;
         musicManager.OnBeatAction += GenerateNewNote;
 
-        Managers.InputManager.OnRhythmAttackEvent += Attack;
-
         beatBarCanvas = transform.parent.GetComponent<Canvas>();
         beatBarCanvas.enabled = false;
-
-        
     }
 
 /// <summary>
@@ -136,7 +127,9 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
             if(currentBeat - 1 == endBeat) //마지막 비트임?
             {
-                HideBeatBar();
+                Debug.Log("Log : 마지막 비트 놓침");
+                Managers.TurnManager.IsFullCombo = isFullCombo;
+                Managers.TurnManager.EndAttackState();
             }
         }
 
@@ -164,23 +157,29 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
         {
-            //Managers.TurnManager.CurrentEnemy.TakeDamage(2);            
-            if(currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
-            {
-                HideBeatBar();
-            }
+            Managers.TurnManager.CurrentEnemy.TakeDamage(2);
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
+            if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
+            {
+                Debug.Log("Log : 마지막 비트 입력 성공 퍼펙트");
+                Managers.TurnManager.IsFullCombo = isFullCombo;
+                Managers.TurnManager.EndAttackState();
+            }
+
         } 
         else if(accuracy > 0.4 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
         {   
-            //Managers.TurnManager.CurrentEnemy.TakeDamage(1);
-            if(currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
-            {
-                HideBeatBar();
-            }
+            Managers.TurnManager.CurrentEnemy.TakeDamage(1);
             currentBeatInputted = true;
             Instantiate(goodText, accuracyPos);
+            if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
+            {
+                Debug.Log("Log : 마지막 비트 입력 성공");
+                Managers.TurnManager.IsFullCombo = isFullCombo;
+                Managers.TurnManager.EndAttackState();
+            }
+
         }
         else if(!GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //아닌데 누름.
         {
@@ -197,6 +196,6 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
     void OnDestroy()
     {
-        Managers.InputManager.OnRhythmAttackEvent -= Attack;
+       // Managers.InputManager.OnRhythmAttackEvent -= Attack;
     }
 }

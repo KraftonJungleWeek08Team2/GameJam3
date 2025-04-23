@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour, IDamageable
     
     public bool isMoving;
 
-
     // 스포너에서 값 넘겨줌
     public void Init(EnemyInfo data)
     {
