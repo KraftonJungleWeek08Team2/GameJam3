@@ -56,7 +56,7 @@ public class TurnManager
             // 슬롯머신 실패시, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
             // TODO : 현재 적의 공격력만큼 데미지를 주어야함
             Player.TakeDamage(1);
-            ChangeState(new MoveState());
+            ChangeState(new KnockBackState());
         }
     }
 

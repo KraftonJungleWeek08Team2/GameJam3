@@ -17,8 +17,9 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        hp = 1000;
+        hp = 10;
     }
+
     public void TakeDamage(int amount)
     {
         hp -= amount;
