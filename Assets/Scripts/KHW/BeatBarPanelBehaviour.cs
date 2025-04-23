@@ -19,29 +19,28 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     [SerializeField] private SlotInfo currentSlotInfo; //받아올 슬롯의 정보를 가진 struct.
     [SerializeField] private List<int> attackBeatCounts; 
     [SerializeField] private bool currentBeatInputted; // 현재 비트에 입력이 있었는가?
+    [SerializeField] private Canvas beatBarCanvas;
+    [SerializeField] private int noteMargin = 4; // 노트 출현 후 가운데까지 오는데 걸리는 비트
+
     void Start()
     {
         InitializePropertiesSelf();
-        currentSlotInfo = new SlotInfo(2);
-        currentSlotInfo.SetValue(0, 5); //임시
-        currentSlotInfo.SetValue(1, 3);
     }
 
     public void InitializePropertiesOther(SlotInfo slotInfo)
     {
         currentSlotInfo = slotInfo; //슬롯정보 받아오기.
-        //GetAttackBeatCounts(); //바로 계산.
     }
 
     void InitializePropertiesSelf()
     {
         musicManager = MusicManager.Instance;
         accuracyPos = transform.Find("Accuracy Position").transform;
-        attackNoteObject = (GameObject)Resources.Load("KHW/Prefabs/AttackNoteObject");
-        restNoteObject = (GameObject)Resources.Load("KHW/Prefabs/RestNoteObject");
-        perfectText = (GameObject)Resources.Load("KHW/Prefabs/PerfectTextObject");
-        goodText = (GameObject)Resources.Load("KHW/Prefabs/GoodTextObject");
-        breakText = (GameObject)Resources.Load("KHW/Prefabs/BreakTextObject");
+        attackNoteObject = (GameObject)Resources.Load("KHW/Prefabs/NoteObject/AttackNoteObject");
+        restNoteObject = (GameObject)Resources.Load("KHW/Prefabs/NoteObject/RestNoteObject");
+        perfectText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/PerfectTextObject");
+        goodText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/GoodTextObject");
+        breakText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/MissTextObject");
         musicManager.OnNextBeatAction += UpdateCurrentBeat;
         musicManager.OnBeatAction += GenerateNewNote;
         baseBeat = MusicManager.Instance.currentBeat + 6; //노트 도달 4비트. 여유 2비트.
@@ -112,17 +111,17 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         Debug.Log("정확도 : " + accuracy);
 
-        if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat - 4) && !currentBeatInputted) //Perfect Attack.
+        if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat - noteMargin) && !currentBeatInputted) //Perfect Attack.
         {
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
         } 
-        else if(accuracy > 0.4 && GetIsAttackBeatCount(currentMusicBeat - 4) && !currentBeatInputted)
+        else if(accuracy > 0.4 && GetIsAttackBeatCount(currentMusicBeat - noteMargin) && !currentBeatInputted)
         {   
             currentBeatInputted = true;
             Instantiate(goodText, accuracyPos);
         }
-        else if(!GetIsAttackBeatCount(currentMusicBeat - 4) && !currentBeatInputted)
+        else if(!GetIsAttackBeatCount(currentMusicBeat - noteMargin) && !currentBeatInputted)
         {
             currentBeatInputted = true;
             Instantiate(breakText, accuracyPos);

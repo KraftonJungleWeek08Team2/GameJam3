@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.44891423, g: 0.97539204, b: 0.9811321, a: 0.14901961}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.14901961}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b4a3575e91c524cb5d7fbd8a85ae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beatMargin: 2
 --- !u!1 &4055727726806136838
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,7 +101,7 @@ GameObject:
   - component: {fileID: 3949722736261942898}
   - component: {fileID: 4996854648361433255}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Right Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +178,7 @@ GameObject:
   - component: {fileID: 1224557089678141080}
   - component: {fileID: -8290583001076698931}
   m_Layer: 5
-  m_Name: AttackNoteObject
+  m_Name: NoteObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +294,7 @@ GameObject:
   - component: {fileID: 3677247997472606703}
   - component: {fileID: 2827197945841378271}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Left Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
