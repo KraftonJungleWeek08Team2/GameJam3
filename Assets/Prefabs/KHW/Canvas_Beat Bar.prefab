@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6618113528562914154}
   - component: {fileID: 7199063975758082078}
   - component: {fileID: 4001227430526638847}
-  - component: {fileID: 3236093448266245019}
   m_Layer: 5
   m_Name: Panel_Beat Bar
   m_TagString: Untagged
@@ -104,38 +103,8 @@ MonoBehaviour:
   attackBeatCounts: 
   currentBeatInputted: 0
   beatBarCanvas: {fileID: 0}
-  noteMargin: 2
+  noteMargin: 3
   isFullCombo: 1
---- !u!114 &3236093448266245019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3092201709330891515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: b63d24e82ebdd7d47b200a91f029765d, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Rhythm Attack
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &3530906978853559342
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +293,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9182103815492604912}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

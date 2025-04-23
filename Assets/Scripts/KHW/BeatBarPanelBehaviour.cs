@@ -198,7 +198,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         else if(currentBeatInputted) //중복 입력
         {   
             //isFullCombo = false;
-            Instantiate(breakText, accuracyPos);
+            //Instantiate(breakText, accuracyPos);
         }
     }
 
