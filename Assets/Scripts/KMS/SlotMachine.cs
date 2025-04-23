@@ -11,6 +11,7 @@ public class SlotTextGroup
 }
 public class SlotMachine : MonoBehaviour
 {
+    [SerializeField] private TMP_Text timerText;
     [SerializeField] private int slotCount = 3; // 슬롯의 갯수 지정
     [SerializeField] private float spinSpeed = 0.1f; // 슬롯의 숫자 돌아가는 속도 조절 가능(간격이다보니 짧을 수록 빨라집니다.)
     [SerializeField] private SlotTextGroup[] slotTextGroups; // 인스펙터에서 슬롯 개수만큼 할당
@@ -63,9 +64,11 @@ public class SlotMachine : MonoBehaviour
         currentSlotIndex = 0;
         isSpinning = true;
         Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
+        // 타이머 기능
+
     }
     public void HideSlotUI()
-    {
+    {            
         Managers.InputManager.OnSlotEvent -= ConfirmCurrentSlot;
         _slotCanvas.enabled = false;
     }
@@ -75,17 +78,23 @@ public class SlotMachine : MonoBehaviour
     /// </summary>
     void Update()
     {
+        //슬롯 변화 속도 조절을 위한 타임
         if (!isSpinning) return;
-        // 타이머를 누적하고요
+
         spinTimer += Time.deltaTime;
-        //0.5초의 간격이 지나면 로직을 실행함돠
+
         if(spinTimer >= spinSpeed)
         {
             spinTimer = 0f;
             SpinAllUnfixedSlots();
         }
-        //제한시간과 
         slotTimer += Time.deltaTime;
+        //남은 시간을 계산 하는거
+        float timeLeft = slotTimeout - slotTimer;
+        int secondsLeft = Mathf.CeilToInt(Mathf.Max(timeLeft, 0f)); // 정수로 변환
+        timerText.text = secondsLeft.ToString();   // 정수로 표시
+
+        // 남은 시간 계산 & 표시
         if (slotTimer >= slotTimeout)
         {
             ForceEndWithZeros(); // 제한시간 초과 시 강제 종료
