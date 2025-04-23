@@ -17,6 +17,7 @@ public class TurnManager
 
     public void Init()
     {
+        Player = GameObject.FindAnyObjectByType<Player>();
         _slotMachine = GameObject.FindAnyObjectByType<SlotMachine>();
         _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarPanelBehaviour>();
 

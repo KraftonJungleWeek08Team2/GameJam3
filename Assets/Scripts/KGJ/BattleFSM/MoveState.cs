@@ -4,6 +4,7 @@ public class MoveState : ITurnState
     {
         // Player 달림
         Managers.CameraManager.ChangeBattleCamera(false);
+        Managers.TurnManager.Player.Run();
     }
 
     public void ExecuteState()

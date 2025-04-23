@@ -4,6 +4,7 @@ public class SlotState : ITurnState
 {
     public void EnterState()
     {
+        Managers.TurnManager.Player.Idle();
         // SlotMachine 시작함
         if (Managers.TurnManager.CurrentEnemy != null)
         {

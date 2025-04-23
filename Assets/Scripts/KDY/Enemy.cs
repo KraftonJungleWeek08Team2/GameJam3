@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public int hp{ get; private set; }
+
+    public int hp { get; private set; }
 
     public void TakeDamage(int amount)
     {

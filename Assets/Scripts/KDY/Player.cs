@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         _animator = GetComponent<Animator>();
         hp = maxHp;
+        Run();
     }
 
     private void Update()
@@ -39,9 +40,14 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
-    public void Move()
+    public void Idle()
     {
-        _animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        _animator.SetBool("IsRunning", false);
+    }
+
+    public void Run()
+    {
+        _animator.SetBool("IsRunning", true);
     }
     
     public void Attack1()
