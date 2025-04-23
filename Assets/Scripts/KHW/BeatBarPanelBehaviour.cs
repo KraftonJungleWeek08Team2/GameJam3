@@ -38,12 +38,12 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
 
 
-        int totalBeatOfSlotInfo = 1;
-        for(int i = 0 ; i < currentSlotInfo.SlotCount; i++)
+        int totalBeatOfSlotInfo = 0; // 초기값 1 제거
+        for (int i = 0; i < currentSlotInfo.SlotCount; i++)
         {
             totalBeatOfSlotInfo += currentSlotInfo.GetValue(i);
         }
-
+        totalBeatOfSlotInfo += currentSlotInfo.SlotCount; // 각 슬롯 간 휴식 비트(1비트) 추가
         endBeat = baseBeat + totalBeatOfSlotInfo;
         
     }
@@ -162,7 +162,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         Debug.Log("정확도 : " + accuracy);
 
-        if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat - noteMargin) && !currentBeatInputted) //Perfect Attack.
+        if(accuracy > 0.7 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
         {
             //Managers.TurnManager.CurrentEnemy.TakeDamage(2);            
             if(currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
@@ -172,7 +172,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
         } 
-        else if(accuracy > 0.4 && GetIsAttackBeatCount(currentMusicBeat - noteMargin) && !currentBeatInputted)
+        else if(accuracy > 0.4 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
         {   
             //Managers.TurnManager.CurrentEnemy.TakeDamage(1);
             if(currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
@@ -182,7 +182,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentBeatInputted = true;
             Instantiate(goodText, accuracyPos);
         }
-        else if(!GetIsAttackBeatCount(currentMusicBeat - noteMargin) && !currentBeatInputted) //아닌데 누름.
+        else if(!GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //아닌데 누름.
         {
             currentBeatInputted = true;
             isFullCombo = false;
