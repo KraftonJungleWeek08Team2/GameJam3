@@ -15,12 +15,19 @@ public class TurnManager
     public BeatBarPanelBehaviour BeatBarPanelBehaviour => _beatBarPanelBehaviour;
     BeatBarPanelBehaviour _beatBarPanelBehaviour;
 
+    public ParallaxBackground ParallaxBackground => _parallaxBackground;
+    ParallaxBackground _parallaxBackground;
+
+    public EnemySpawner EnemySpawner => _enemySpawner;
+    EnemySpawner _enemySpawner;
+
     public void Init()
     {
         Player = GameObject.FindAnyObjectByType<Player>();
         _slotMachine = GameObject.FindAnyObjectByType<SlotMachine>();
         _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarPanelBehaviour>();
-
+        _parallaxBackground = GameObject.FindAnyObjectByType<ParallaxBackground>();
+        _enemySpawner = GameObject.FindAnyObjectByType<EnemySpawner>();
 
         _currentState = new MoveState();
     }
@@ -60,20 +67,17 @@ public class TurnManager
         }
     }
 
-    public void StartSlotState()
-    {
-        ChangeState(new SlotState());
-    }
-
     public void EndAttackState()
     {
         if (CurrentEnemy.hp <= 0)
         {
-            // TODO : 나중에 Enemy 추가되면 살려야 하는 코드
-            //Managers.CameraManager.RemoveMember(CurrentEnemy.transform);
+            Managers.CameraManager.RemoveMember(CurrentEnemy.transform);
             Debug.Log("Log : hp가 0 이하");
             CurrentEnemy.Die();
-            CurrentEnemy = null;
+
+            // EnemySpawner에서 적을 생성하고 CurrentEnemy에 넣어줌
+            CurrentEnemy = _enemySpawner.Spawn();
+            Managers.CameraManager.AddMember(CurrentEnemy.transform, 0.5f, 1f);
             ChangeState(new MoveState());
             
         }

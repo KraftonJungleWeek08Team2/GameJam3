@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable
     
     public bool isMoving;
 
+
     // 스포너에서 값 넘겨줌
     public void Init(EnemyInfo data)
     {
@@ -21,7 +22,6 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        hp = 10;
     }
     private void Update()
     {
@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour, IDamageable
             Move();
         }
     }
+
     private void Move()
     {
         transform.Translate(Vector3.left * (_moveSpeed * Time.deltaTime));
@@ -51,6 +52,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Die()
     {
+        isMoving = true;
         Debug.Log("Enemy has died.");
         _animator.Play("Death");
     }

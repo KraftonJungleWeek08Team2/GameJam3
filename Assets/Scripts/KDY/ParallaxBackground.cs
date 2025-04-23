@@ -29,8 +29,10 @@ public class ParallaxBackground : MonoBehaviour
     [Tooltip("전역 스크롤 속도")]
     public float scrollSpeed = 4f;
 
+    public bool IsScrolling = true;
     private Camera _cam;
     private float _halfCamWidth;
+
 
     void Start()
     {
@@ -69,6 +71,8 @@ public class ParallaxBackground : MonoBehaviour
 
     void Update()
     {
+        if (!IsScrolling) return;
+
         float dt = Time.deltaTime;
         float camX = _cam.transform.position.x;
 
