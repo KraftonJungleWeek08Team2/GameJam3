@@ -52,6 +52,11 @@ public class TurnManager
         }
     }
 
+    public void StartAttackState()
+    {
+
+    }
+
     public void EndAttackState()
     {
         if (CurrentEnemy.hp <= 0)

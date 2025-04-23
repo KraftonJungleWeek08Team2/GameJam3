@@ -46,6 +46,7 @@ public class SlotMachine : MonoBehaviour
         displayValues = new int[slotCount, 3];
         currentSlotIndex = 0;
         isSpinning = true;
+        
     }
     public void HideSlotUI()
     {

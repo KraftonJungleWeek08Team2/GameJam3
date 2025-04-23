@@ -4,6 +4,7 @@ public class SlotState : ITurnState
 {
     public void EnterState()
     {
+        Managers.InputManager.SlotEnable(true);
         Managers.TurnManager.Player.Idle();
         // SlotMachine 시작함
         if (Managers.TurnManager.CurrentEnemy != null)
@@ -25,5 +26,6 @@ public class SlotState : ITurnState
     public void ExitState()
     {
         Managers.TurnManager.SlotMachine.HideSlotUI();
+        Managers.InputManager.SlotEnable(false);
     } 
 }
