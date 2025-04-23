@@ -22,9 +22,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if (transform.position.x > 3)
-        {
-            transform.position += Vector3.left * Time.deltaTime * moveSpeed;
-        }
+
     }
 }

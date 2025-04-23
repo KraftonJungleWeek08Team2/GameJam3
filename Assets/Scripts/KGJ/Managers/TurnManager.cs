@@ -52,9 +52,9 @@ public class TurnManager
         }
     }
 
-    public void StartAttackState()
+    public void StartSlotState()
     {
-
+        ChangeState(new SlotState());
     }
 
     public void EndAttackState()
