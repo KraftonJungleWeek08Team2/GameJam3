@@ -38,8 +38,8 @@ public class BeatBarBehaviour : MonoBehaviour
             float t = elapsedTime / smallingTime; // 진행률 (0 to 1)
 
             // 양쪽 원을 중앙(x=0)으로 이동
-            leftCircle.localPosition = Vector2.Lerp(leftInitialPos, new Vector2(-70, 0), t);
-            rightCircle.localPosition = Vector2.Lerp(rightInitialPos, new Vector2(70, 0), t);
+            leftCircle.localPosition = Vector2.Lerp(leftInitialPos, new Vector2(-10, 0), t);
+            rightCircle.localPosition = Vector2.Lerp(rightInitialPos, new Vector2(10, 0), t);
         }
         else
         {

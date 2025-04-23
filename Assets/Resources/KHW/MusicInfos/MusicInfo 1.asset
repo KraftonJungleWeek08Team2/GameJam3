@@ -17,5 +17,5 @@ MonoBehaviour:
   songIndex: 1
   startDelay: 0
   BPM: 165
-  loopStartTime: 57.090908
+  loopStartTime: 57.09091
   loopEndTime: 141.44888

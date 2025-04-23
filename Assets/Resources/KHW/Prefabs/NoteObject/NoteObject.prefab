@@ -205,10 +205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b4a3575e91c524cb5d7fbd8a85ae0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatMargin: 2
+  beatMargin: 3
   leftCircle: {fileID: 1090179767742413825}
   rightCircle: {fileID: 2855929053621322691}
-  initialDistance: 600
+  initialDistance: 850
 --- !u!1 &6092320320884534882
 GameObject:
   m_ObjectHideFlags: 0

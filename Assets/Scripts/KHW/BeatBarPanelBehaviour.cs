@@ -150,11 +150,11 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         Debug.Log("현재 비트 : " + currentMusicBeat);
         
-        float accuracy = 1 - Mathf.Abs(musicManager.GetTimingOffset() / (musicManager.noteInterval) / 2);
+        float accuracy = 1 - Mathf.Abs(musicManager.GetTimingOffset() / (musicManager.noteInterval) / 2) + 0.05f;
 
         Debug.Log("정확도 : " + accuracy);
 
-        if(accuracy > 0.8 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
+        if(accuracy > 0.9 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
         {
             Managers.TurnManager.CurrentEnemy.TakeDamage(2);
             currentBeatInputted = true;
