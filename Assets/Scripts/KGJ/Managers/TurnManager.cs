@@ -83,8 +83,9 @@ public class TurnManager
             if (IsFullCombo)
             {
                 // 풀 콤보라면, 다시 슬롯머신 상태로
-                IsFullCombo = false;
+                // 원 모어 UI를 띄우고, 슬롯머신 시간도 1초 줄임
                 ChangeState(new SlotState());
+                IsFullCombo = false;
             }
             else
             {
