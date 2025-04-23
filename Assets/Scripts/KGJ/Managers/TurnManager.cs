@@ -79,6 +79,8 @@ public class TurnManager
             else
             {
                 // 풀 콤보가 아니라면, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
+
+
                 ChangeState(new MoveState());
             }
         }

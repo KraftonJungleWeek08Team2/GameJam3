@@ -13,11 +13,11 @@ public class CameraManager
     /// </summary>
     public void Init()
     {
-        _moveCamera = GameObject.FindAnyObjectByType<MoveCamera>().GetComponent<CinemachineCamera>();
-        _battleCamera = GameObject.FindAnyObjectByType<BattleCamera>().GetComponent<CinemachineCamera>();
         _player = GameObject.FindAnyObjectByType<Player>();
         _targetGroup = GameObject.FindAnyObjectByType<CinemachineTargetGroup>();
-
+        _moveCamera = GameObject.FindAnyObjectByType<MoveCamera>().GetComponent<CinemachineCamera>();
+        _battleCamera = GameObject.FindAnyObjectByType<BattleCamera>().GetComponent<CinemachineCamera>();
+        _shakeImpulse = GameObject.FindAnyObjectByType<CameraShakeEffect>().GetComponent<CinemachineImpulseSource>();
 
         ChangeBattleCamera(false);
         AddMember(_player.transform, 0.5f, 1f);
