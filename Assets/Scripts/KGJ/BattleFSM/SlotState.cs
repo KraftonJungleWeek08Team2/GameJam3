@@ -1,12 +1,13 @@
 using System.Collections;
-using System;
 
 public class SlotState : ITurnState
 {
     public void EnterState()
     {
+        
         Managers.InputManager.SlotEnable(true); // InputManager의 액션 맵을 Slot으로 변경
         Managers.TurnManager.Player.Idle();     // Player의 애니메이션을 Idle로 변경
+        Managers.TurnManager.CurrentEnemy.isMoving = false;
 
         if (Managers.TurnManager.CurrentEnemy != null)
         {

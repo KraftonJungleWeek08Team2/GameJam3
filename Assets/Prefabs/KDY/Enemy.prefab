@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2762449857437482000}
   - component: {fileID: 8613067665275380953}
   - component: {fileID: 4677434193891369647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 0}
-  moveSpeed: 0
+  isMoving: 0
 --- !u!212 &4677434193891369647
 SpriteRenderer:
   m_ObjectHideFlags: 0
