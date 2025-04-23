@@ -15,7 +15,7 @@ MonoBehaviour:
   music: {fileID: 8300000, guid: f2474bdd6d1d83249a1f142ec7ec2462, type: 3}
   songName: Original Bet
   songIndex: 0
-  startDelay: 2
+  startDelay: 0
   BPM: 204
   loopStartTime: 75.5882
   loopEndTime: 204.99

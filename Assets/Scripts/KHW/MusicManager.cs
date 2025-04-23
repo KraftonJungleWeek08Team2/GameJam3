@@ -18,13 +18,13 @@ public class MusicManager : MonoBehaviour
     private int loopLengthSamples;
 
     private double startTime;
-    public int currentBeat { get; private set; } // 비트 계속 증가
+    public int currentBeat { get; private set; }
     private int lastReportedBeat = -1;
     private float currentPosition;
     private float lastMidPointTrigger = -1f;
     private float lastBeatTrigger = -1f;
-    private int loopCount = 0; // 루프 횟수 추적
-    private int loopBeatCount; // 한 루프의 비트 수
+    private int loopCount = 0;
+    private int loopBeatCount;
 
     public Action<int> OnNextBeatAction;
     public Action<int> OnBeatAction;
@@ -63,38 +63,61 @@ public class MusicManager : MonoBehaviour
         currentMusicInfo = Resources.Load<MusicInfo>("KHW/MusicInfos/MusicInfo " + index);
         if (currentMusicInfo == null)
         {
+            //Debug.LogError($"MusicInfo {index} not found!");
             return;
         }
 
         musicSource.clip = currentMusicInfo.music;
+        if (musicSource.clip == null)
+        {
+            //Debug.LogError("Music clip is null!");
+            return;
+        }
+
         startDelay = Mathf.Max(0, currentMusicInfo.startDelay);
         noteInterval = currentMusicInfo.BPM > 0 ? 60f / currentMusicInfo.BPM : 1f;
         loopStartTime = currentMusicInfo.loopStartTime;
         loopEndTime = currentMusicInfo.loopEndTime;
 
+        if (loopEndTime <= loopStartTime)
+        {
+            //Debug.LogWarning("Invalid loop times: loopEndTime <= loopStartTime. Disabling loop.");
+            loopEndTime = musicSource.clip.length;
+            loopStartTime = 0;
+        }
+
         loopStartSamples = (int)(loopStartTime * musicSource.clip.frequency);
         loopEndSamples = (int)(loopEndTime * musicSource.clip.frequency);
         loopLengthSamples = loopEndSamples - loopStartSamples;
 
-        // 루프 구간의 비트 수 계산
         loopBeatCount = Mathf.FloorToInt((loopEndTime - loopStartTime) / noteInterval);
+        //Debug.Log($"SetMusic: clip={musicSource.clip.name}, noteInterval={noteInterval}, loopBeatCount={loopBeatCount}, loopStartTime={loopStartTime}, loopEndTime={loopEndTime}");
     }
 
     public void StartMusic()
     {
+        if (musicSource.clip == null)
+        {
+            //ebug.LogError("Cannot start music: Audio clip is null!");
+            return;
+        }
         startTime = AudioSettings.dspTime + startDelay;
         musicSource.PlayScheduled(startTime);
+        //Debug.Log($"StartMusic: startTime={startTime}, clip={musicSource.clip.name}, isPlaying={musicSource.isPlaying}");
     }
 
     private void LoopControl()
     {
         if (musicSource.timeSamples >= loopEndSamples)
         {
-            Debug.Log($"Music Looped! Loop Count: {loopCount + 1}");
+            //Debug.Log($"Music Looped! Loop Count: {loopCount + 1}, timeSamples: {musicSource.timeSamples}, currentBeat: {currentBeat}");
             musicSource.timeSamples -= loopLengthSamples;
             startTime += (loopEndTime - loopStartTime);
-            loopCount++; // 루프 횟수 증가
-            currentBeat += loopBeatCount; // 루프 비트 수 추가
+            loopCount++;
+            currentBeat += loopBeatCount;
+            currentPosition = (float)(AudioSettings.dspTime - startTime);
+            if (currentPosition < 0) currentPosition = 0;
+            //Debug.Log($"LoopControl: Adjusted currentPosition={currentPosition}");
         }
     }
 
@@ -105,28 +128,31 @@ public class MusicManager : MonoBehaviour
             currentPosition = (float)(AudioSettings.dspTime - startTime);
             if (currentPosition < 0) currentPosition = 0;
 
-            // 루프 비트를 포함한 비트 계산
             int newBeat = (int)(currentPosition / noteInterval) + (loopCount * loopBeatCount);
+            //Debug.Log($"CheckPosition: currentPosition={currentPosition}, newBeat={newBeat}, loopCount={loopCount}, loopBeatCount={loopBeatCount}");
 
-            float onPointTime = (newBeat - (loopCount * loopBeatCount)) * noteInterval;
-            if (currentPosition >= onPointTime && onPointTime > lastBeatTrigger)
+            float beatStartTime = (newBeat - (loopCount * loopBeatCount)) * noteInterval;
+            if (currentPosition >= beatStartTime && beatStartTime > lastBeatTrigger)
             {
-                lastBeatTrigger = onPointTime;
+                lastBeatTrigger = beatStartTime;
+                Debug.Log($"OnBeatAction Invoked: newBeat={newBeat}");
                 OnBeatAction?.Invoke(newBeat);
             }
 
-            float midPointTime = (newBeat - (loopCount * loopBeatCount) + 0.5f) * noteInterval;
+            float midPointTime = beatStartTime + (noteInterval * 0.5f);
             if (currentPosition >= midPointTime && midPointTime > lastMidPointTrigger)
             {
                 currentBeat = newBeat + 1;
                 lastReportedBeat = currentBeat;
                 lastMidPointTrigger = midPointTime;
+                Debug.Log($"OnNextBeatAction Invoked: currentBeat={currentBeat}");
                 OnNextBeatAction?.Invoke(currentBeat);
             }
         }
         else
         {
             currentPosition = 0f;
+            Debug.Log("MusicSource is not playing!");
         }
     }
 
@@ -138,8 +164,8 @@ public class MusicManager : MonoBehaviour
         }
 
         int currentBeat = (int)(currentPosition / noteInterval) + (loopCount * loopBeatCount);
-        float currentBeatTime = (currentBeat - (loopCount * loopBeatCount)) * noteInterval;
-        float offset = currentPosition - currentBeatTime;
+        float beatStartTime = (currentBeat - (loopCount * loopBeatCount)) * noteInterval;
+        float offset = currentPosition - beatStartTime;
 
         if (offset > noteInterval / 2)
             offset -= noteInterval;
