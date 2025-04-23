@@ -23,6 +23,8 @@ public class SlotMachine : MonoBehaviour
     private bool isSpinning; //회전하고 있음
     private int[,] displayValues; // [slotIndex, position(0:top,1:center,2:bottom)]
 
+    Coroutine _coroutine;
+
     /// <summary>
     /// 시작할때 한번 초기화
     /// </summary>
@@ -125,13 +127,19 @@ public class SlotMachine : MonoBehaviour
         int third = slotInfo.GetValue(2);
 
         //Debug.Log($"{first} , {second}, {third}");
-        StartCoroutine(WaitOneFrame());
+        if (_coroutine == null)
+            StartCoroutine(WaitOneFrame());
     }
 
     IEnumerator WaitOneFrame()
     {
-
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSeconds(0.1f);
         Managers.TurnManager.EndSlotState();
+        _coroutine = null;
+    }
+
+    private void OnDisable()
+    {
+        Managers.InputManager.OnSlotEvent -= ConfirmCurrentSlot;
     }
 }
