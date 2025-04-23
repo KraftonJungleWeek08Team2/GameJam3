@@ -9,8 +9,8 @@ public class TurnManager
     public Player Player;
     public bool IsFullCombo = false;
 
-    public SlotMachine SlotMachine => _slotMachine;
-    SlotMachine _slotMachine;
+    public SlotMachine1 SlotMachine => _slotMachine;
+    SlotMachine1 _slotMachine;
 
     public BeatBarPanelBehaviour BeatBarPanelBehaviour => _beatBarPanelBehaviour;
     BeatBarPanelBehaviour _beatBarPanelBehaviour;
@@ -23,7 +23,7 @@ public class TurnManager
     public void Init()
     {
         Player = GameObject.FindAnyObjectByType<Player>();
-        _slotMachine = GameObject.FindAnyObjectByType<SlotMachine>();
+        _slotMachine = GameObject.FindAnyObjectByType<SlotMachine1>();
         _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarPanelBehaviour>();
         _parallaxBackground = GameObject.FindAnyObjectByType<ParallaxBackground>();
         _enemySpawner = GameObject.FindAnyObjectByType<EnemySpawner>();
