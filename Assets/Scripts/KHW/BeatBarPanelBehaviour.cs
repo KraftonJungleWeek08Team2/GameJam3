@@ -146,6 +146,8 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 /// </summary>
     void Attack() 
     {
+        Managers.TurnManager.Player.Attack();
+
         Debug.Log("현재 비트 : " + currentMusicBeat);
         
         float accuracy = 1 - Mathf.Abs(musicManager.GetTimingOffset() / (musicManager.noteInterval) / 2);
