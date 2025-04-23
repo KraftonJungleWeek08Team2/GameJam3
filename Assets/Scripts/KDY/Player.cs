@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
@@ -7,6 +8,8 @@ public class Player : MonoBehaviour, IDamageable
 
     [Tooltip("애니메이터 컴포넌트")]
     [SerializeField] private Animator _animator;
+    
+    public Action OnPlayerDamageEvent;
 
     private void Awake()
     {
@@ -17,6 +20,10 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            TakeDamage(1);
+        }
         //애니메이션 테스트
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -72,6 +79,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         hp -= amount;
         _animator.SetTrigger("TakeDamage");
+        OnPlayerDamageEvent?.Invoke();
     }
     
     public void IsDie()
