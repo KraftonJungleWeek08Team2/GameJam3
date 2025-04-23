@@ -13,7 +13,6 @@ public class ResultUIManager : MonoBehaviour
     }
     public void ShowResult(int[] values)
     {
-        //Debug.Log("ShowResult() 호출됨");
         _resultUICanvas.enabled = true;
         for (int i = 0; i < numberTexts.Length; i++)
         {
