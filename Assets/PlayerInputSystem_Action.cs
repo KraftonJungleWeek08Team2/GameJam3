@@ -99,15 +99,6 @@ public partial class @PlayerInputSystem_Action: IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""5e356158-b37d-409a-b50f-f03a3ff70a5e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,28 +121,6 @@ public partial class @PlayerInputSystem_Action: IInputActionCollection2, IDispos
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Confirm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b095e4cd-f496-4355-84ee-e165e6350ee2"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2c646da0-1b30-415b-bf4a-6be600b55e65"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -213,7 +182,6 @@ public partial class @PlayerInputSystem_Action: IInputActionCollection2, IDispos
         // Slot
         m_Slot = asset.FindActionMap("Slot", throwIfNotFound: true);
         m_Slot_Confirm = m_Slot.FindAction("Confirm", throwIfNotFound: true);
-        m_Slot_Newaction = m_Slot.FindAction("New action", throwIfNotFound: true);
         // Rhythm Attack
         m_RhythmAttack = asset.FindActionMap("Rhythm Attack", throwIfNotFound: true);
         m_RhythmAttack_Attack = m_RhythmAttack.FindAction("Attack", throwIfNotFound: true);
@@ -299,7 +267,6 @@ public partial class @PlayerInputSystem_Action: IInputActionCollection2, IDispos
     private readonly InputActionMap m_Slot;
     private List<ISlotActions> m_SlotActionsCallbackInterfaces = new List<ISlotActions>();
     private readonly InputAction m_Slot_Confirm;
-    private readonly InputAction m_Slot_Newaction;
     /// <summary>
     /// Provides access to input actions defined in input action map "Slot".
     /// </summary>
@@ -315,10 +282,6 @@ public partial class @PlayerInputSystem_Action: IInputActionCollection2, IDispos
         /// Provides access to the underlying input action "Slot/Confirm".
         /// </summary>
         public InputAction @Confirm => m_Wrapper.m_Slot_Confirm;
-        /// <summary>
-        /// Provides access to the underlying input action "Slot/Newaction".
-        /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_Slot_Newaction;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -348,9 +311,6 @@ public partial class @PlayerInputSystem_Action: IInputActionCollection2, IDispos
             @Confirm.started += instance.OnConfirm;
             @Confirm.performed += instance.OnConfirm;
             @Confirm.canceled += instance.OnConfirm;
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
         }
 
         /// <summary>
@@ -365,9 +325,6 @@ public partial class @PlayerInputSystem_Action: IInputActionCollection2, IDispos
             @Confirm.started -= instance.OnConfirm;
             @Confirm.performed -= instance.OnConfirm;
             @Confirm.canceled -= instance.OnConfirm;
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
         }
 
         /// <summary>
@@ -511,13 +468,6 @@ public partial class @PlayerInputSystem_Action: IInputActionCollection2, IDispos
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnConfirm(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Rhythm Attack" which allows adding and removing callbacks.

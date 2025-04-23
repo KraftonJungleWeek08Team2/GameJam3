@@ -46,10 +46,13 @@ public class SlotMachine : MonoBehaviour
         displayValues = new int[slotCount, 3];
         currentSlotIndex = 0;
         isSpinning = true;
-        
+        Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
+
+
     }
     public void HideSlotUI()
     {
+        Managers.InputManager.OnSlotEvent -= ConfirmCurrentSlot;
         _slotCanvas.enabled = false;
     }
 
@@ -67,8 +70,6 @@ public class SlotMachine : MonoBehaviour
             spinTimer = 0f;
             SpinAllUnfixedSlots();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-            ConfirmCurrentSlot();
     }
 
     /// <summary>
