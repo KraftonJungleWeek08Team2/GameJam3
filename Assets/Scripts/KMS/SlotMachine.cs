@@ -125,15 +125,13 @@ public class SlotMachine : MonoBehaviour
         int third = slotInfo.GetValue(2);
 
         //Debug.Log($"{first} , {second}, {third}");
-
         StartCoroutine(WaitOneFrame());
-        
     }
 
     IEnumerator WaitOneFrame()
     {
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         Managers.TurnManager.EndSlotState();
     }
 }
