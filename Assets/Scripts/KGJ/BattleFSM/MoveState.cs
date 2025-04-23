@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class MoveState : ITurnState
 {
     // Player 받아옴
@@ -9,11 +11,9 @@ public class MoveState : ITurnState
 
     public void ExecuteState()
     {
-        throw new System.NotImplementedException();
     }
 
     public void ExitState()
     {
-        throw new System.NotImplementedException();
     }
 }

@@ -3,24 +3,24 @@ using UnityEngine;
 public class AttackState : ITurnState
 {
     // 나중에 Slotinfo로 전환
-    int _slotNum;
+    SlotInfo _slotInfo;
 
     // RhythmAttack 받아오기
     // Player 받아오기
 
-    public AttackState(int slotNum)
+    public AttackState(SlotInfo slotInfo)
     {
-        _slotNum = slotNum;
+        _slotInfo = slotInfo;
     }
 
     public void EnterState()
     {
         // RhythmAttack에 slotNum을 넘겨서 시작하기
+        // Debug.Log($"{_slotInfo.GetValue(0)}, {_slotInfo.GetValue(1)}, {_slotInfo.GetValue(2)}");
     }
     public void ExecuteState()
     {
         // Code to execute during the attack state
-        Debug.Log("Executing Attack State");
     }
     public void ExitState()
     {

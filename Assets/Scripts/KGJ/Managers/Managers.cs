@@ -5,8 +5,14 @@ public class Managers : MonoBehaviour
     public static Managers Instance => _instance;
     static Managers _instance;
 
+    public static GameManager GameManager => _gameManager;
+    static GameManager _gameManager = new GameManager();
+
     public static TurnManager TurnManager => _turnManager;
     static TurnManager _turnManager = new TurnManager();
+
+    public static TargetGroupManager TargetGroupManager => _targetGroupManager;
+    static TargetGroupManager _targetGroupManager = new TargetGroupManager();
 
     void Awake()
     {
@@ -24,6 +30,7 @@ public class Managers : MonoBehaviour
     void Start()
     {
         TurnManager.Init();
+        TargetGroupManager.Init();
     }
 
     void Update()

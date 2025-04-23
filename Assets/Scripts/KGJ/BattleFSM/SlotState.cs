@@ -9,7 +9,6 @@ public class SlotState : ITurnState
 
     public void ExecuteState()
     {
-        throw new System.NotImplementedException();
     }
 
     public void ExitState()
