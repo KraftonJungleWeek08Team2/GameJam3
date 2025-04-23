@@ -2,11 +2,8 @@ public class AttackState : ITurnState
 {
     public void EnterState()
     {
-
-        // RhythmAttack에 slotInfo을 넘겨서 시작하기
-        // Debug.Log($"{_slotInfo.GetValue(0)}, {_slotInfo.GetValue(1)}, {_slotInfo.GetValue(2)}");
-        Managers.TurnManager.BeatBarPanelBehaviour.ShowBeatBar(Managers.TurnManager.SlotMachine.SlotInfo);
-        Managers.InputManager.RhythmAttackEnable(true);
+        Managers.TurnManager.BeatBarPanelBehaviour.ShowBeatBar(Managers.TurnManager.SlotMachine.SlotInfo); // BeatBar 동작 시작
+        Managers.InputManager.RhythmAttackEnable(true); // InputManager의 액션 맵을 RhythmAttack으로 변경
     }
 
     public void ExecuteState()
@@ -16,8 +13,7 @@ public class AttackState : ITurnState
 
     public void ExitState()
     {
-        Managers.TurnManager.BeatBarPanelBehaviour.HideBeatBar();
-        Managers.InputManager.RhythmAttackEnable(false);
-
+        Managers.TurnManager.BeatBarPanelBehaviour.HideBeatBar(); // BeatBar 끄기
+        Managers.InputManager.RhythmAttackEnable(false); // InputManager의 액션 맵 구독 끊기
     }
 }
