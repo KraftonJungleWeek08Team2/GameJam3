@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4ec73cd5ef46a4bb4ed85faa2d4703, type: 3}
   m_Name: MusicInfo 1
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
+  music: {fileID: 8300000, guid: fc897cecb7f0a124d89c119eb4c8aa3f, type: 3}
   songName: Little Flipper
   songIndex: 1
   startDelay: 0
