@@ -21,8 +21,7 @@ public class TurnManager
         _slotMachine = GameObject.FindAnyObjectByType<SlotMachine>();
         _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarPanelBehaviour>();
 
-        /*CurrentEnemy = new Enemy();
-        CurrentEnemy.hp = 100;*/
+
         _currentState = new MoveState();
     }
 
@@ -43,6 +42,8 @@ public class TurnManager
         _currentState?.EnterState();
     }
 
+    
+
     public void EndSlotState()
     {
         // SlotMachine 결과를 넘겨줌
@@ -55,7 +56,7 @@ public class TurnManager
             // 슬롯머신 실패시, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
             // TODO : 현재 적의 공격력만큼 데미지를 주어야함
             Player.TakeDamage(1);
-            ChangeState(new MoveState());
+            ChangeState(new KnockBackState());
         }
     }
 

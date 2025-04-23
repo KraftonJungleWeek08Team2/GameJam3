@@ -1,3 +1,6 @@
+using System.Collections;
+using System;
+
 public class SlotState : ITurnState
 {
     public void EnterState()
@@ -23,6 +26,11 @@ public class SlotState : ITurnState
     {
         Managers.TurnManager.SlotMachine.HideSlotUI();  // 슬롯 머신 끄기
         Managers.InputManager.SlotEnable(false);        // InputManager의 액션 맵 구독 끊기
+    }
+
+    IEnumerator WaitOneFrame()
+    {
+        yield return null;
     }
 
     public void FixedUpdateState()

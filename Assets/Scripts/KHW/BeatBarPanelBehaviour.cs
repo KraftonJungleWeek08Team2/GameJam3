@@ -32,9 +32,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     {
         beatBarCanvas.enabled = true;
         InitializePropertiesOther(slotInfo);
-        baseBeat = MusicManager.Instance.currentBeat + noteMargin; //노트 도달 4비트. 여유 2비트.
-
-        Managers.InputManager.OnRhythmAttackEvent += Attack;
+        baseBeat = MusicManager.Instance.currentBeat + noteMargin + 2;
 
         int totalBeatOfSlotInfo = 1; // 초기값 1 제거
         for (int i = 0; i < currentSlotInfo.SlotCount; i++)
@@ -42,17 +40,15 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             totalBeatOfSlotInfo += currentSlotInfo.GetValue(i);
         }
         endBeat = baseBeat + totalBeatOfSlotInfo;
-        
+        isFullCombo = true;
+        Managers.InputManager.OnRhythmAttackEvent += Attack;
     }
 
     public void HideBeatBar() //비트바 활종.
     {
-        Debug.Log("log : Hide Beat Bar");
         //INPUT 구독 제거?
         Managers.InputManager.OnRhythmAttackEvent -= Attack;
         // 끝나는 시점에서 호출
-        
-        //Managers.TurnManager.EndAttackState();
         beatBarCanvas.enabled = false;
     }
 
@@ -107,12 +103,12 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         if(GetIsAttackBeatCount(currentBeat + noteMargin))
         {
             Instantiate(attackNoteObject, transform);
-            Debug.Log("Attack Beat : " + currentBeat);
+            Debug.Log("beatbar -> Attack Beat : " + currentBeat);
         }
         else
         {
             Instantiate(restNoteObject, transform);
-            Debug.Log("Rest Beat : " + currentBeat);
+            //Debug.Log("Rest Beat : " + currentBeat);
         }
 
     }
@@ -135,6 +131,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         currentBeatInputted = false; //입력 리셋
         currentMusicBeat = currentBeat;
+        
     }
 
 
@@ -185,6 +182,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         {
             currentBeatInputted = true;
             isFullCombo = false;
+            Debug.Log("miss input.");
             Instantiate(breakText, accuracyPos);
         }
         else if(currentBeatInputted) //중복 입력

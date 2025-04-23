@@ -1,5 +1,3 @@
-using System;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -23,6 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        hp = 10;
     }
     private void Update()
     {
@@ -35,6 +34,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         transform.Translate(Vector3.left * (_moveSpeed * Time.deltaTime));
     }
+    
     public void TakeDamage(int amount)
     {
         hp -= amount;
