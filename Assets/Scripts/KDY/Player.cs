@@ -20,10 +20,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            TakeDamage(1);
-        }
         //애니메이션 테스트
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

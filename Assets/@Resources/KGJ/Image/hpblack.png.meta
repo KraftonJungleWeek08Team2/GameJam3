@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: 7841338209557924383
     second: hpblack_0
-  - first:
-      213: -3455320304175898852
-    second: hpblack_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,10 +103,10 @@ TextureImporter:
       name: hpblack_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 14
-        height: 15
+        width: 133
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,28 +117,6 @@ TextureImporter:
       bones: []
       spriteID: f1ac5607e8702dc60800000000000000
       internalID: 7841338209557924383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hpblack_1
-      rect:
-        serializedVersion: 2
-        x: 14
-        y: 0
-        width: 118
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c1f966c8d7c3c00d0800000000000000
-      internalID: -3455320304175898852
       vertices: []
       indices: 
       edges: []
@@ -161,7 +136,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       hpblack_0: 7841338209557924383
-      hpblack_1: -3455320304175898852
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
