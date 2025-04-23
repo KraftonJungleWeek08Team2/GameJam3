@@ -15,6 +15,7 @@ public class SlotMachine : MonoBehaviour
     [SerializeField] private float spinSpeed = 20f; // 슬롯의 숫자 지정하기 전에 돌아가는 속도
     [SerializeField] private SlotTextGroup[] slotTextGroups; // 인스펙터에서 슬롯 개수만큼 할당
 
+    public SlotInfo SlotInfo => slotInfo;
     private SlotInfo slotInfo;
     Canvas _slotCanvas;
     private int currentSlotIndex;
@@ -93,6 +94,7 @@ public class SlotMachine : MonoBehaviour
             OnAllSlotsConfirmed();
         }
     }
+
     /// <summary>
     /// 최종적으로 만들어졌고 전달해야할 슬롯의 숫자값
     /// </summary>
@@ -105,6 +107,9 @@ public class SlotMachine : MonoBehaviour
 
         Debug.Log($"{first} , {second}, {third}");
 
-        Managers.TurnManager.ChangeState(new AttackState(slotInfo));
+        if (Managers.TurnManager.CurrentState is SlotState)
+        {
+            Managers.TurnManager.CurrentState.ExitState();
+        }
     }
 }
