@@ -135,7 +135,7 @@ public class MusicManager : MonoBehaviour
             if (currentPosition >= beatStartTime && beatStartTime > lastBeatTrigger)
             {
                 lastBeatTrigger = beatStartTime;
-                Debug.Log($"OnBeatAction Invoked: newBeat={newBeat}");
+                //Debug.Log($"OnBeatAction Invoked: newBeat={newBeat}");
                 OnBeatAction?.Invoke(newBeat);
             }
 
@@ -145,14 +145,14 @@ public class MusicManager : MonoBehaviour
                 currentBeat = newBeat + 1;
                 lastReportedBeat = currentBeat;
                 lastMidPointTrigger = midPointTime;
-                Debug.Log($"OnNextBeatAction Invoked: currentBeat={currentBeat}");
+                //Debug.Log($"OnNextBeatAction Invoked: currentBeat={currentBeat}");
                 OnNextBeatAction?.Invoke(currentBeat);
             }
         }
         else
         {
             currentPosition = 0f;
-            Debug.Log("MusicSource is not playing!");
+            //Debug.Log("MusicSource is not playing!");
         }
     }
 
