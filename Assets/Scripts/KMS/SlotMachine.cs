@@ -115,7 +115,7 @@ public class SlotMachine : MonoBehaviour
         slotInfo.SetValue(currentSlotIndex, finalValue);
 
         // 중앙 텍스트 강조
-        slotTextGroups[currentSlotIndex].centerText.color = Color.black;
+        //slotTextGroups[currentSlotIndex].centerText.color = Color.black;
         
         currentSlotIndex++;
         if (currentSlotIndex >= slotCount)
