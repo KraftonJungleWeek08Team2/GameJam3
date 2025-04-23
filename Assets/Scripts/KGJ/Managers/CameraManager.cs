@@ -1,19 +1,40 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class TargetGroupManager
+public class CameraManager
 {
     Player _player;
     CinemachineTargetGroup _targetGroup;
+    CinemachineCamera _moveCamera;
+    CinemachineCamera _battleCamera;
 
     /// <summary>
     /// 타겟 그룹에 플레이어를 추가합니다.
     /// </summary>
     public void Init()
     {
+        _moveCamera = GameObject.FindAnyObjectByType<MoveCamera>().GetComponent<CinemachineCamera>();
+        _battleCamera = GameObject.FindAnyObjectByType<BattleCamera>().GetComponent<CinemachineCamera>();
         _player = GameObject.FindAnyObjectByType<Player>();
         _targetGroup = GameObject.FindAnyObjectByType<CinemachineTargetGroup>();
+
+
+        ChangeBattleCamera(false);
         AddMember(_player.transform, 0.5f, 1f);
+    }
+
+    public void ChangeBattleCamera(bool isBattle)
+    {
+        if (isBattle)
+        {
+            _battleCamera.gameObject.SetActive(true);
+            _moveCamera.gameObject.SetActive(false);
+        }
+        else
+        {
+            _moveCamera.gameObject.SetActive(true);
+            _battleCamera.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
