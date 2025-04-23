@@ -25,11 +25,17 @@ public class SlotMachine : MonoBehaviour
     /// <summary>
     /// 시작할때 한번 초기화
     /// </summary>
-    void Start()
+    void Awake()
     {
         _slotCanvas = FindAnyObjectByType<UI_Slot_Canvas>().GetComponent<Canvas>();
-        ShowSlotUI();
+        if (_slotCanvas == null)
+        {
+            Debug.LogError("UI_Slot_Canvas not found");
+            return;
+        }
+        //ShowSlotUI();
     }
+
     /// <summary>
     /// 초기화 되어야할 파친코 시스템 
     /// </summary>
@@ -40,9 +46,13 @@ public class SlotMachine : MonoBehaviour
         displayValues = new int[slotCount, 3];
         currentSlotIndex = 0;
         isSpinning = true;
+        Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
+
+
     }
     public void HideSlotUI()
     {
+        Managers.InputManager.OnSlotEvent -= ConfirmCurrentSlot;
         _slotCanvas.enabled = false;
     }
 
@@ -60,8 +70,6 @@ public class SlotMachine : MonoBehaviour
             spinTimer = 0f;
             SpinAllUnfixedSlots();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-            ConfirmCurrentSlot();
     }
 
     /// <summary>
@@ -112,11 +120,8 @@ public class SlotMachine : MonoBehaviour
         int second = slotInfo.GetValue(1);
         int third = slotInfo.GetValue(2);
 
-        Debug.Log($"{first} , {second}, {third}");
+        //Debug.Log($"{first} , {second}, {third}");
 
-        if (Managers.TurnManager.CurrentState is SlotState)
-        {
-            Managers.TurnManager.CurrentState.ExitState();
-        }
+        Managers.TurnManager.EndSlotState();
     }
 }

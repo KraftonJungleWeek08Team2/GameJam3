@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerInputSystem_Action",
     "maps": [
         {
             "name": "Slot",

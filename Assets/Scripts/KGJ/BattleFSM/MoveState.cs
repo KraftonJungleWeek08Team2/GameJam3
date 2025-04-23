@@ -4,6 +4,7 @@ public class MoveState : ITurnState
     {
         // Player 달림
         Managers.CameraManager.ChangeBattleCamera(false);
+        Managers.TurnManager.Player.Run();
     }
 
     public void ExecuteState()
@@ -13,6 +14,6 @@ public class MoveState : ITurnState
     public void ExitState()
     {
         // Player에서 검사한 Managers.TurnManager.CurrentEnemy를 갱신해주고 이 ExitState()를 호출해야함
-        Managers.TurnManager.ChangeState(new SlotState());
+        //Managers.TurnManager.ChangeState(new SlotState());
     }
 }

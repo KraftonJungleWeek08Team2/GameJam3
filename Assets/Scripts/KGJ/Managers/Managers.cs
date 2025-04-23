@@ -14,6 +14,9 @@ public class Managers : MonoBehaviour
     public static CameraManager CameraManager => _cameraManager;
     static CameraManager _cameraManager = new CameraManager();
 
+    public static InputManager InputManager => _inputManager;
+    static InputManager _inputManager = new InputManager();
+
     void Awake()
     {
         if (_instance == null)
@@ -31,6 +34,8 @@ public class Managers : MonoBehaviour
     {
         TurnManager.Init();
         CameraManager.Init();
+        InputManager.Init();
+        TurnManager.ChangeState(new SlotState());
     }
 
     void Update()

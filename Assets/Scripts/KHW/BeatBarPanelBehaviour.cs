@@ -27,6 +27,17 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         InitializePropertiesSelf();
     }
 
+    public void ShowBeatBar(SlotInfo slotInfo)
+    {
+        beatBarCanvas.enabled = true;
+        InitializePropertiesOther(slotInfo);
+    }
+
+    public void HideBeatBar()
+    {
+        beatBarCanvas.enabled = false;
+    }
+
     public void InitializePropertiesOther(SlotInfo slotInfo)
     {
         currentSlotInfo = slotInfo; //슬롯정보 받아오기.
@@ -44,7 +55,9 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         musicManager.OnNextBeatAction += UpdateCurrentBeat;
         musicManager.OnBeatAction += GenerateNewNote;
         baseBeat = MusicManager.Instance.currentBeat + 6; //노트 도달 4비트. 여유 2비트.
-        
+
+        beatBarCanvas = transform.parent.GetComponent<Canvas>();
+        beatBarCanvas.enabled = false;
     }
 
 /// <summary>
@@ -93,6 +106,9 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         currentMusicBeat = currentBeat;
     }
 
+    // 끝나는 시점에서 호출
+    // Managers.TurnManager.IsFullCombo = true;
+    // Managers.TurnManager.EndAttackState();
 
     void Update()
     {
