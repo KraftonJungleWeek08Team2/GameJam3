@@ -1,5 +1,3 @@
-using System;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -19,6 +17,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        hp = 1000;
     }
     public void TakeDamage(int amount)
     {

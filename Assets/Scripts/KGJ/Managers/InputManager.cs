@@ -65,7 +65,7 @@ public class InputManager
     void OnRhythmAttackInput(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
+        { 
             OnRhythmAttackEvent?.Invoke();
         }
     }

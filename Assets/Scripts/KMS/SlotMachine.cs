@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -95,6 +96,8 @@ public class SlotMachine : MonoBehaviour
     /// </summary>
     void ConfirmCurrentSlot()
     {
+        if (!isSpinning) return;
+
         int finalValue = displayValues[currentSlotIndex, 1];
         //Debug.Log($"{displayValues[currentSlotIndex, 1]}, {currentSlotIndex}");
         slotInfo.SetValue(currentSlotIndex, finalValue);
@@ -123,6 +126,14 @@ public class SlotMachine : MonoBehaviour
 
         //Debug.Log($"{first} , {second}, {third}");
 
+        StartCoroutine(WaitOneFrame());
+        
+    }
+
+    IEnumerator WaitOneFrame()
+    {
+
+        yield return new WaitForSeconds(0.1f);
         Managers.TurnManager.EndSlotState();
     }
 }

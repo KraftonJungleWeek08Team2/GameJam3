@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TurnManager
@@ -21,8 +22,7 @@ public class TurnManager
         _slotMachine = GameObject.FindAnyObjectByType<SlotMachine>();
         _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarPanelBehaviour>();
 
-        /*CurrentEnemy = new Enemy();
-        CurrentEnemy.hp = 100;*/
+
         _currentState = new MoveState();
     }
 
@@ -42,6 +42,8 @@ public class TurnManager
         _currentState = newState;
         _currentState?.EnterState();
     }
+
+    
 
     public void EndSlotState()
     {
