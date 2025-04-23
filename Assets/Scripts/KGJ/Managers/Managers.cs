@@ -35,8 +35,6 @@ public class Managers : MonoBehaviour
         TurnManager.Init();
         CameraManager.Init();
         InputManager.Init();
-        TurnManager.CurrentEnemy = FindAnyObjectByType<Enemy>();
-        TurnManager.ChangeState(new SlotState());
     }
 
     void Update()

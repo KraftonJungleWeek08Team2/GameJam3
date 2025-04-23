@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,10 +6,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private EnemyInfo[] _enemyInfos;
     [SerializeField] private Transform _spawnPoint;
 
-    void Start()
+    private void Awake()
     {
         _enemyInfos = Resources.LoadAll<EnemyInfo>("KDY/EnemyInfos");
-        _spawnPoint = FindObjectOfType<SpawnPoint>().transform;
+        _spawnPoint = FindAnyObjectByType<SpawnPoint>().transform;
+        Managers.TurnManager.CurrentEnemy = Spawn();
+    }
+    void Start()
+    {
         
     }
 
@@ -18,15 +21,18 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Spawn(_spawnPoint);
+            Spawn();
         }
     }
 
-    public void Spawn(Transform spawnPoint)
+    public Enemy Spawn()
     {
         int idx = Random.Range(0, _enemyInfos.Length);
-        var data = _enemyInfos[idx];
-        var go = Instantiate(data.prefab, spawnPoint.position, Quaternion.identity);
-        go.GetComponent<Enemy>().Init(data);
+        EnemyInfo data = _enemyInfos[idx];
+        GameObject go = Instantiate(data.prefab, _spawnPoint.position, Quaternion.identity);
+        Enemy enemy = go.GetComponent<Enemy>();
+        enemy.Init(data);
+
+        return enemy;
     }
 }
