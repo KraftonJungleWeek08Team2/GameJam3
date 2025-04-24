@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IDamageable
     
     public bool isMoving;
 
+    UI_EnemyHp _enemyHpUI;
 
     // 스포너에서 값 넘겨줌
     public void Init(EnemyInfo data)
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _enemyHpUI = FindAnyObjectByType<UI_EnemyHp>();
     }
     private void Update()
     {
@@ -49,6 +51,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         hp -= amount;
         _animator.Play("Hit");
+        _enemyHpUI.UpdateEnemyUI();
     }
     
     public void IsDie()

@@ -21,6 +21,9 @@ public class TurnManager
 
     EnemySpawner _enemySpawner;
 
+    public UI_EnemyHp EnemyHpUI => _enemyHpUI;
+    UI_EnemyHp _enemyHpUI;
+
     public void Init()
     {
         Player = GameObject.FindAnyObjectByType<Player>();
@@ -28,6 +31,12 @@ public class TurnManager
         _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarPanelBehaviour>();
         _parallaxBackground = GameObject.FindAnyObjectByType<ParallaxBackground>();
         _enemySpawner = GameObject.FindAnyObjectByType<EnemySpawner>();
+        _enemyHpUI = GameObject.FindAnyObjectByType<UI_EnemyHp>();
+        if (_enemyHpUI == null)
+        {
+            Debug.Log("[KGJ] EnemyHpUI not found");
+        }
+        CurrentEnemyIndex = 0;
 
         _currentState = new MoveState();
     }
@@ -71,6 +80,7 @@ public class TurnManager
     {
         if (CurrentEnemy.hp <= 0)
         {
+            Managers.TurnManager.EnemyHpUI.HideEnemyUI(); // 적 체력 UI 숨기기
             Managers.CameraManager.RemoveMember(CurrentEnemy.transform);
             CurrentEnemy.Die();
 

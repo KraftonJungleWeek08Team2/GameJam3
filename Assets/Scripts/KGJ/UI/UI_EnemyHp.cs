@@ -5,17 +5,19 @@ public class UI_EnemyHp : MonoBehaviour
 {
     Canvas _enemyHpCanvas;
     Slider _slider;
+    RectTransform _rectTransform;
 
     void Start()
     {
         _enemyHpCanvas = GetComponent<Canvas>();
         _slider = GetComponentInChildren<Slider>();
+        _enemyHpCanvas.enabled = false;
     }
 
     public void ShowEnemyUI()
     {
+        _slider.value = (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().maxHp;
         _enemyHpCanvas.enabled = true;
-        transform.position = Managers.TurnManager.CurrentEnemy.transform.position + new Vector3(0, 5f, 0);
     }
 
     public void HideEnemyUI()
@@ -25,6 +27,17 @@ public class UI_EnemyHp : MonoBehaviour
 
     public void UpdateEnemyUI()
     {
-        _slider.value = Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().maxHp;
+        float hp = Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp;
+        
+        if ((float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp <= 0)
+        {
+            hp = 0;
+        }
+        else
+        {
+            hp = (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().maxHp;
+        }
+        Debug.Log("[KGJ]" + hp);
+        _slider.value = hp;
     }
 }
