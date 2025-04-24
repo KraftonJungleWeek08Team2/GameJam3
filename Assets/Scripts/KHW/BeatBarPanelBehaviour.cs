@@ -157,6 +157,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         if(accuracy > 0.9 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
         {
             Managers.TurnManager.CurrentEnemy.TakeDamage(2);
+            Managers.CameraManager.ShakeCamera();
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
             SoundManager.Instance.PlayPerfectSound();
@@ -171,6 +172,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         else if(accuracy > 0.6 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
         {   
             Managers.TurnManager.CurrentEnemy.TakeDamage(1);
+            Managers.CameraManager.ShakeCamera();
             currentBeatInputted = true;
             SoundManager.Instance.PlayGoodSound();
             Instantiate(goodText, accuracyPos);

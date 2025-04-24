@@ -712,7 +712,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -737,7 +737,7 @@ Transform:
   m_GameObject: {fileID: 1438976813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.63100004, z: -10}
+  m_LocalPosition: {x: -1, y: -0.86899996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1196,6 +1196,14 @@ PrefabInstance:
     - target: {fileID: 3951045002882387803, guid: 25712d5f10242124285fccdfcf8aa94b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173271205037661324, guid: 25712d5f10242124285fccdfcf8aa94b, type: 3}
+      propertyPath: DefaultVelocity.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173271205037661324, guid: 25712d5f10242124285fccdfcf8aa94b, type: 3}
+      propertyPath: DefaultVelocity.y
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5736900761883527079, guid: 25712d5f10242124285fccdfcf8aa94b, type: 3}
       propertyPath: m_LocalPosition.x
