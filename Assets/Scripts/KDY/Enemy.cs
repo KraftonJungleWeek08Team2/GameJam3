@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour, IDamageable
         damage = data.damage;
         _moveSpeed = data.moveSpeed;
         isMoving   = true;
+        
+        //크기도 점점 커지게
+        transform.localScale = new Vector3(transform.localScale.x + (Managers.TurnManager.CurrentEnemyIndex * 0.1f), transform.localScale.y + (Managers.TurnManager.CurrentEnemyIndex * 0.1f), 1);
     }
 
     private void Start()
