@@ -32,17 +32,12 @@ public class Managers : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        InitManagers();
-    }
-
     void InitManagers()
     {
-        GameManager.Init();
-        TurnManager.Init();
         CameraManager.Init();
+        TurnManager.Init();
         InputManager.Init();
+        GameManager.Init();
     }
 
     void Update()

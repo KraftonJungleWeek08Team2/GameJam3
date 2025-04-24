@@ -13,11 +13,12 @@ public class CameraManager
     /// 타겟 그룹에 플레이어를 추가합니다.
     /// </summary>
     public void Init()
-    {
+    {     
         _player = GameObject.FindAnyObjectByType<Player>();
         _targetGroup = GameObject.FindAnyObjectByType<CinemachineTargetGroup>();
         _moveCamera = GameObject.FindAnyObjectByType<MoveCamera>().GetComponent<CinemachineCamera>();
         _battleCamera = GameObject.FindAnyObjectByType<BattleCamera>().GetComponent<CinemachineCamera>();
+        
         _shakeImpulse = GameObject.FindAnyObjectByType<CameraShakeEffect>().GetComponent<CinemachineImpulseSource>();
 
         ChangeBattleCamera(false);
