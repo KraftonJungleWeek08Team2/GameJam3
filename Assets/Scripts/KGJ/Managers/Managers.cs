@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Managers : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -30,21 +32,33 @@ public class Managers : MonoBehaviour
         }
     }
 
-    void Start()
+    void InitManagers()
     {
-        TurnManager.Init();
         CameraManager.Init();
+        TurnManager.Init();
         InputManager.Init();
+        GameManager.Init();
     }
 
     void Update()
     {
-        // TurnManager의 현재 상태를 실행
         _turnManager.UpdateState();
     }
 
     void FixedUpdate()
     {
         _turnManager.FixedUpdateState();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitManagers();
+    }
+
+
+    void OnDestroy()
+    {
+        if (_instance == this)
+            SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

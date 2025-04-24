@@ -37,7 +37,7 @@ public class SlotMachine : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        _slotCanvas = FindAnyObjectByType<UI_Slot_Canvas>().GetComponent<Canvas>();
+        _slotCanvas = FindAnyObjectByType<UI_Slot_Canvas_v2>().GetComponent<Canvas>();
         if (_slotCanvas == null)
         {
             Debug.LogError("UI_Slot_Canvas not found");

@@ -211,6 +211,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
     void OnDestroy()
     {
-       // Managers.InputManager.OnRhythmAttackEvent -= Attack;
+        musicManager.OnNextBeatAction -= UpdateCurrentBeat;
+        musicManager.OnBeatAction -= GenerateNewNote;
     }
 }
