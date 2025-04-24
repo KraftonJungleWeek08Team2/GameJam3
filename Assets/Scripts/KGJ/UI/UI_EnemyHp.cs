@@ -15,6 +15,7 @@ public class UI_EnemyHp : MonoBehaviour
     public void ShowEnemyUI()
     {
         _enemyHpCanvas.enabled = true;
+        transform.position = Managers.TurnManager.CurrentEnemy.transform.position + new Vector3(0, 5f, 0);
     }
 
     public void HideEnemyUI()
@@ -24,6 +25,6 @@ public class UI_EnemyHp : MonoBehaviour
 
     public void UpdateEnemyUI()
     {
-        //_slider.value = Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().maxhp;
+        _slider.value = Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().maxHp;
     }
 }

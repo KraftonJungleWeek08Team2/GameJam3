@@ -4,7 +4,7 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyInfo _data;
 
-    public int maxHp;
+    public int maxHp { get; private set; }
     public int hp { get; private set; }
     public int damage { get; private set; }
     private Animator _animator;
@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Init(EnemyInfo data)
     {
         _data      = data;
+        maxHp = data.maxHp;
         hp = data.maxHp;
         damage = data.damage;
         _moveSpeed = data.moveSpeed;
