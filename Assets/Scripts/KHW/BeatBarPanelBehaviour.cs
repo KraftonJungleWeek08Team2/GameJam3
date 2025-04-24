@@ -13,6 +13,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     [SerializeField] private GameObject attackNoteObject; //노트 프리팹.
     [SerializeField] private GameObject restNoteObject;
     [SerializeField] private Transform accuracyPos;
+    //[SerializeField] private Transform ComboCountPos;
     [SerializeField] private GameObject perfectText; // 퍼펙트 판정의 텍스트를 가진 gameobject.
     [SerializeField] private GameObject goodText; //굿 판정의 텍스트를 가진 gameobject.
     [SerializeField] private GameObject breakText; //실패 판정의 텍스트를 가진 gameobject.
@@ -22,6 +23,8 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     [SerializeField] private Canvas beatBarCanvas;
     [SerializeField] private int noteMargin = 2; // 노트 출현 후 가운데까지 오는데 걸리는 비트
     [SerializeField] private bool isFullCombo = true;
+    [SerializeField] private int currentComboCount = 0;
+    [SerializeField] ComboCountBehaviour comboCountBehaviour; //inspector.
 
     void Start()
     {
@@ -61,6 +64,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     {
         musicManager = MusicManager.Instance;
         accuracyPos = transform.Find("Accuracy Position").transform;
+        //ComboCountPos = transform.Find("Combo Count Position").transform;
         attackNoteObject = (GameObject)Resources.Load("KHW/Prefabs/NoteObject/AttackNoteObject");
         restNoteObject = (GameObject)Resources.Load("KHW/Prefabs/NoteObject/RestNoteObject");
         perfectText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/PerfectTextObject");
@@ -161,6 +165,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
             SoundManager.Instance.PlayPerfectSound();
+            currentComboCount ++;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
                 //Debug.Log("Log : 마지막 비트 입력 성공 퍼펙트");
@@ -176,6 +181,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentBeatInputted = true;
             SoundManager.Instance.PlayGoodSound();
             Instantiate(goodText, accuracyPos);
+            currentComboCount ++;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
                 //Debug.Log("Log : 마지막 비트 입력 성공");
@@ -189,6 +195,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentBeatInputted = true;
             isFullCombo = false;
             Instantiate(breakText, accuracyPos);
+            currentComboCount = 0;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 : Bad.
             {
                 //Debug.Log("Log : 마지막 비트 입력 bad.");
@@ -200,16 +207,22 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         {
             currentBeatInputted = true;
             isFullCombo = false;
+            currentComboCount = 0;
             //Debug.Log("miss input.");
             Instantiate(breakText, accuracyPos);
         }
         else if(currentBeatInputted) //중복 입력
         {   
+
             Debug.Log("Duplicate input!!!!");
             isFullCombo = false;
             Instantiate(breakText, accuracyPos);
+            currentComboCount = 0;
         }
+
+        comboCountBehaviour.UpdateComboCount(currentComboCount);
     }
+
 
     void OnDestroy()
     {
