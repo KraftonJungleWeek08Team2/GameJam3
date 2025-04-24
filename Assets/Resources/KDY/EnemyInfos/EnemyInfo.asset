@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyInfo
   m_EditorClassIdentifier: 
   enemyName: "\uBC84\uC12F"
-  maxHp: 1
+  maxHp: 1000
   damage: 10
   moveSpeed: 4
   icon: {fileID: 5827293808285669160, guid: de12e198e53aa3e498455c681a237665, type: 3}
