@@ -33,12 +33,14 @@ public class TurnManager
 
     public void UpdateState()
     {
-        CurrentState?.UpdateState();
+        if (!Managers.GameManager.IsGameOver)
+            CurrentState?.UpdateState();
     }
 
     public void FixedUpdateState()
     {
-        CurrentState?.FixedUpdateState();
+        if (!Managers.GameManager.IsGameOver)
+            CurrentState?.FixedUpdateState();
     }
 
     public void ChangeState(ITurnState newState)

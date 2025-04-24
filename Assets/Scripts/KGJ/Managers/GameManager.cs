@@ -1,17 +1,27 @@
-using System;
+using UnityEngine;
 
 public class GameManager
 {
-    public bool IsGameOver { get => _isGameOver; set => _isGameOver = value; }
+    public bool IsGameOver
+    {
+        get { return _isGameOver; }
+        set { _isGameOver = value; }
+    }
     bool _isGameOver = false;
 
-    public Action OnGameOverEvent;
+    Canvas _gameOverCanvas;
+
+    public void Init()
+    {
+        _gameOverCanvas = GameObject.FindAnyObjectByType<UI_GameOver>().GetComponent<Canvas>();
+        _gameOverCanvas.enabled = false;
+        IsGameOver = false;
+    }
 
     public void GameOver()
     {
         IsGameOver = true;
-        // 게임 오버 UI 활성화
-        // 게임 종료 처리
-        OnGameOverEvent?.Invoke();
+        _gameOverCanvas.enabled = true;
+        Managers.TurnManager.ChangeState(new GameoverState());
     }
 }

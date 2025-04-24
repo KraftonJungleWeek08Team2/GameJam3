@@ -29,11 +29,6 @@ public class SlotState : ITurnState
         Managers.InputManager.SlotEnable(false);        // InputManager의 액션 맵 구독 끊기
     }
 
-    IEnumerator WaitOneFrame()
-    {
-        yield return null;
-    }
-
     public void FixedUpdateState()
     {
 
