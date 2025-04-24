@@ -22,10 +22,13 @@ public class UI_Hp : MonoBehaviour
         _player.OnPlayerDamageEvent += UpdateHp;
     }
 
-    void UpdateHp()
+    void UpdateHp(int damage)
     {
-        
-        StartCoroutine(ShakeRectTransform(_hpRed[_hpIdx--], 0.5f, 10f));
+        for (int i = 0; i < damage; i++)
+        {
+            if (_hpIdx < 0) break;
+            StartCoroutine(ShakeRectTransform(_hpRed[_hpIdx--], 0.5f, 10f));
+        }
     }
 
     IEnumerator ShakeRectTransform(GameObject uiObject, float duration, float magnitude)

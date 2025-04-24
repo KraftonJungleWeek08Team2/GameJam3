@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    private int maxHp = 100; // 최대 체력
+    private int maxHp = 10; // 최대 체력
     public int hp{ get; private set; } // 현재 체력
 
     [Tooltip("애니메이터 컴포넌트")]
@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IDamageable
 
     int attackIndex = 0; // 공격 인덱스
 
-    public Action OnPlayerDamageEvent;
+    public Action<int> OnPlayerDamageEvent;
 
     private void Awake()
     {
@@ -44,8 +44,11 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         hp -= amount;
-        _animator.SetTrigger("TakeDamage");
-        OnPlayerDamageEvent?.Invoke();
+        if (hp > 0)
+        {
+            _animator.SetTrigger("TakeDamage");
+        }
+        OnPlayerDamageEvent?.Invoke(amount);
         IsDie();
     }
     
@@ -60,6 +63,7 @@ public class Player : MonoBehaviour, IDamageable
     public void Die()
     {
         Debug.Log("Player has died.");
-        _animator.SetTrigger("Death");
+        _animator.Play("Player_v2_Death");
+        Managers.GameManager.GameOver();
     }
 }
