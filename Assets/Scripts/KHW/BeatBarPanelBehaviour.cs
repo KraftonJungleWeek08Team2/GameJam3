@@ -187,6 +187,12 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentBeatInputted = true;
             isFullCombo = false;
             Instantiate(breakText, accuracyPos);
+            if (currentMusicBeat == endBeat) //마지막 비트에 입력 : Bad.
+            {
+                //Debug.Log("Log : 마지막 비트 입력 bad.");
+                Managers.TurnManager.IsFullCombo = isFullCombo;
+                Managers.TurnManager.EndAttackState();
+            }
         }
         else if(!GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //아닌데 누름.
         {
@@ -197,8 +203,9 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         }
         else if(currentBeatInputted) //중복 입력
         {   
-            //isFullCombo = false;
-            //Instantiate(breakText, accuracyPos);
+            Debug.Log("Duplicate input!!!!");
+            isFullCombo = false;
+            Instantiate(breakText, accuracyPos);
         }
     }
 
