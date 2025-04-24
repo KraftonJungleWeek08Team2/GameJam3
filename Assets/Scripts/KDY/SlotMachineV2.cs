@@ -31,7 +31,7 @@ public class SlotMachineV2 : MonoBehaviour
         _resultUIManager = FindAnyObjectByType<ResultUIManager>();
         _timerText = FindAnyObjectByType<TimerText>().GetComponent<TMP_Text>();
         _reels = FindAnyObjectByType<UI_Slot_Canvas_v2>().GetComponentsInChildren<ReelController>();
-        _timerSlider = FindAnyObjectByType<Slider>();
+        _timerSlider = _slotCanvas.GetComponentInChildren<Slider>();
         if (_slotCanvas == null)
         {
             Debug.LogError("UI_Slot_Canvas not found");

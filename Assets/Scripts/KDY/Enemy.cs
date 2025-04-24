@@ -3,6 +3,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyInfo _data;
+
+    public int maxHp;
     public int hp { get; private set; }
     public int damage { get; private set; }
     private Animator _animator;
