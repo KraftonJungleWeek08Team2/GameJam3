@@ -6,6 +6,7 @@ public class UI_EnemyHp : MonoBehaviour
     Canvas _enemyHpCanvas;
     Slider _slider;
     RectTransform _rectTransform;
+    float _maxhp;
 
     void Start()
     {
@@ -16,7 +17,8 @@ public class UI_EnemyHp : MonoBehaviour
 
     public void ShowEnemyUI()
     {
-        _slider.value = (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().maxHp;
+        _maxhp = (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().maxHp;
+        _slider.value = (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / _maxhp;
         _enemyHpCanvas.enabled = true;
     }
 
@@ -35,7 +37,7 @@ public class UI_EnemyHp : MonoBehaviour
         }
         else
         {
-            hp = (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().maxHp;
+            hp = (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / _maxhp;
         }
         Debug.Log("[KGJ]" + hp);
         _slider.value = hp;

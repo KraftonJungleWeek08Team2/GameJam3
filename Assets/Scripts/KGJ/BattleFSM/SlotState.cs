@@ -1,5 +1,3 @@
-using System.Collections;
-
 public class SlotState : ITurnState
 {
     public void EnterState()

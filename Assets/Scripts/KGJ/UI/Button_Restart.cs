@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Button_Restart : MonoBehaviour
 {
     Button _button;
+    public int sceneIndex;
 
     void Start()
     {
@@ -14,6 +15,13 @@ public class Button_Restart : MonoBehaviour
 
     void Restart()
     {
-        SceneManager.LoadScene("MainScene");
+        if (sceneIndex == 1)
+        {
+            SceneManager.LoadScene("MainScene_Normal");
+        }
+        else if (sceneIndex == 2)
+        {
+            SceneManager.LoadScene("MainScene_Hard");
+        }
     }
 }

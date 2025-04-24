@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class MenuUIManager : MonoBehaviour
 {
@@ -23,9 +22,9 @@ public class MenuUIManager : MonoBehaviour
     public void StartGame()
     {
         if(_toggleButton.IsOn())
-            SceneManager.LoadScene("HardmodeScene");
+            SceneManager.LoadScene("MainScene_Hard");
         else
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("MainScene_Normal");
     }
 
     public void HowToPlayGame()
