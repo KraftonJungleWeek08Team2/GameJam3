@@ -3,11 +3,11 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class SlotMachine1 : MonoBehaviour
+public class SlotMachineV2 : MonoBehaviour
 {
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private ReelController[] _reels;      // 3개의 ReelController
-    [SerializeField] private float _baseSpinSpeed = 500f; // 회전 속도
+    [SerializeField] private float _baseSpinSpeed = 750f; // 회전 속도
     [SerializeField] private ResultUIManager _resultUIManager; // 결과 UI
 
     //경과 시간 추가
@@ -44,7 +44,6 @@ public class SlotMachine1 : MonoBehaviour
             if (_slotTimeout > 1f)
             { 
                 _slotTimeout -= 1f;
-                Debug.Log($"[KGJ] : {_slotTimeout}");
             }
         }
         else
@@ -59,7 +58,6 @@ public class SlotMachine1 : MonoBehaviour
         for (int i = 0; i < _reels.Length; i++)
         {
             _reels[i].OnReelStopped += HandleReelStopped;
-            Debug.Log("reel" + i + _baseSpinSpeed);
             _reels[i].StartSpin(_baseSpinSpeed);
         }
         _isSpinning = true;

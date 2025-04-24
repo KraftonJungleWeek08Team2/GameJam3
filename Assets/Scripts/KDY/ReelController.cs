@@ -19,9 +19,11 @@ public class ReelController : MonoBehaviour
     private float totalHeight;                          // symbolCount * symbolSpacing
     private List<RectTransform> symbols = new();        // 생성된 심볼들
     public bool isSpinning;
+    private bool _isStopping;
     private float spinSpeed;
     
     private Coroutine _spinCoroutine;
+    private Coroutine _stopCoroutine;
 
     void Start()
     {
@@ -87,26 +89,47 @@ public class ReelController : MonoBehaviour
 
     public void StopSpin()
     {
-        // 감속 코루틴을 실행하기 전에 곧바로 isSpinning = false 해버리면
-        // Spin() 내부의 while 루프가 종료되면서 _spinCoroutine도 끝납니다.
-        isSpinning = false;                   
-        // 필요하다면 StopCoroutine(_spinCoroutine); _spinCoroutine = null;
-        StartCoroutine(StopAndSnap());
+        isSpinning = false;
+        if (_isStopping) return;               // 이미 스핀 중이면 중복 실행 방지
+        _isStopping = true;
+        
+        if (_stopCoroutine != null)
+            StopCoroutine(_stopCoroutine);
+        
+        _stopCoroutine = StartCoroutine(StopAndSnap());
     }
 
     private IEnumerator StopAndSnap()
     {
-        // 1) 감속
-        float t = 0f, duration = 0.2f, startSpeed = spinSpeed;
+        // 0) 기존 Spin 코루틴 멈추기
+        isSpinning = false;
+        StopCoroutine(_spinCoroutine);
+
+        // 1) 감속하면서 직접 심볼 이동
+        float t = 0f;
+        float duration = 0.1f;
+        float startSpeed = spinSpeed;
+        
         while (t < duration)
         {
             t += Time.deltaTime;
-            spinSpeed = Mathf.Lerp(startSpeed, 0f, t / duration);
+            float currSpeed = Mathf.Lerp(startSpeed, 0f, t / duration);
+            float delta = currSpeed * Time.deltaTime;
+
+            // 모든 심볼을 delta 만큼 아래로 이동시키기
+            foreach (var rt in symbols)
+            {
+                float newY = rt.anchoredPosition.y - delta;
+                // 완전 아래로 가면 위로 순환
+                if (newY < -totalHeight/2)
+                    newY += totalHeight;
+                rt.anchoredPosition = new Vector2(0, newY);
+            }
+
             yield return null;
         }
-        isSpinning = false;
 
-        // 2) 스냅: 각 심볼을 가장 가까운 그리드 위치로 보정
+        // 2) 감속 완료 후엔 그리드에 스냅
         foreach (var rt in symbols)
         {
             float y = rt.anchoredPosition.y;
@@ -114,7 +137,7 @@ public class ReelController : MonoBehaviour
             rt.anchoredPosition = new Vector2(0, snappedY);
         }
 
-        // 3) 중앙(0 위치)에 가까운 심볼 찾기
+        // 3) 중앙(0)에 가장 가까운 심볼 찾기
         RectTransform best = null;
         float bestDist = float.MaxValue;
         foreach (var rt in symbols)
@@ -127,9 +150,14 @@ public class ReelController : MonoBehaviour
             }
         }
 
-        // 4) 텍스트 값 읽어서 콜백
+        // 4) 값 읽어서 콜백
         int result = int.Parse(best.GetComponentInChildren<TMP_Text>().text);
         OnReelStopped?.Invoke(result);
+
+        
+        // 5) 스핀 종료
+        _stopCoroutine = null;
+        _isStopping = false;
     }
 
     public event Action<int> OnReelStopped;
