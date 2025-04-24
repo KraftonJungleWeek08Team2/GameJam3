@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlotMachineV2 : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SlotMachineV2 : MonoBehaviour
     [SerializeField] private ReelController[] _reels;      // 3개의 ReelController
     [SerializeField] private float _baseSpinSpeed = 750f; // 회전 속도
     [SerializeField] private ResultUIManager _resultUIManager; // 결과 UI
+    [SerializeField] private Slider _timerSlider; // 타이머 슬라이더 UI
 
     //경과 시간 추가
     private float _maxSlotTime = 5f;
@@ -29,6 +31,7 @@ public class SlotMachineV2 : MonoBehaviour
         _resultUIManager = FindAnyObjectByType<ResultUIManager>();
         _timerText = FindAnyObjectByType<TimerText>().GetComponent<TMP_Text>();
         _reels = FindAnyObjectByType<UI_Slot_Canvas_v2>().GetComponentsInChildren<ReelController>();
+        _timerSlider = _slotCanvas.GetComponentInChildren<Slider>();
         if (_slotCanvas == null)
         {
             Debug.LogError("UI_Slot_Canvas not found");
@@ -39,6 +42,9 @@ public class SlotMachineV2 : MonoBehaviour
 
     public void ShowSlotUI(bool isOneMore)
     {
+        _slotTimer = 0f; // 슬롯 타이머 초기화
+        _timerSlider.value = 1f; // 슬라이더 초기화
+
         if (isOneMore)
         {
             if (_slotTimeout > 1f)
@@ -57,6 +63,7 @@ public class SlotMachineV2 : MonoBehaviour
         // 모두 스핀 시작 & 콜백 구독
         for (int i = 0; i < _reels.Length; i++)
         {
+            _reels[i].Init();
             _reels[i].OnReelStopped += HandleReelStopped;
             _reels[i].StartSpin(_baseSpinSpeed);
         }
@@ -68,11 +75,15 @@ public class SlotMachineV2 : MonoBehaviour
     {
         //슬롯 변화 속도 조절을 위한 타임
         if (!_isSpinning) return;
-        
+
+        // 타이머 작동
+        _slotTimer += Time.deltaTime; // 경과 시간 증가
+
         //남은 시간을 계산 하는거
         float timeLeft = _slotTimeout - _slotTimer;
         int secondsLeft = Mathf.CeilToInt(Mathf.Max(timeLeft, 0f)); // 정수로 변환
         _timerText.text = secondsLeft.ToString();   // 정수로 표시
+        _timerSlider.value = timeLeft / _slotTimeout;   // 슬라이더 값 설정
 
         // 남은 시간 계산 & 표시
         if (_slotTimer >= _slotTimeout)
@@ -187,7 +198,8 @@ public class SlotMachineV2 : MonoBehaviour
     }
 
     public void HideSlotUI()
-    {            
+    {
+        _isSpinning = false;
         Managers.InputManager.OnSlotEvent -= ConfirmCurrentSlot;
         _slotCanvas.enabled = false;
     }
