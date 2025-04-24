@@ -808,6 +808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8af1e3466921f4ab0dabf081953746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyHpCanvas: {fileID: 0}
+  _slider: {fileID: 0}
 --- !u!1 &1438976813
 GameObject:
   m_ObjectHideFlags: 0

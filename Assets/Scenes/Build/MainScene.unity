@@ -456,7 +456,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d326c35f035b6d4798f95f3748d7d30, type: 3}
---- !u!1001 &481410920
+--- !u!1001 &489258381
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -809,7 +809,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -834,7 +834,7 @@ Transform:
   m_GameObject: {fileID: 1438976813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.63100004, z: -10}
+  m_LocalPosition: {x: -1, y: -0.86899996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1643,5 +1643,5 @@ SceneRoots:
   - {fileID: 6060079149067535681}
   - {fileID: 1918671717}
   - {fileID: 393971800}
-  - {fileID: 481410920}
   - {fileID: 341375179}
+  - {fileID: 489258381}
