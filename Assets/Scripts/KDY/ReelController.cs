@@ -28,6 +28,11 @@ public class ReelController : MonoBehaviour
     public void Init()
     {
         symbols.Clear();
+        //content 하위 삭제
+        foreach (Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
         // 1) 전체 높이 계산
         totalHeight = symbolCount * symbolSpacing;    // 9 * 100 = 900
 
