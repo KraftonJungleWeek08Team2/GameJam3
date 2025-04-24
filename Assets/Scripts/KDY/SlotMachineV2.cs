@@ -63,6 +63,7 @@ public class SlotMachineV2 : MonoBehaviour
         // 모두 스핀 시작 & 콜백 구독
         for (int i = 0; i < _reels.Length; i++)
         {
+            _reels[i].Init();
             _reels[i].OnReelStopped += HandleReelStopped;
             _reels[i].StartSpin(_baseSpinSpeed);
         }

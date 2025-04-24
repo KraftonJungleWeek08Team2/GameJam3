@@ -25,8 +25,9 @@ public class ReelController : MonoBehaviour
     private Coroutine _spinCoroutine;
     private Coroutine _stopCoroutine;
 
-    void Start()
+    public void Init()
     {
+        symbols.Clear();
         // 1) 전체 높이 계산
         totalHeight = symbolCount * symbolSpacing;    // 9 * 100 = 900
 

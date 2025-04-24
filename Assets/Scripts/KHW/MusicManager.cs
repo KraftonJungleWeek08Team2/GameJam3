@@ -150,7 +150,6 @@ public class MusicManager : MonoBehaviour
         {
             lastBeatTrigger = beatStartTime;
             OnBeatAction?.Invoke(newBeat);
-            Debug.Log($"OnBeatAction Invoked: newBeat={newBeat}, relativePosition={relativePosition}");
         }
 
         // 비트 중간점 (다음 비트 예측)
@@ -161,7 +160,6 @@ public class MusicManager : MonoBehaviour
             lastReportedBeat = currentBeat;
             lastMidPointTrigger = midPointTime;
             OnNextBeatAction?.Invoke(currentBeat);
-            Debug.Log($"OnNextBeatAction Invoked: currentBeat={currentBeat}, relativePosition={relativePosition}");
         }
     }
 
