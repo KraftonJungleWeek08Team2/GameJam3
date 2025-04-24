@@ -17,8 +17,11 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Init(EnemyInfo data)
     {
         _data      = data;
+
         maxHp = data.maxHp;
-        hp = data.maxHp;
+
+        hp = data.maxHp + (Managers.TurnManager.CurrentEnemyIndex * data.maxHp);
+
         damage = data.damage;
         _moveSpeed = data.moveSpeed;
         isMoving   = true;

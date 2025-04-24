@@ -6,6 +6,7 @@ public class TurnManager
     private ITurnState _currentState;
 
     public Enemy CurrentEnemy;
+    public int CurrentEnemyIndex = 0; // 적 숫자
     public Player Player;
     public bool IsFullCombo = false;
 
@@ -75,6 +76,7 @@ public class TurnManager
 
             // EnemySpawner에서 적을 생성하고 CurrentEnemy에 넣어줌
             CurrentEnemy = _enemySpawner.Spawn();
+            CurrentEnemyIndex++;
             Managers.CameraManager.AddMember(CurrentEnemy.transform, 0.5f, 1f);
             ChangeState(new MoveState());
             
