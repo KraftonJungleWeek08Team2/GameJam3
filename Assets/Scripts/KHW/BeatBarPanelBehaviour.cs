@@ -228,5 +228,8 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     {
         musicManager.OnNextBeatAction -= UpdateCurrentBeat;
         musicManager.OnBeatAction -= GenerateNewNote;
+        
+        //TODO : 더 정확한 타이밍에 제거해주기 임시방편
+        Managers.InputManager.OnRhythmAttackEvent -= Attack;
     }
 }
