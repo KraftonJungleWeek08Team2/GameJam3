@@ -25,6 +25,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     [SerializeField] private bool isFullCombo = true;
     [SerializeField] private int currentComboCount = 0;
     [SerializeField] ComboCountBehaviour comboCountBehaviour; //inspector.
+    [SerializeField] OneMoreUIBehaviour oneMoreUIBehaviour;
 
     void Start()
     {
@@ -72,6 +73,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         breakText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/MissTextObject");
         musicManager.OnNextBeatAction += UpdateCurrentBeat;
         musicManager.OnBeatAction += GenerateNewNote;
+        oneMoreUIBehaviour = FindAnyObjectByType<OneMoreUIBehaviour>();
 
         beatBarCanvas = transform.parent.GetComponent<Canvas>();
         beatBarCanvas.enabled = false;
@@ -184,6 +186,10 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentComboCount ++;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
+                if(isFullCombo) //풀콤보
+                {
+                    oneMoreUIBehaviour.Show();
+                }
                 //Debug.Log("Log : 마지막 비트 입력 성공");
                 Managers.TurnManager.IsFullCombo = isFullCombo;
                 Managers.TurnManager.EndAttackState();
@@ -198,6 +204,10 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentComboCount = 0;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 : Bad.
             {
+                if(isFullCombo) //풀콤보
+                {
+                    oneMoreUIBehaviour.Show();
+                }
                 //Debug.Log("Log : 마지막 비트 입력 bad.");
                 Managers.TurnManager.IsFullCombo = isFullCombo;
                 Managers.TurnManager.EndAttackState();
