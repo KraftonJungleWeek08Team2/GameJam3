@@ -209,13 +209,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-<<<<<<< Updated upstream
-=======
-    - target: {fileID: 188045841898159234, guid: 17dc0f25ee275aa4fa185d027222839f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 4682315536216039923, guid: 17dc0f25ee275aa4fa185d027222839f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -378,13 +371,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
-    - target: {fileID: 2281214074776723227, guid: 606b1e3115ddfff47add3fe792223ed1, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 2433386775994802763, guid: 606b1e3115ddfff47add3fe792223ed1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -465,24 +451,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
-    - target: {fileID: 5453916333276430686, guid: 606b1e3115ddfff47add3fe792223ed1, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
->>>>>>> Stashed changes
     - target: {fileID: 7445817588655359648, guid: 606b1e3115ddfff47add3fe792223ed1, type: 3}
       propertyPath: m_Name
       value: UI_Slot_Canvas_v2
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
-    - target: {fileID: 8584126632465726385, guid: 606b1e3115ddfff47add3fe792223ed1, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
->>>>>>> Stashed changes
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -740,11 +712,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-<<<<<<< Updated upstream
   orthographic size: 4
-=======
-  orthographic size: 5
->>>>>>> Stashed changes
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -769,11 +737,7 @@ Transform:
   m_GameObject: {fileID: 1438976813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< Updated upstream
   m_LocalPosition: {x: -1, y: -0.86899996, z: -10}
-=======
-  m_LocalPosition: {x: -1, y: 0.63100004, z: -10}
->>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
