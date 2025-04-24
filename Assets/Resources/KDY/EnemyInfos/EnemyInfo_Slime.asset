@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce298400957347b488f39fe93f581134, type: 3}
-  m_Name: EnemyInfo
+  m_Name: EnemyInfo_Slime
   m_EditorClassIdentifier: 
-  enemyName: "\uBC84\uC12F"
+  enemyName: "\uC2AC\uB77C\uC784"
   maxHp: 1000
-  damage: 10
+  damage: 1
   moveSpeed: 4
-  icon: {fileID: 5827293808285669160, guid: de12e198e53aa3e498455c681a237665, type: 3}
-  prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+  icon: {fileID: 21300000, guid: 01a62e9499c19a744a0a1293929d2126, type: 3}
+  prefab: {fileID: 1068943834837579497, guid: a3cf7083844039a4b89b604c588b1224, type: 3}
