@@ -14,6 +14,14 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float perfectSoundVolume;
     [Tooltip("굿 사운드 볼륨")]
     [SerializeField] private float goodSoundVolume;
+    [Tooltip("슬롯 머신 로드 사운드")]
+    [SerializeField] private AudioClip slotLoadSound;
+    [Tooltip("슬롯 머신 로드 사운드 볼륨")]
+    [SerializeField] private float slotLoadSoundVolume;
+    [Tooltip("슬롯 머신 결과 사운드")]
+    [SerializeField] private AudioClip slotResultSound;
+    [Tooltip("슬롯 머신 결과 사운드 볼륨")]
+    [SerializeField] private float slotResultSoundVolume;
 
     private void Awake()
     {
@@ -31,6 +39,16 @@ public class SoundManager : MonoBehaviour
     public void PlayGoodSound()
     {
         PlayerSoundEffect(perfectSound, goodSoundVolume);
+    }
+
+    public void PlaySlotLoadSound()
+    {
+        PlayerSoundEffect(slotLoadSound, slotLoadSoundVolume);
+    }
+
+    public void PlaySlotResultSound()
+    {
+        PlayerSoundEffect(slotResultSound, slotResultSoundVolume);
     }
 
     private void PlayerSoundEffect(AudioClip clip, float volume)
