@@ -25,6 +25,7 @@ public class SlotState : ITurnState
 
     public void ExitState()
     {
+        SoundManager.Instance.PlaySlotResultSound();
         Managers.TurnManager.SlotMachine.HideSlotUI();  // 슬롯 머신 끄기
         Managers.InputManager.SlotEnable(false);        // InputManager의 액션 맵 구독 끊기
     }

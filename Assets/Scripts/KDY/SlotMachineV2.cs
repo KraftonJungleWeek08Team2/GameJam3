@@ -131,6 +131,7 @@ public class SlotMachineV2 : MonoBehaviour
         {
             // 모두 멈춤
             OnAllSlotsConfirmed();
+            
         }
     }
 
@@ -152,6 +153,7 @@ public class SlotMachineV2 : MonoBehaviour
         {
             yield return null;
         }
+        SoundManager.Instance.PlaySlotLoadSound();
         _coroutine = null;
     }
 
@@ -166,7 +168,9 @@ public class SlotMachineV2 : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         if (IsSlotSuccess())
+        {
             _resultUIManager.ShowResult(result);
+        }
         
         
         Managers.TurnManager.EndSlotState();
