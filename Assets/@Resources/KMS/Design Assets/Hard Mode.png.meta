@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 6137232bcc82c9341ae3fcb1bcdd5f51
+guid: b869f0eaa61c169499823bc80f048a39
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2649849660457910258
-    second: Week 8 UI 2_0
+      213: 8605871005608388169
+    second: Hard Mode_0
+  - first:
+      213: -6609654221044884757
+    second: Hard Mode_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,23 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Week 8 UI 2_0
+      name: Hard Mode_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1593
-        height: 897
+        width: 440
+        height: 74
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e008738f5c7d93bd0800000000000000
-      internalID: -2649849660457910258
+      spriteID: 9462f1075123e6770800000000000000
+      internalID: 8605871005608388169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hard Mode_1
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 0
+        width: 201
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bea5572618ac544a0800000000000000
+      internalID: -6609654221044884757
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0c63134923991c943930effd01650388
     internalID: 0
     vertices: []
     indices: 
@@ -147,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hard Mode_0: 8605871005608388169
+      Hard Mode_1: -6609654221044884757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

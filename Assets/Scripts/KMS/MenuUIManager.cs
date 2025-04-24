@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class MenuUIManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MenuUIManager : MonoBehaviour
     [SerializeField] private GameObject howToPlayUI;    // HowToPlay 캔버스
     [SerializeField] private Image displayImage;        // 보여줄 이미지 컴포넌트
     [SerializeField] private Sprite[] howToPlayPages;   // 에디터에서 등록할 페이지 스프라이트 배열
+    [SerializeField] private ToggleButton _toggleButton; //하드모드 토글로 사용할 예정
     private int currentPage;
 
     void Awake()
@@ -20,7 +22,10 @@ public class MenuUIManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("MainScene");
+        if(_toggleButton.IsOn())
+            SceneManager.LoadScene("HardmodeScene");
+        else
+            SceneManager.LoadScene("MainScene");
     }
 
     public void HowToPlayGame()
@@ -37,6 +42,7 @@ public class MenuUIManager : MonoBehaviour
 
     void Update()
     {
+ 
         if (!howToPlayUI.activeSelf) return;
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -68,4 +74,6 @@ public class MenuUIManager : MonoBehaviour
     {
         howToPlayUI.SetActive(false);
     }
+    
+
 }
