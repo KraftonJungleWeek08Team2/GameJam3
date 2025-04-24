@@ -598,7 +598,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1901567530163413859, guid: 10008c4377239fd4ab281fd8f52182b0, type: 3}
       propertyPath: musicIndex
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3143209473548949993, guid: 10008c4377239fd4ab281fd8f52182b0, type: 3}
       propertyPath: m_LocalPosition.x

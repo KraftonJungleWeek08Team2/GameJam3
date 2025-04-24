@@ -168,8 +168,13 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             Instantiate(perfectText, accuracyPos);
             SoundManager.Instance.PlayPerfectSound();
             currentComboCount ++;
+            
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
+                if(isFullCombo) //풀콤보
+                {
+                    oneMoreUIBehaviour.Show();
+                }
                 //Debug.Log("Log : 마지막 비트 입력 성공 퍼펙트");
                 Managers.TurnManager.IsFullCombo = isFullCombo;
                 Managers.TurnManager.EndAttackState();
@@ -204,10 +209,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentComboCount = 0;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 : Bad.
             {
-                if(isFullCombo) //풀콤보
-                {
-                    oneMoreUIBehaviour.Show();
-                }
+
                 //Debug.Log("Log : 마지막 비트 입력 bad.");
                 Managers.TurnManager.IsFullCombo = isFullCombo;
                 Managers.TurnManager.EndAttackState();
