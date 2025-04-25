@@ -53,4 +53,9 @@ public class UI_HpBlock : MonoBehaviour
         _rectTransform.anchoredPosition = originalPos;
         _hpImage.enabled = false;
     }
+
+    private void OnDestroy()
+    {
+        Managers.TurnManager.Player.OnPlayerHpChangeEvent -= ChangeHp;
+    }
 }

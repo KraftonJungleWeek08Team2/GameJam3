@@ -8,7 +8,7 @@ public class SlotMachineV2 : MonoBehaviour
 {
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private ReelController[] _reels;      // 3개의 ReelController
-    [SerializeField] private float _baseSpinSpeed = 750f; // 회전 속도
+    [SerializeField] private float _baseSpinSpeed = 500f; // 회전 속도
     [SerializeField] private ResultUIManager _resultUIManager; // 결과 UI
     [SerializeField] private Slider _timerSlider; // 타이머 슬라이더 UI
 
@@ -62,7 +62,7 @@ public class SlotMachineV2 : MonoBehaviour
         {
             _reels[i].Init();
             _reels[i].OnReelStopped += HandleReelStopped;
-            _reels[i].StartSpin(_baseSpinSpeed);
+            _reels[i].StartSpin(_baseSpinSpeed + (i*i*200));
         }
         _isSpinning = true;
         Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
