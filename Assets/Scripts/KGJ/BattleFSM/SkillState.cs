@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class SkillState : ITurnState
 {
     SlotInfo _slotInfo;
@@ -17,29 +15,19 @@ public class SkillState : ITurnState
     {
         if (_isSuccess)
         {
-            switch (CombinationChecker.Check(_slotInfo))
+            CombinationType? combi = CombinationChecker.Check(_slotInfo);
+            if (combi == null)
             {
-                case CombinationType.Jackpot:
-                    Managers.TurnManager.SkillManager.SevenSkill();
-                    break;
-                case CombinationType.ThreeOfAKindOdd:
-                    //Managers.TurnManager.SkillManager.
-                    break;
-                case CombinationType.ThreeOfAKindEven:
-                    //Managers.TurnManager.SkillManager.
-                    break;
-                case CombinationType.Sequential:
-                    Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess));
-                    break;
-                case CombinationType.AllOdd:
-
-                    break;
-                case CombinationType.AllEven:
-
-                    break;
-                case null:
-                    CheckState();
-                    break;
+                CheckState();
+            }
+            else if (combi == CombinationType.Sequential)
+            {
+                Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess));
+            }
+            else
+            {
+                _skillBook.TryActivateSkill(combi);
+                CheckState();
             }
         }
         else

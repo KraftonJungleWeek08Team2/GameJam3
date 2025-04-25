@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class FeverTimeState : ITurnState
 {
     bool _isSuccess;

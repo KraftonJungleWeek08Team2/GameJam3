@@ -55,12 +55,12 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeHeal(int heal)
     {
-        Hp += heal;
+        Hp = Mathf.Min(Hp + heal, maxHp);
     }
 
     public void TakeDamage(int amount)
     {
-        Hp -= amount;
+        Hp = Mathf.Max(Hp - amount, 0);
         if (Hp > 0)
         {
             _animator.SetTrigger("TakeDamage");

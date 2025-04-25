@@ -70,16 +70,63 @@ public class SlotMachineV2 : MonoBehaviour
 
     void Update()
     {
-        // slotInfo : 1,2,3으로 디버깅하는 코드
-        if (Input.GetKeyDown(KeyCode.P))
+        // 테스트용
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //_slotInfo = new SlotInfo(3);
-            //_slotInfo.SetValue(0, 2);
-            //_slotInfo.SetValue(1, 4);
-            //_slotInfo.SetValue(2, 6);
-            //OnSlotSuccessEvent?.Invoke(_slotInfo);
-            //_skillBook.TryActivateSkill(CombinationType.ThreeOfAKindEven);
+            // ThreeOfAKindOdd
+            _slotInfo = new SlotInfo(3);
+            _slotInfo.SetValue(0, 1);
+            _slotInfo.SetValue(1, 1);
+            _slotInfo.SetValue(2, 1);
+            OnSlotSuccessEvent?.Invoke(_slotInfo);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            // ThreeOfAKindEven
+            _slotInfo = new SlotInfo(3);
+            _slotInfo.SetValue(0, 2);
+            _slotInfo.SetValue(1, 2);
+            _slotInfo.SetValue(2, 2);
+            OnSlotSuccessEvent?.Invoke(_slotInfo);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            // Sequential
+            _slotInfo = new SlotInfo(3);
+            _slotInfo.SetValue(0, 2);
+            _slotInfo.SetValue(1, 4);
+            _slotInfo.SetValue(2, 6);
+            OnSlotSuccessEvent?.Invoke(_slotInfo);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            // AllOdd
+            _slotInfo = new SlotInfo(3);
+            _slotInfo.SetValue(0, 1);
+            _slotInfo.SetValue(1, 3);
+            _slotInfo.SetValue(2, 5);
+            OnSlotSuccessEvent?.Invoke(_slotInfo);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            // AllEven
+            _slotInfo = new SlotInfo(3);
+            _slotInfo.SetValue(0, 2);
+            _slotInfo.SetValue(1, 4);
+            _slotInfo.SetValue(2, 6);
+            OnSlotSuccessEvent?.Invoke(_slotInfo);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            // Jackpot
+            _slotInfo = new SlotInfo(3);
+            _slotInfo.SetValue(0, 7);
+            _slotInfo.SetValue(1, 7);
+            _slotInfo.SetValue(2, 7);
+            OnSlotSuccessEvent?.Invoke(_slotInfo);
+        }
+
+
         //슬롯 변화 속도 조절을 위한 타임
         if (!_isSpinning) return;
 

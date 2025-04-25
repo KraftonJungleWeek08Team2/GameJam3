@@ -30,6 +30,8 @@ public class TurnManager
     public SkillManager SkillManager => _skillManager;
     SkillManager _skillManager;
 
+
+
     public void Init()
     {
         Player = GameObject.FindAnyObjectByType<Player>();

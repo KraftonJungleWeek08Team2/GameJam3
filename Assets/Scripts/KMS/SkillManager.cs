@@ -8,8 +8,16 @@ public class SkillManager : MonoBehaviour
     [SerializeField] private Canvas _healPrefab;
     [SerializeField] private Canvas _attackPrefab;
 
+    Coin_Ani_UI_777 _sevenAni;
+    Coin_Ani_UI_Heal _healAni;
+    Coin_Ani_UI_Attack _attackAni;
+
     private void Start()
     {
+        _sevenAni = FindAnyObjectByType<Coin_Ani_UI_777>();
+        _healAni = FindAnyObjectByType<Coin_Ani_UI_Heal>();
+        _attackAni = FindAnyObjectByType<Coin_Ani_UI_Attack>();
+
         _sevenPrefab.gameObject.SetActive(false);
         _healPrefab.gameObject.SetActive(false);
         _attackPrefab.gameObject.SetActive(false);
