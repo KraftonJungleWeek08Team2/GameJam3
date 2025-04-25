@@ -1,3 +1,4 @@
+using UnityEngine;
 public class AttackState : ITurnState 
 {
     SlotInfo _slotInfo;
@@ -35,7 +36,40 @@ public class AttackState : ITurnState
 
     void ChangeNextState(bool isSuccess)
     {
-        // TODO : 적 hp와 풀콤 여부 체크해서 상태 변경, onemore ui도 여기서 제어
+        Debug.Log($"{_slotInfo.GetValue(0)}, {_slotInfo.GetValue(1)}, {_slotInfo.GetValue(2)}");
+        if (isSuccess)
+        {
+            switch (CombinationChecker.Check(_slotInfo))
+            {
+                case CombinationType.Jackpot:
+
+                    break;
+                case CombinationType.ThreeOfAKind:
+
+                    break;
+                case CombinationType.Sequential:
+                    Managers.TurnManager.ChangeState(new FeverTimeState(isSuccess));
+                    break;
+                case CombinationType.AllOdd:
+
+                    break;
+                case CombinationType.AllEven:
+
+                    break;
+                case null:
+                    CheckState(isSuccess);
+                    break;
+            }
+        }
+        else
+        {
+            Managers.TurnManager.ChangeState(new KnockBackState());
+        }
+    }
+
+    void CheckState(bool isSuccess)
+    {
+        // 적 hp와 풀콤 여부와 슬롯 스킬 체크해서 상태 변경, onemore ui도 여기서 제어
         if (Managers.TurnManager.CurrentEnemy.hp <= 0)
         {
             Managers.TurnManager.EnemyHpUI.HideEnemyUI(); // 적 체력 UI 숨기기
