@@ -55,4 +55,9 @@ public class TurnManager
         _currentState = newState;
         _currentState?.EnterState();
     }
+
+    void OnApplicationQuit()
+    {
+        _currentState?.ExitState();
+    }
 }

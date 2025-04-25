@@ -4,20 +4,44 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamageable
 {
     private int maxHp = 10; // 최대 체력
-    public int hp{ get; private set; } // 현재 체력
+    public int Hp
+    {
+        get
+        {
+            return _hp;
+        }
+        set
+        { 
+            _hp = value;
+            OnPlayerHpChangeEvent?.Invoke(_hp);
+        }
+    } // 현재 체력
+    private int _hp;
 
     [Tooltip("애니메이터 컴포넌트")]
     [SerializeField] private Animator _animator;
 
     int attackIndex = 0; // 공격 인덱스
 
-    public Action<int> OnPlayerDamageEvent;
+    public Action<int> OnPlayerHpChangeEvent;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        hp = maxHp;
+        _hp = maxHp;
         FakeRun();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            TakeDamage(3);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TakeHeal(2);
+        }
     }
 
     public void Idle()
@@ -41,20 +65,24 @@ public class Player : MonoBehaviour, IDamageable
         attackIndex = (attackIndex + 1) % 3;
     }
 
+    public void TakeHeal(int heal)
+    {
+        Hp += heal;
+    }
+
     public void TakeDamage(int amount)
     {
-        hp -= amount;
-        if (hp > 0)
+        Hp -= amount;
+        if (Hp > 0)
         {
             _animator.SetTrigger("TakeDamage");
         }
-        OnPlayerDamageEvent?.Invoke(amount);
         IsDie();
     }
     
     public void IsDie()
     {
-        if (hp <= 0)
+        if (Hp <= 0)
         {
             Die();
         }

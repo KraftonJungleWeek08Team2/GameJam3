@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4146454830307811019}
   - component: {fileID: 8648385914776434250}
   - component: {fileID: 8792109615729595857}
+  - component: {fileID: 5795577512674347083}
   m_Layer: 5
   m_Name: HpRed (1)
   m_TagString: Untagged
@@ -75,6 +76,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5795577512674347083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940716577562273343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 1
 --- !u!1 &1126420355269714634
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +100,7 @@ GameObject:
   - component: {fileID: 1604574118229425122}
   - component: {fileID: 4446141589741106166}
   - component: {fileID: 3409469260188579481}
+  - component: {fileID: 8543138550272638389}
   m_Layer: 5
   m_Name: HpRed (3)
   m_TagString: Untagged
@@ -150,6 +165,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8543138550272638389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126420355269714634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 3
 --- !u!1 &1353914245972760956
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +189,7 @@ GameObject:
   - component: {fileID: 7836607204911584692}
   - component: {fileID: 6306018560690081293}
   - component: {fileID: 401425410631646075}
+  - component: {fileID: 2256008799858687429}
   m_Layer: 5
   m_Name: HpRed (5)
   m_TagString: Untagged
@@ -225,6 +254,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2256008799858687429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353914245972760956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 5
 --- !u!1 &2318279841170376761
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +431,7 @@ GameObject:
   - component: {fileID: 513024690381491614}
   - component: {fileID: 6160997727942918560}
   - component: {fileID: 9107270608373004658}
+  - component: {fileID: 4919459444033973276}
   m_Layer: 5
   m_Name: HpRed (8)
   m_TagString: Untagged
@@ -453,6 +496,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4919459444033973276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775774128683853468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 8
 --- !u!1 &3171461501742542752
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +520,7 @@ GameObject:
   - component: {fileID: 6215350426269740591}
   - component: {fileID: 9083483879339436536}
   - component: {fileID: 7204652522549484298}
+  - component: {fileID: 138135750436835606}
   m_Layer: 5
   m_Name: HpRed (7)
   m_TagString: Untagged
@@ -528,6 +585,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &138135750436835606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171461501742542752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 7
 --- !u!1 &3919891325014425348
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +609,7 @@ GameObject:
   - component: {fileID: 2679999197351864632}
   - component: {fileID: 1773415168610305339}
   - component: {fileID: 286062643682984347}
+  - component: {fileID: 6000191963196377261}
   m_Layer: 5
   m_Name: HpRed (2)
   m_TagString: Untagged
@@ -603,6 +674,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6000191963196377261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3919891325014425348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 2
 --- !u!1 &4613199937864340638
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +773,7 @@ GameObject:
   - component: {fileID: 7995143618537681218}
   - component: {fileID: 5887270958394583112}
   - component: {fileID: 6199782803953928062}
+  - component: {fileID: 4720238010859791365}
   m_Layer: 5
   m_Name: HpRed
   m_TagString: Untagged
@@ -753,6 +838,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4720238010859791365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4952648690307317703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 0
 --- !u!1 &5995891368423077955
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +863,6 @@ GameObject:
   - component: {fileID: 469989041616514616}
   - component: {fileID: 3118299640826633862}
   - component: {fileID: 5906915935532229014}
-  - component: {fileID: 6865854269244639317}
   m_Layer: 5
   m_Name: UI_Hp
   m_TagString: Untagged
@@ -856,18 +953,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6865854269244639317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5995891368423077955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05088a7c12fd104aab6f6fdfd344a2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6861368297926366776
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +1009,7 @@ GameObject:
   - component: {fileID: 1933938025359708705}
   - component: {fileID: 3570005829687494710}
   - component: {fileID: 266392306843340457}
+  - component: {fileID: 6401441625216427534}
   m_Layer: 5
   m_Name: HpRed (6)
   m_TagString: Untagged
@@ -988,6 +1074,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6401441625216427534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8115282195702250897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 6
 --- !u!1 &8803455385363934499
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1098,7 @@ GameObject:
   - component: {fileID: 2463128164248338717}
   - component: {fileID: 8736738377373859762}
   - component: {fileID: 202250487283478610}
+  - component: {fileID: 2280241620745809967}
   m_Layer: 5
   m_Name: HpRed (9)
   m_TagString: Untagged
@@ -1063,6 +1163,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2280241620745809967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8803455385363934499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 9
 --- !u!1 &9026939318488295782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1187,7 @@ GameObject:
   - component: {fileID: 1623778161319673428}
   - component: {fileID: 4575451309989745001}
   - component: {fileID: 6006963436566990090}
+  - component: {fileID: 1113610188961893362}
   m_Layer: 5
   m_Name: HpRed (4)
   m_TagString: Untagged
@@ -1138,3 +1252,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1113610188961893362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9026939318488295782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c627c0bd3ec3ed418ce2859f9972b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpIdx: 4

@@ -25,12 +25,16 @@ public class SlotMachineV2 : MonoBehaviour
     
     Coroutine _coroutine;
 
+    private SkillBook _skillBook;
+
+
     // ITurnState에 슬롯 성공 및 실패를 알려주는 액션
     public Action<SlotInfo> OnSlotSuccessEvent;
     public Action OnSlotFailEvent;
 
     void Awake()
     {
+        _skillBook = new SkillBook();
         _slotCanvas = FindAnyObjectByType<UI_Slot_Canvas_v2>().GetComponent<Canvas>();
         _resultUIManager = FindAnyObjectByType<ResultUIManager>();
         _timerText = FindAnyObjectByType<TimerText>().GetComponent<TMP_Text>();
