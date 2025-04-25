@@ -8,6 +8,7 @@ public class CameraManager
     CinemachineCamera _moveCamera;
     CinemachineCamera _battleCamera;
     CinemachineImpulseSource _shakeImpulse;
+    CinemachineImpulseSource _skillImpulse;
 
     /// <summary>
     /// 타겟 그룹에 플레이어를 추가합니다.
@@ -19,6 +20,7 @@ public class CameraManager
         _moveCamera = GameObject.FindAnyObjectByType<MoveCamera>().GetComponent<CinemachineCamera>();
         _battleCamera = GameObject.FindAnyObjectByType<BattleCamera>().GetComponent<CinemachineCamera>();
         _shakeImpulse = GameObject.FindAnyObjectByType<CameraShakeEffect>().GetComponent<CinemachineImpulseSource>();
+        _skillImpulse = GameObject.FindAnyObjectByType<CameraSkillEffect>().GetComponent<CinemachineImpulseSource>();
 
         ChangeBattleCamera(false);
         AddMember(_player.transform, 0.5f, 1f);
