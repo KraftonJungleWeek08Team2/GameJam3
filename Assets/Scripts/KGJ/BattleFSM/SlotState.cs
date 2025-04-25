@@ -2,7 +2,9 @@ public class SlotState : ITurnState
 {
     public void EnterState()
     {
-        
+        Managers.TurnManager.SlotMachine.OnSlotSuccessEvent += ChangeStateToAttack; // 액션 구독
+        Managers.TurnManager.SlotMachine.OnSlotFailEvent += ChangeStateToKnockBack; // 액션 구독
+
         Managers.TurnManager.EnemyHpUI.ShowEnemyUI(); // 적 체력 UI 보이기
         Managers.InputManager.SlotEnable(true); // InputManager의 액션 맵을 Slot으로 변경
         Managers.TurnManager.Player.Idle();     // Player의 애니메이션을 Idle로 변경
@@ -27,10 +29,23 @@ public class SlotState : ITurnState
         SoundManager.Instance.PlaySlotResultSound();
         Managers.TurnManager.SlotMachine.HideSlotUI();  // 슬롯 머신 끄기
         Managers.InputManager.SlotEnable(false);        // InputManager의 액션 맵 구독 끊기
+
+        Managers.TurnManager.SlotMachine.OnSlotSuccessEvent -= ChangeStateToAttack; // 성공 액션 해제
+        Managers.TurnManager.SlotMachine.OnSlotFailEvent -= ChangeStateToKnockBack; // 실패 액션 해제
     }
 
     public void FixedUpdateState()
     {
 
+    }
+
+    void ChangeStateToAttack(SlotInfo slotInfo)
+    {
+        Managers.TurnManager.ChangeState(new AttackState(slotInfo));
+    }
+
+    void ChangeStateToKnockBack()
+    {
+        Managers.TurnManager.ChangeState(new KnockBackState());
     }
 }

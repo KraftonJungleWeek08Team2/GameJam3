@@ -25,6 +25,10 @@ public class SlotMachineV2 : MonoBehaviour
     
     Coroutine _coroutine;
 
+    // ITurnState에 슬롯 성공 및 실패를 알려주는 액션
+    public Action<SlotInfo> OnSlotSuccessEvent;
+    public Action OnSlotFailEvent;
+
     void Awake()
     {
         _slotCanvas = FindAnyObjectByType<UI_Slot_Canvas_v2>().GetComponent<Canvas>();
@@ -37,7 +41,6 @@ public class SlotMachineV2 : MonoBehaviour
             Debug.LogError("UI_Slot_Canvas not found");
             return;
         }
-        //ShowSlotUI();
     }
 
     public void ShowSlotUI(bool isOneMore)
@@ -91,6 +94,7 @@ public class SlotMachineV2 : MonoBehaviour
             ForceEndWithZeros(); // 제한시간 초과 시 강제 종료
         }
     }
+
     /// <summary>
     /// 5초안에 안하면 0으로 반환하는 값
     /// </summary>
@@ -178,15 +182,21 @@ public class SlotMachineV2 : MonoBehaviour
         
         yield return new WaitForSeconds(0.3f);
 
+
+        // FIX : SlotMachineV2 내부에서 성공/실패 여부 검사 후 액션 발생
         if (IsSlotSuccess())
         {
             _resultUIManager.ShowResult(result);
+            OnSlotSuccessEvent?.Invoke(_slotInfo);
         }
-        
-        
-        Managers.TurnManager.EndSlotState();
+        else
+        {
+            OnSlotFailEvent?.Invoke();
+        }
+            
         _coroutine = null;
     }    
+
     private bool IsSlotSuccess()
     {
         for (int i = 0; i < _slotInfo.SlotCount; i++)
