@@ -2,6 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AccuracyType
+{
+    Perfect,
+    Good,
+    Miss
+}
+
+
 /// <summary>
 /// SetActive? Instantiate?
 /// </summary>
@@ -30,8 +38,8 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
     public OneMoreUIBehaviour OneMoreUIBehaviour => oneMoreUIBehaviour; // 외부에서 접근할 수 있도록 프로퍼티 추가
 
-    public Action<bool> OnEndRhythmEvent;   // 리듬 공격이 끝날 때의 액션
-    public Action OnAttackEvent;            // 공격이 성공할 때마다의 액션, 상태에서 플레이어 공격을 작동시키기 위함
+    public Action<bool> OnEndRhythmEvent;       // 리듬 공격 전체가 끝날 때의 액션, 풀콤 여부를 변수로 넘겨줌
+    public Action<AccuracyType> OnAttackEvent;  // 각 리듬 공격의 판정을 enmu으로 넘겨줌
 
     void Start()
     {
@@ -157,7 +165,6 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 /// </summary>
     void Attack() 
     {
-        OnAttackEvent?.Invoke();
         Debug.Log("현재 비트 : " + currentMusicBeat);
         
         float accuracy = 1 - Mathf.Abs(musicManager.GetTimingOffset() / (musicManager.beatInterval) / 2) + 0.05f;
@@ -166,11 +173,10 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         if(accuracy > 0.9 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //Perfect Attack.
         {
-            Managers.TurnManager.CurrentEnemy.TakeDamage(2);
-            Managers.CameraManager.ShakeCamera();
+            OnAttackEvent?.Invoke(AccuracyType.Perfect);
+
             currentBeatInputted = true;
             Instantiate(perfectText, accuracyPos);
-            SoundManager.Instance.PlayPerfectSound();
             currentComboCount ++;
             
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
@@ -181,11 +187,11 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
         } 
         else if(accuracy > 0.6 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted)
-        {   
-            Managers.TurnManager.CurrentEnemy.TakeDamage(1);
-            Managers.CameraManager.ShakeCamera();
+        {
+            OnAttackEvent?.Invoke(AccuracyType.Good);
+
             currentBeatInputted = true;
-            SoundManager.Instance.PlayGoodSound();
+            
             Instantiate(goodText, accuracyPos);
             currentComboCount ++;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
@@ -197,19 +203,20 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         }
         else if(accuracy <= 0.6 && GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //bad.
         {
+            OnAttackEvent?.Invoke(AccuracyType.Miss);
             currentBeatInputted = true;
             isFullCombo = false;
             Instantiate(breakText, accuracyPos);
             currentComboCount = 0;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 : Bad.
             {
-
                 Debug.Log("Log : 마지막 비트 입력 bad.");
                 OnEndRhythmEvent?.Invoke(isFullCombo);
             }
         }
         else if(!GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //아닌데 누름.
         {
+            OnAttackEvent?.Invoke(AccuracyType.Miss);
             currentBeatInputted = true;
             isFullCombo = false;
             currentComboCount = 0;

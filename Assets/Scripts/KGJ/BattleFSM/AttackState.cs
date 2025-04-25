@@ -10,7 +10,7 @@ public class AttackState : ITurnState
     public void EnterState()
     {
         Managers.TurnManager.BeatBarPanelBehaviour.OnEndRhythmEvent += ChangeNextState;
-        Managers.TurnManager.BeatBarPanelBehaviour.OnAttackEvent += PlayerAttackAnimation;
+        Managers.TurnManager.BeatBarPanelBehaviour.OnAttackEvent += Attack;
         Managers.InputManager.RhythmAttackEnable(true); // InputManager의 액션 맵을 RhythmAttack으로 변경
         Managers.TurnManager.BeatBarPanelBehaviour.ShowBeatBar(_slotInfo); // BeatBar 동작 시작
     }
@@ -31,7 +31,7 @@ public class AttackState : ITurnState
         Managers.InputManager.RhythmAttackEnable(false); // InputManager의 액션 맵 구독 끊기
         Managers.TurnManager.SlotMachine.HideResult(); // SlotMachine 결과 숨기기
         Managers.TurnManager.BeatBarPanelBehaviour.OnEndRhythmEvent -= ChangeNextState; // BeatBar 종료 액션 해제
-        Managers.TurnManager.BeatBarPanelBehaviour.OnAttackEvent -= PlayerAttackAnimation; // BeatBar 공격 액션 해제
+        Managers.TurnManager.BeatBarPanelBehaviour.OnAttackEvent -= Attack; // BeatBar 공격 액션 해제
     }
 
     void ChangeNextState(bool isSuccess)
@@ -67,8 +67,24 @@ public class AttackState : ITurnState
         }
     }
 
-    void PlayerAttackAnimation()
+    void Attack(AccuracyType accuracy)
     {
-        Managers.TurnManager.Player.Attack();
+        switch (accuracy)
+        {
+            case AccuracyType.Perfect:
+                Managers.TurnManager.CurrentEnemy.TakeDamage(2);
+                Managers.CameraManager.ShakeCamera();
+                SoundManager.Instance.PlayPerfectSound();
+                Managers.TurnManager.Player.Attack();
+                break;
+            case AccuracyType.Good:
+                Managers.TurnManager.CurrentEnemy.TakeDamage(1);
+                Managers.CameraManager.ShakeCamera();
+                SoundManager.Instance.PlayGoodSound();
+                Managers.TurnManager.Player.Attack();
+                break;
+            case AccuracyType.Miss:
+                break;
+        }
     }
 }
