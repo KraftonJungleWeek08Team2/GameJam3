@@ -18,6 +18,9 @@ public class Managers : MonoBehaviour
     public static InputManager InputManager => _inputManager;
     static InputManager _inputManager = new InputManager();
 
+    public static SkillManager SkillManager => _skillManager;
+    static SkillManager _skillManager = new SkillManager();
+
     void Awake()
     {
         if (_instance == null)
