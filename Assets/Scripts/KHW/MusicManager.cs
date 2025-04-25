@@ -9,7 +9,7 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource musicSource;
     private float startDelay;
-    public float beatInterval;
+    public float beatInterval; //60 / RPM의 값. 비트간 사이 시간.
     private float loopStartTime;
     private float loopEndTime;
 
@@ -89,21 +89,26 @@ public class MusicManager : MonoBehaviour
         loopEndSamples = (int)(loopEndTime * musicSource.clip.frequency); //48000을 노래 종료시간에 곱한 비트레이트.
         loopLengthSamples = loopEndSamples - loopStartSamples; //루프 구간의 비트레이트.
 
-        loopBeatCount = Mathf.FloorToInt((loopEndTime - loopStartTime) / beatInterval);
+        loopBeatCount = Mathf.FloorToInt((loopEndTime - loopStartTime) / beatInterval); //루프 사이의 비트 갯수? 왜필요하지....
         Debug.Log($"SetMusic: clip={musicSource.clip.name}, noteInterval={beatInterval}, loopBeatCount={loopBeatCount}, loopStartTime={loopStartTime}, loopEndTime={loopEndTime}");
+
+        //노래시작.
+        StartMusic();
     }
 
+/// <summary>
+/// Start Time 이후 노래 재생.
+/// </summary>
     public void StartMusic()
     {
-        if (musicSource.clip == null)
+        if (musicSource.clip == null) ///클립이 null.
         {
             Debug.LogError("Cannot start music: Audio clip is null!");
             return;
         }
-        startTime = AudioSettings.dspTime + startDelay;
+        startTime = AudioSettings.dspTime + startDelay; //시작 시간 = 현재 오디오시스템 시간 + 시작 딜레이 시간.
         musicSource.PlayScheduled(startTime);
         Debug.Log($"StartMusic: startTime={startTime}, clip={musicSource.clip.name}, isPlaying={musicSource.isPlaying}");
-        StartMusic();
     }
 
     private void LoopControl()
