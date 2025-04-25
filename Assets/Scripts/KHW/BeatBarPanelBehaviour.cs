@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,11 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     [SerializeField] private int currentComboCount = 0;
     [SerializeField] ComboCountBehaviour comboCountBehaviour; //inspector.
     [SerializeField] OneMoreUIBehaviour oneMoreUIBehaviour;
+
+    public OneMoreUIBehaviour OneMoreUIBehaviour => oneMoreUIBehaviour; // 외부에서 접근할 수 있도록 프로퍼티 추가
+
+    public Action<bool> OnEndRhythmEvent;   // 리듬 공격이 끝날 때의 액션
+    public Action OnAttackEvent;            // 공격이 성공할 때마다의 액션, 상태에서 플레이어 공격을 작동시키기 위함
 
     void Start()
     {
@@ -130,8 +136,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             if(currentBeat - 1 == endBeat) //마지막 비트임?
             {
                 Debug.Log("Log : 마지막 비트 놓침");
-                Managers.TurnManager.IsFullCombo = isFullCombo;
-                Managers.TurnManager.EndAttackState();
+                OnEndRhythmEvent?.Invoke(isFullCombo);
             }
         }
 
@@ -152,8 +157,6 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 /// </summary>
     void Attack() 
     {
-        Managers.TurnManager.Player.Attack();
-
         Debug.Log("현재 비트 : " + currentMusicBeat);
         
         float accuracy = 1 - Mathf.Abs(musicManager.GetTimingOffset() / (musicManager.beatInterval) / 2) + 0.05f;
@@ -171,13 +174,8 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
-                if(isFullCombo) //풀콤보
-                {
-                    oneMoreUIBehaviour.Show();
-                }
-                //Debug.Log("Log : 마지막 비트 입력 성공 퍼펙트");
-                Managers.TurnManager.IsFullCombo = isFullCombo;
-                Managers.TurnManager.EndAttackState();
+                Debug.Log("Log : 마지막 비트 입력 성공 퍼펙트");
+                OnEndRhythmEvent?.Invoke(isFullCombo);
             }
 
         } 
@@ -191,13 +189,8 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             currentComboCount ++;
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 성공.
             {
-                if(isFullCombo) //풀콤보
-                {
-                    oneMoreUIBehaviour.Show();
-                }
-                //Debug.Log("Log : 마지막 비트 입력 성공");
-                Managers.TurnManager.IsFullCombo = isFullCombo;
-                Managers.TurnManager.EndAttackState();
+                Debug.Log("Log : 마지막 비트 입력 성공");
+                OnEndRhythmEvent?.Invoke(isFullCombo);
             }
 
         }
@@ -210,9 +203,8 @@ public class BeatBarPanelBehaviour : MonoBehaviour
             if (currentMusicBeat == endBeat) //마지막 비트에 입력 : Bad.
             {
 
-                //Debug.Log("Log : 마지막 비트 입력 bad.");
-                Managers.TurnManager.IsFullCombo = isFullCombo;
-                Managers.TurnManager.EndAttackState();
+                Debug.Log("Log : 마지막 비트 입력 bad.");
+                OnEndRhythmEvent?.Invoke(isFullCombo);
             }
         }
         else if(!GetIsAttackBeatCount(currentMusicBeat) && !currentBeatInputted) //아닌데 누름.
