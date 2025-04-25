@@ -31,6 +31,11 @@ public class CameraManager
         _shakeImpulse.GenerateImpulse();
     }
 
+    public void SkillCamera()
+    {
+        _skillImpulse.GenerateImpulse();
+    }
+
     public void ChangeBattleCamera(bool isBattle)
     {
         if (isBattle)
