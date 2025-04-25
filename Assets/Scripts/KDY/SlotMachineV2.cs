@@ -70,6 +70,15 @@ public class SlotMachineV2 : MonoBehaviour
 
     void Update()
     {
+        // slotInfo : 1,2,3으로 디버깅하는 코드
+        /*if (Input.GetKeyDown(KeyCode.P))
+        {
+            _slotInfo = new SlotInfo(3);
+            _slotInfo.SetValue(0, 1);
+            _slotInfo.SetValue(1, 2);
+            _slotInfo.SetValue(2, 3);
+            OnSlotSuccessEvent?.Invoke(_slotInfo);
+        }*/
         //슬롯 변화 속도 조절을 위한 타임
         if (!_isSpinning) return;
 

@@ -20,7 +20,7 @@ public class CameraManager
         _moveCamera = GameObject.FindAnyObjectByType<MoveCamera>().GetComponent<CinemachineCamera>();
         _battleCamera = GameObject.FindAnyObjectByType<BattleCamera>().GetComponent<CinemachineCamera>();
         _shakeImpulse = GameObject.FindAnyObjectByType<CameraShakeEffect>().GetComponent<CinemachineImpulseSource>();
-        _skillImpulse = GameObject.FindAnyObjectByType<CameraSkillEffect>().GetComponent<CinemachineImpulseSource>();
+        //_skillImpulse = GameObject.FindAnyObjectByType<CameraSkillEffect>().GetComponent<CinemachineImpulseSource>();
 
         ChangeBattleCamera(false);
         AddMember(_player.transform, 0.5f, 1f);
@@ -33,7 +33,7 @@ public class CameraManager
 
     public void SkillCamera()
     {
-        _skillImpulse.GenerateImpulse();
+        //_skillImpulse.GenerateImpulse();
     }
 
     public void ChangeBattleCamera(bool isBattle)
