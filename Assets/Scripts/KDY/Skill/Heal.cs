@@ -9,6 +9,9 @@ public class Heal : ISkill
     }
     public void Execute()
     {
+        //TODO : 힐 이펙트 
+        Managers.SkillManager.HealSkill();
+        //TODO : 힐 사운드
         Managers.TurnManager.Player.TakeHeal(healValue);
     }
 }
