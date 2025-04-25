@@ -24,6 +24,9 @@ public class TurnManager
     public UI_EnemyHp EnemyHpUI => _enemyHpUI;
     UI_EnemyHp _enemyHpUI;
 
+    public FeverTimeController FeverTimeController => _feverTimeController;
+    FeverTimeController _feverTimeController;
+
     public void Init()
     {
         Player = GameObject.FindAnyObjectByType<Player>();
@@ -32,6 +35,7 @@ public class TurnManager
         _parallaxBackground = GameObject.FindAnyObjectByType<ParallaxBackground>();
         _enemySpawner = GameObject.FindAnyObjectByType<EnemySpawner>();
         _enemyHpUI = GameObject.FindAnyObjectByType<UI_EnemyHp>();
+        _feverTimeController = GameObject.FindAnyObjectByType<FeverTimeController>();
         CurrentEnemyIndex = 0;
 
         _currentState = new MoveState();
