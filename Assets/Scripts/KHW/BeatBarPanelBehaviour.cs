@@ -85,7 +85,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         perfectText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/PerfectTextObject");
         goodText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/GoodTextObject");
         breakText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/MissTextObject");
-        musicManager.OnNextBeatAction += UpdateCurrentBeat;
+        //musicManager.OnNextBeatAction += UpdateCurrentBeat;
         musicManager.OnBeatAction += GenerateNewNote;
         oneMoreUIBehaviour = FindAnyObjectByType<OneMoreUIBehaviour>();
 
@@ -167,7 +167,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
     {
         Debug.Log("현재 비트 : " + currentMusicBeat);
         
-        float accuracy = 1 - Mathf.Abs(musicManager.GetTimingOffset() / (musicManager.beatInterval) / 2) + 0.05f;
+        float accuracy = 1 - Mathf.Abs(musicManager.GetTimingOffset(0) / (musicManager.beatInterval) / 2) + 0.05f;
 
         Debug.Log("정확도 : " + accuracy);
 
@@ -238,7 +238,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
 
     void OnDestroy()
     {
-        musicManager.OnNextBeatAction -= UpdateCurrentBeat;
+        //musicManager.OnNextBeatAction -= UpdateCurrentBeat;
         musicManager.OnBeatAction -= GenerateNewNote;
         
         //TODO : 더 정확한 타이밍에 제거해주기 임시방편
