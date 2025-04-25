@@ -1,23 +1,29 @@
 using System;
 using UnityEngine;
 
+/// <summary>
+/// 노래를 설정하고 BPM에 따른 비트가 발생할 때 마다 액션을 트리거하는 클래스입니다.
+/// </summary>
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }
+
+    [Header("Song's Default Information")]
+    private MusicInfo currentMusicInfo; //Set Music()으로 저장되는 노래정보를 담는 클래스.
     [SerializeField] private int musicIndex;
-    private MusicInfo currentMusicInfo;
+    [SerializeField] private AudioSource musicSource;
+    private float startDelay; // 노래 세팅부터 시작까지 걸리는 시간 float.
+    public float beatInterval; // 60 / RPM의 값. 비트간 사이 시간.
+    private float loopStartTime; // 원본 노래파일의 반복구간 시작 시간 float.
+    private float loopEndTime; // 원본 노래파일의 반복구간 종료 시간 float.
 
-    private AudioSource musicSource;
-    private float startDelay;
-    public float beatInterval; //60 / RPM의 값. 비트간 사이 시간.
-    private float loopStartTime;
-    private float loopEndTime;
-
+    [Header("Int Time Samples")]
     private int loopStartSamples; //48000을 노래 시작시간에 곱한 비트레이트.
     private int loopEndSamples; //48000을 노래 종료시간에 곱한 비트레이트.
     private int loopLengthSamples; //루프 구간의 비트레이트.
 
-    private double startTime;
+    [Header("Playing Information")]
+    private double startTime; //현재 루프 기준 노래의 시작 시간....
     public int currentBeat { get; private set; }
     private int lastReportedBeat = -1;
     private float currentPosition;
@@ -26,6 +32,7 @@ public class MusicManager : MonoBehaviour
     private int loopCount = 0;
     private int loopBeatCount;
 
+    [Header("Actions")]
     public Action<int> OnNextBeatAction;
     public Action<int> OnBeatAction;
 
@@ -53,8 +60,8 @@ public class MusicManager : MonoBehaviour
 
     private void Update()
     {
-        LoopControl();
         CheckPosition();
+        LoopControl();
     }
 
     public void SetMusic(int index)
@@ -111,6 +118,9 @@ public class MusicManager : MonoBehaviour
         Debug.Log($"StartMusic: startTime={startTime}, clip={musicSource.clip.name}, isPlaying={musicSource.isPlaying}");
     }
 
+    /// <summary>
+    /// 프레임마다 루프 지점을 넘겼는지 계산하고 넘었으면 StartTimeUpdate.
+    /// </summary>
     private void LoopControl()
     {
         if (musicSource.timeSamples >= loopEndSamples)
@@ -127,8 +137,8 @@ public class MusicManager : MonoBehaviour
             lastMidPointTrigger = -1f; // 중간점 트리거 초기화
 
             // 루프 시작 지점에서 첫 비트 강제 호출
-            OnBeatAction?.Invoke(currentBeat);
-            OnNextBeatAction?.Invoke(currentBeat + 1);
+            //OnBeatAction?.Invoke(currentBeat);
+            //OnNextBeatAction?.Invoke(currentBeat + 1);
 
             Debug.Log($"Music Looped! Loop Count: {loopCount}, timeSamples: {musicSource.timeSamples}, currentBeat: {currentBeat}, currentPosition: {currentPosition}");
         }
