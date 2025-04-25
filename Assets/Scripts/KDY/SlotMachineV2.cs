@@ -8,7 +8,7 @@ public class SlotMachineV2 : MonoBehaviour
 {
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private ReelController[] _reels;      // 3개의 ReelController
-    [SerializeField] private float _baseSpinSpeed = 750f; // 회전 속도
+    [SerializeField] private float _baseSpinSpeed = 500f; // 회전 속도
     [SerializeField] private ResultUIManager _resultUIManager; // 결과 UI
     [SerializeField] private Slider _timerSlider; // 타이머 슬라이더 UI
 
@@ -25,12 +25,16 @@ public class SlotMachineV2 : MonoBehaviour
     
     Coroutine _coroutine;
 
+    private SkillBook _skillBook;
+
+
     // ITurnState에 슬롯 성공 및 실패를 알려주는 액션
     public Action<SlotInfo> OnSlotSuccessEvent;
     public Action OnSlotFailEvent;
 
     void Awake()
     {
+        _skillBook = new SkillBook();
         _slotCanvas = FindAnyObjectByType<UI_Slot_Canvas_v2>().GetComponent<Canvas>();
         _resultUIManager = FindAnyObjectByType<ResultUIManager>();
         _timerText = FindAnyObjectByType<TimerText>().GetComponent<TMP_Text>();
@@ -58,7 +62,7 @@ public class SlotMachineV2 : MonoBehaviour
         {
             _reels[i].Init();
             _reels[i].OnReelStopped += HandleReelStopped;
-            _reels[i].StartSpin(_baseSpinSpeed);
+            _reels[i].StartSpin(_baseSpinSpeed + (i*i*200));
         }
         _isSpinning = true;
         Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;

@@ -14,7 +14,7 @@ public class KnockBackState : ITurnState
         _initPositionX = Managers.TurnManager.Player.transform.position.x; // 초기 위치 저장
         Managers.CameraManager.ChangeBattleCamera(false); // 카메라를 MoveCamera로 변경
         Managers.TurnManager.Player.TakeDamage(Managers.TurnManager.CurrentEnemy.damage); // 플레이어가 적 공격력만큼의 데미지를 받음
-        if (Managers.TurnManager.Player.hp > 0)
+        if (Managers.TurnManager.Player.Hp > 0)
         {
             _rb = Managers.TurnManager.Player.GetComponent<Rigidbody2D>();
             _knockbackTimer = _knockbackDuration;

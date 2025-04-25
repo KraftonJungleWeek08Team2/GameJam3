@@ -1,7 +1,6 @@
-public class AttackState : ITurnState
+public class AttackState : ITurnState 
 {
     SlotInfo _slotInfo;
-
     public AttackState(SlotInfo slotInfo)
     {
         _slotInfo = slotInfo;
