@@ -48,7 +48,6 @@ public class AttackState : ITurnState
 
                     break;
                 case CombinationType.Sequential:
-
                     Managers.TurnManager.ChangeState(new FeverTimeState(isSuccess));
                     break;
                 case CombinationType.AllOdd:
