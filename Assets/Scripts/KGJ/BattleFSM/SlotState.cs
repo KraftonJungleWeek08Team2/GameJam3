@@ -16,7 +16,7 @@ public class SlotState : ITurnState
         }
         
         Managers.CameraManager.ChangeBattleCamera(true);    // 카메라를 전투 카메라로 변경
-        Managers.TurnManager.SlotMachine.ShowSlotUI(Managers.TurnManager.IsFullCombo);      // 슬롯 머신 동작 시작
+        Managers.TurnManager.SlotMachine.ShowSlotUI();      // 슬롯 머신 동작 시작
     }
 
     public void UpdateState()

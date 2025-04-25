@@ -43,22 +43,12 @@ public class SlotMachineV2 : MonoBehaviour
         }
     }
 
-    public void ShowSlotUI(bool isOneMore)
+    public void ShowSlotUI()
     {
         _slotTimer = 0f; // 슬롯 타이머 초기화
         _timerSlider.value = 1f; // 슬라이더 초기화
+        _slotTimeout = _maxSlotTime; // 슬롯 제한시간 초기화
 
-        if (isOneMore)
-        {
-            if (_slotTimeout > 1f)
-            { 
-                _slotTimeout -= 1f;
-            }
-        }
-        else
-        {
-            _slotTimeout = _maxSlotTime; // 슬롯 제한시간 초기화
-        }
         _currentReel = 0;
         _slotCanvas.enabled = true;
         _slotInfo = new SlotInfo(_reels.Length);

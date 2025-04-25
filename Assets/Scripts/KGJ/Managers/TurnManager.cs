@@ -8,7 +8,6 @@ public class TurnManager
     public Enemy CurrentEnemy;
     public int CurrentEnemyIndex = 0; // 적 숫자
     public Player Player;
-    public bool IsFullCombo = false;
 
     public SlotMachineV2 SlotMachine => _slotMachine;
     SlotMachineV2 _slotMachine;
