@@ -12,7 +12,13 @@ public static class CombinationChecker
 
         // 세 개 동일
         if (a == b && b == c)
-            return CombinationType.ThreeOfAKind;
+        {
+            if(a % 2 == 1)
+                return CombinationType.ThreeOfAKindOdd;
+            if (a % 2 == 0)
+                return CombinationType.ThreeOfAKindEven;
+        }
+            
 
         // 연속 오름차순
         if (b == a + 1 && c == b + 1)

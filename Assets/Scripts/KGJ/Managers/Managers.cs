@@ -18,8 +18,7 @@ public class Managers : MonoBehaviour
     public static InputManager InputManager => _inputManager;
     static InputManager _inputManager = new InputManager();
 
-    public static SkillManager SkillManager => _skillManager;
-    static SkillManager _skillManager = new SkillManager();
+    public static SkillManager SkillManager;
 
     void Awake()
     {
@@ -37,6 +36,7 @@ public class Managers : MonoBehaviour
 
     void InitManagers()
     {
+        SkillManager = FindAnyObjectByType<SkillManager>();
         CameraManager.Init();
         TurnManager.Init();
         InputManager.Init();

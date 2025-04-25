@@ -8,6 +8,13 @@ public class SkillManager : MonoBehaviour
     [SerializeField] private Canvas _healPrefab;
     [SerializeField] private Canvas _attackPrefab;
 
+    private void Start()
+    {
+        _sevenPrefab.gameObject.SetActive(false);
+        _healPrefab.gameObject.SetActive(false);
+        _attackPrefab.gameObject.SetActive(false);
+    }
+
     /// <summary>
     /// 프리팹 키는 것들
     /// </summary>
@@ -32,11 +39,11 @@ public class SkillManager : MonoBehaviour
     }
     public void HealSkillFalse()
     {
-        _sevenPrefab.gameObject.SetActive(false);
+        _healPrefab.gameObject.SetActive(false);
     }
     public void AttackSkillFalse()
     {
-        _sevenPrefab.gameObject.SetActive(false);
+        _attackPrefab.gameObject.SetActive(false);
     }
 }
 
