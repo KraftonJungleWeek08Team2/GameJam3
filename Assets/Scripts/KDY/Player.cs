@@ -32,18 +32,6 @@ public class Player : MonoBehaviour, IDamageable
         FakeRun();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            TakeDamage(3);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TakeHeal(2);
-        }
-    }
-
     public void Idle()
     {
         _animator.SetBool("IsRunning", false);
