@@ -14,7 +14,7 @@ public class BeatBarBehaviour : MonoBehaviour
 
     void Start()
     {
-        smallingTime = MusicManager.Instance.noteInterval * beatMargin;
+        smallingTime = MusicManager.Instance.beatInterval * beatMargin;
         if (leftCircle == null || rightCircle == null)
         {
             Debug.LogError("BeatBarBehaviour: LeftCircle or RightCircle not assigned!");

@@ -9,13 +9,13 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource musicSource;
     private float startDelay;
-    public float noteInterval;
+    public float beatInterval;
     private float loopStartTime;
     private float loopEndTime;
 
-    private int loopStartSamples;
-    private int loopEndSamples;
-    private int loopLengthSamples;
+    private int loopStartSamples; //48000을 노래 시작시간에 곱한 비트레이트.
+    private int loopEndSamples; //48000을 노래 종료시간에 곱한 비트레이트.
+    private int loopLengthSamples; //루프 구간의 비트레이트.
 
     private double startTime;
     public int currentBeat { get; private set; }
@@ -47,8 +47,8 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-        SetMusic(musicIndex);
-        StartMusic();
+        //SetMusic -> StartMusic.
+        SetMusic(musicIndex); //노래를 세팅. 함수 내에서 지연시간 이후 재생. 
     }
 
     private void Update()
@@ -73,24 +73,24 @@ public class MusicManager : MonoBehaviour
             return;
         }
 
-        startDelay = Mathf.Max(0, currentMusicInfo.startDelay);
-        noteInterval = currentMusicInfo.BPM > 0 ? 60f / currentMusicInfo.BPM : 1f;
+        startDelay = Mathf.Max(0, currentMusicInfo.startDelay); //MusicInfo 의 그것이 음수면 0.
+        beatInterval = currentMusicInfo.BPM > 0 ? 60f / currentMusicInfo.BPM : 1f; //60을 BPM으로 나눈 비트간 사이 인터벌.
         loopStartTime = currentMusicInfo.loopStartTime;
         loopEndTime = currentMusicInfo.loopEndTime;
 
-        if (loopEndTime <= loopStartTime)
+        if (loopEndTime <= loopStartTime) //MusicInfo의 루프종료시간이 시작시간보다 앞...
         {
             Debug.LogWarning("Invalid loop times: loopEndTime <= loopStartTime. Disabling loop.");
             loopEndTime = musicSource.clip.length;
             loopStartTime = 0;
         }
 
-        loopStartSamples = (int)(loopStartTime * musicSource.clip.frequency);
-        loopEndSamples = (int)(loopEndTime * musicSource.clip.frequency);
-        loopLengthSamples = loopEndSamples - loopStartSamples;
+        loopStartSamples = (int)(loopStartTime * musicSource.clip.frequency); //48000을 노래 시작시간에 곱한 비트레이트.
+        loopEndSamples = (int)(loopEndTime * musicSource.clip.frequency); //48000을 노래 종료시간에 곱한 비트레이트.
+        loopLengthSamples = loopEndSamples - loopStartSamples; //루프 구간의 비트레이트.
 
-        loopBeatCount = Mathf.FloorToInt((loopEndTime - loopStartTime) / noteInterval);
-        Debug.Log($"SetMusic: clip={musicSource.clip.name}, noteInterval={noteInterval}, loopBeatCount={loopBeatCount}, loopStartTime={loopStartTime}, loopEndTime={loopEndTime}");
+        loopBeatCount = Mathf.FloorToInt((loopEndTime - loopStartTime) / beatInterval);
+        Debug.Log($"SetMusic: clip={musicSource.clip.name}, noteInterval={beatInterval}, loopBeatCount={loopBeatCount}, loopStartTime={loopStartTime}, loopEndTime={loopEndTime}");
     }
 
     public void StartMusic()
@@ -103,6 +103,7 @@ public class MusicManager : MonoBehaviour
         startTime = AudioSettings.dspTime + startDelay;
         musicSource.PlayScheduled(startTime);
         Debug.Log($"StartMusic: startTime={startTime}, clip={musicSource.clip.name}, isPlaying={musicSource.isPlaying}");
+        StartMusic();
     }
 
     private void LoopControl()
@@ -111,7 +112,7 @@ public class MusicManager : MonoBehaviour
         {
             // 루프 발생
             loopCount++;
-            musicSource.timeSamples -= loopLengthSamples;
+            musicSource.timeSamples -= loopLengthSamples; //음악의 timesample을 감소시켜서 이동.
             startTime += (loopEndTime - loopStartTime);
             currentPosition = (float)(AudioSettings.dspTime - startTime);
 
@@ -142,19 +143,19 @@ public class MusicManager : MonoBehaviour
 
         // 루프 내에서의 상대적 시간 계산
         float relativePosition = currentPosition + (loopCount * (loopEndTime - loopStartTime));
-        int newBeat = Mathf.FloorToInt(relativePosition / noteInterval);
+        int newBeat = Mathf.FloorToInt(relativePosition / beatInterval);
 
         // 비트 시작 시간
-        float beatStartTime = (newBeat * noteInterval) - (loopCount * (loopEndTime - loopStartTime));
-        if (relativePosition >= newBeat * noteInterval && beatStartTime > lastBeatTrigger)
+        float beatStartTime = (newBeat * beatInterval) - (loopCount * (loopEndTime - loopStartTime));
+        if (relativePosition >= newBeat * beatInterval && beatStartTime > lastBeatTrigger)
         {
             lastBeatTrigger = beatStartTime;
             OnBeatAction?.Invoke(newBeat);
         }
 
         // 비트 중간점 (다음 비트 예측)
-        float midPointTime = beatStartTime + (noteInterval * 0.5f);
-        if (relativePosition >= (newBeat * noteInterval + noteInterval * 0.5f) && midPointTime > lastMidPointTrigger)
+        float midPointTime = beatStartTime + (beatInterval * 0.5f);
+        if (relativePosition >= (newBeat * beatInterval + beatInterval * 0.5f) && midPointTime > lastMidPointTrigger)
         {
             currentBeat = newBeat + 1;
             lastReportedBeat = currentBeat;
@@ -163,6 +164,10 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+/// <summary>
+/// 현재비트와의 시간적 차이를 반환. 
+/// </summary>
+/// <returns></returns>
     public float GetTimingOffset()
     {
         if (!musicSource.isPlaying || currentPosition <= 0f)
@@ -171,14 +176,14 @@ public class MusicManager : MonoBehaviour
         }
 
         float relativePosition = currentPosition + (loopCount * (loopEndTime - loopStartTime));
-        int currentBeat = Mathf.FloorToInt(relativePosition / noteInterval);
-        float beatStartTime = (currentBeat * noteInterval) - (loopCount * (loopEndTime - loopStartTime));
+        int currentBeat = Mathf.FloorToInt(relativePosition / beatInterval);
+        float beatStartTime = (currentBeat * beatInterval) - (loopCount * (loopEndTime - loopStartTime));
         float offset = currentPosition - beatStartTime;
 
-        if (offset > noteInterval / 2)
-            offset -= noteInterval;
-        else if (offset < -noteInterval / 2)
-            offset += noteInterval;
+        if (offset > beatInterval / 2)
+            offset -= beatInterval;
+        else if (offset < -beatInterval / 2)
+            offset += beatInterval;
 
         return offset;
     }
