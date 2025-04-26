@@ -81,7 +81,7 @@ public class SlotMachineV2 : MonoBehaviour
     void Update()
     {
         // 테스트용
-        /*if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             // ThreeOfAKindOdd : 공격25
             TestSlot(1, 1, 1);
@@ -110,7 +110,7 @@ public class SlotMachineV2 : MonoBehaviour
         {
             // Jackpot
             TestSlot(7, 7, 7);
-        }*/
+        }
 
         //슬롯 변화 속도 조절을 위한 타임
         if (!_isSpinning) return;
