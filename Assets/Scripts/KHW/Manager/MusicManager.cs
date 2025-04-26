@@ -162,6 +162,8 @@ public class MusicManager : MonoBehaviour
         {
             lastBeatTrigger = beatStartTime;
             OnBeatAction?.Invoke(newBeat);
+            Debug.Log("OnBeatACtion Triggered" + newBeat);
+            currentBeat = newBeat;
         }
 
         // 비트 중간점 (다음 비트 예측)
@@ -201,12 +203,6 @@ public class MusicManager : MonoBehaviour
         
         // 현재 위치와 노트 예상 타이밍의 오차
         float offset = currentPosition - noteExpectedTime;
-
-        // 오차를 비트 간격 내로 조정
-        if (offset > beatInterval / 2)
-            offset -= beatInterval;
-        else if (offset < -beatInterval / 2)
-            offset += beatInterval;
 
         return offset;
     }

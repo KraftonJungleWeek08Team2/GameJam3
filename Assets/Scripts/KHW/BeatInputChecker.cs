@@ -73,9 +73,9 @@ public class BeatInputChecker : MonoBehaviour
 
     private float CheckAccuracyWithCurrentBeat()
     {
-        Debug.Log("현재 비트 : " + beatBarSystem.CurrentMusicBeat);
+        Debug.Log("현재 비트 : " + beatBarSystem.CurrentMusicBeat + beatBarSystem.currentNote.OffsetBeat);
         
-        float accuracy = 1 - Mathf.Abs(MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat) / 0.4f) + 0.05f;
+        float accuracy = 1 - Mathf.Abs(MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat) * MusicManager.Instance.beatInterval) / 0.4f + 0.05f;
 
         Debug.Log("정확도 : " + accuracy);
 
@@ -92,6 +92,7 @@ public class BeatInputChecker : MonoBehaviour
             OnAttackEvent?.Invoke(AccuracyType.Perfect);
             beatBarUISystem.ShowPerfectText();
             currentCombo++;
+            ChangeCurrentNote();
             
             if(beatBarSystem.currentNote.IsLast)
             {
@@ -104,6 +105,7 @@ public class BeatInputChecker : MonoBehaviour
             OnAttackEvent?.Invoke(AccuracyType.Good); 
             beatBarUISystem.ShowGoodText();
             currentCombo++;
+            ChangeCurrentNote();
 
             if(beatBarSystem.currentNote.IsLast)
             {
@@ -116,6 +118,7 @@ public class BeatInputChecker : MonoBehaviour
             isFullCombo = false;
             beatBarUISystem.ShowBreakText();
             currentCombo = 0;
+            ChangeCurrentNote();
             if(beatBarSystem.currentNote.IsLast)
             {
                 OnEndRhythmEvent?.Invoke(isFullCombo);
@@ -150,12 +153,17 @@ public class BeatInputChecker : MonoBehaviour
     {
         float currentOffsetFromCurrentBeat = MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat);
 
-        if(currentOffsetFromCurrentBeat > 0.4) //지나침!
+        if(currentOffsetFromCurrentBeat > 0.1) //지나침!
         {
             ChangeCurrentNote();
             beatBarUISystem.ShowBreakText();
             currentCombo = 0;
             beatBarUISystem.ShowComboCount(currentCombo);
+
+            if(beatBarSystem.currentNote.IsLast)
+            {
+                OnEndRhythmEvent?.Invoke(isFullCombo);
+            }
         }
     }
 

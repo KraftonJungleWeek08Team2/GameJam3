@@ -9,7 +9,7 @@ public class Note
 {
     [SerializeField] private int beat; // 기준 비트
     [SerializeField] private float offsetBeat; // 기준 비트와의 오프셋 (0~1 비트)
-    [SerializeField] private bool isLast; // 마지막 노트 여부
+    [SerializeField] public bool isLast; // 마지막 노트 여부
 
     public int Beat => beat;
     public float OffsetBeat => offsetBeat;
@@ -42,8 +42,8 @@ public class BeatBarSystem : MonoBehaviour
     [Header("Components")]
     BeatBarUISystem beatBarUISystem;
     BeatInputChecker beatInputChecker;
-    BeatBarNoteSpawner beatBarNoteSpawner;
-    BeatBarResultSystem beatBarResultSystem;
+    //BeatBarNoteSpawner beatBarNoteSpawner;
+    //BeatBarResultSystem beatBarResultSystem;
     PatternManager patternManager;
 
     [Header("Beat Bar Informations")]
@@ -59,6 +59,7 @@ public class BeatBarSystem : MonoBehaviour
     void Start()
     {
         InitializeBeatBar();
+        SubscribeAction();
     }
 
     /// <summary>
@@ -69,8 +70,8 @@ public class BeatBarSystem : MonoBehaviour
         //Other Components of BeatBar.
         beatBarUISystem = GetComponent<BeatBarUISystem>();
         beatInputChecker = GetComponent<BeatInputChecker>();
-        beatBarNoteSpawner = GetComponent<BeatBarNoteSpawner>();
-        beatBarResultSystem = GetComponent<BeatBarResultSystem>();
+        //beatBarNoteSpawner = GetComponent<BeatBarNoteSpawner>();
+        //beatBarResultSystem = GetComponent<BeatBarResultSystem>();
         patternManager = GetComponent<PatternManager>();
     }
 
@@ -84,7 +85,7 @@ public class BeatBarSystem : MonoBehaviour
         CurrentMusicBeat = MusicManager.Instance.currentBeat;
         noteInterval = MusicManager.Instance.beatInterval;
         GenerateNoteList();
-        SubscribeAction();
+
         OnEnableBeatBarAction?.Invoke(); //비트바 활성화시 수행할 액션 전부 트리거.
 
     }
@@ -92,29 +93,35 @@ public class BeatBarSystem : MonoBehaviour
     /// <summary> slot info 를 기반으로 모든 노트의 리스트를 얻어냅니다. </summary>
     void GenerateNoteList()
     {
-        currentNotes = patternManager.GetNoteListBySlotInfo(CurrentMusicBeat + noteMargin, currentSlotInfo);
+        currentNotes = patternManager.GetNoteListBySlotInfo(MusicManager.Instance.currentBeat + noteMargin, currentSlotInfo);
         currentIndexOfNote = 0;
         currentNote = currentNotes[0];
     }
 
     void GenerateNewNote(int currentBeat)
     {
+        //beatBarUISystem.ShowBasicBeatLine();
+        CurrentMusicBeat = currentBeat;
+        if(currentNote == null || currentNotes == null) return;
+
         int targetBeat = currentBeat + noteMargin;
-        List<Note> notes = currentNotes.Where(n => n.Beat == targetBeat).ToList();
         
+        List<Note> notes = currentNotes.Where(n => n.Beat == targetBeat).ToList();
+
+        Debug.Log($"GenerateNewNote: currentBeat={currentBeat}, targetBeat={targetBeat}, notes.Count={notes.Count}");
         if (notes.Count > 0)
         {
             foreach (var note in notes)
             {
-                beatBarUISystem.GenerateNoteUI(note.OffsetBeat * noteInterval);
+                float timeDelay = note.OffsetBeat * noteInterval;
+                beatBarUISystem.GenerateNoteUI(timeDelay);
             }
         }
         else
         {
-            //Do nothing.
+            Debug.Log($"No notes for targetBeat={targetBeat}");
         }
     }
-
     public void ChangeCurrentNote()
     {
         currentIndexOfNote++;
@@ -122,6 +129,10 @@ public class BeatBarSystem : MonoBehaviour
         if(currentIndexOfNote < currentNotes.Count) //안끝남.
         {
             currentNote = currentNotes[currentIndexOfNote]; //다음 노트로 현재 노트를 변경.
+        }
+        else
+        {
+
         }
     }
 

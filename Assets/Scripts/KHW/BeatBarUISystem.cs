@@ -117,6 +117,10 @@ public class BeatBarUISystem : MonoBehaviour
         comboCountBehaviour.UpdateComboCount(currentCombo);
     }
 
+    public void ShowOneMoreUI()
+    {
+        oneMoreUIBehaviour.Show();
+    }
 
 
 }

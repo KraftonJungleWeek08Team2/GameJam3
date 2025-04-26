@@ -9,10 +9,10 @@ public class AttackState : ITurnState
 
     public void EnterState()
     {
-        Managers.TurnManager.BeatBarPanelBehaviour.OnEndRhythmEvent += ChangeNextState;
-        Managers.TurnManager.BeatBarPanelBehaviour.OnAttackEvent += Attack;
+        Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnEndRhythmEvent += ChangeNextState;
+        Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnAttackEvent += Attack;
         Managers.InputManager.RhythmAttackEnable(true); // InputManager의 액션 맵을 RhythmAttack으로 변경
-        Managers.TurnManager.BeatBarPanelBehaviour.ShowBeatBar(_slotInfo); // BeatBar 동작 시작
+        Managers.TurnManager.BeatBarPanelBehaviour.ActivateBeatBar(_slotInfo); // BeatBar 동작 시작
     }
 
     public void UpdateState()
@@ -27,11 +27,11 @@ public class AttackState : ITurnState
 
     public void ExitState()
     {
-        Managers.TurnManager.BeatBarPanelBehaviour.HideBeatBar(); // BeatBar 끄기
+        Managers.TurnManager.BeatBarPanelBehaviour.DisableBeatBar(); // BeatBar 끄기
         Managers.InputManager.RhythmAttackEnable(false); // InputManager의 액션 맵 구독 끊기
         Managers.TurnManager.SlotMachine.HideResult(); // SlotMachine 결과 숨기기
-        Managers.TurnManager.BeatBarPanelBehaviour.OnEndRhythmEvent -= ChangeNextState; // BeatBar 종료 액션 해제
-        Managers.TurnManager.BeatBarPanelBehaviour.OnAttackEvent -= Attack; // BeatBar 공격 액션 해제
+        Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnEndRhythmEvent -= ChangeNextState; // BeatBar 종료 액션 해제
+        Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnAttackEvent -= Attack; // BeatBar 공격 액션 해제
     }
 
     void ChangeNextState(bool isSuccess)
@@ -89,7 +89,7 @@ public class AttackState : ITurnState
             {
                 // 풀 콤보라면, 다시 슬롯머신 상태로
                 // 원 모어 UI를 띄우고, 슬롯머신 시간도 1초 줄임
-                Managers.TurnManager.BeatBarPanelBehaviour.OneMoreUIBehaviour.Show();
+                Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatBarUISystem>().ShowOneMoreUI();
                 Managers.TurnManager.ChangeState(new SlotState());
             }
             else

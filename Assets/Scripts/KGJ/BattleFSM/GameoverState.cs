@@ -11,7 +11,7 @@ public class GameoverState : ITurnState
         }
         Managers.TurnManager.SlotMachine.HideSlotUI();
         Managers.TurnManager.SlotMachine.HideResult();
-        Managers.TurnManager.BeatBarPanelBehaviour.HideBeatBar();
+        Managers.TurnManager.BeatBarPanelBehaviour.DisableBeatBar();
         Managers.TurnManager.ParallaxBackground.IsScrolling = false;
         Managers.InputManager.Clear();
     }
