@@ -1,49 +1,54 @@
-public class FeverTimeState : ITurnState
+public class SkillState : ITurnState
 {
+    SlotInfo _slotInfo;
     bool _isSuccess;
+    SkillBook _skillBook;
 
-    public FeverTimeState(bool isSuccess)
+    public SkillState(SlotInfo slotInfo, bool isSuccess)
     {
+        _slotInfo = slotInfo;
         _isSuccess = isSuccess;
+        _skillBook = new SkillBook();
     }
 
     public void EnterState()
     {
-        // UI 켜주기 
-        // InputManager 액션 구독 (ATTACK)
-        Managers.InputManager.RhythmAttackEnable(true);
-        Managers.TurnManager.FeverTimeController.ShowFeverTime();
-        Managers.TurnManager.FeverTimeController.OnFeverAttackEvent += FeverAttack;
-        Managers.TurnManager.FeverTimeController.OnFeverEndEvent += CheckState;
+        if (_isSuccess)
+        {
+            CombinationType? combi = CombinationChecker.Check(_slotInfo);
+            if (combi == null)
+            {
+                CheckState();
+            }
+            else if (combi == CombinationType.Sequential)
+            {
+                Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess));
+            }
+            else
+            {
+                _skillBook.TryActivateSkill(combi);
+                CheckState();
+            }
+        }
+        else
+        {
+            Managers.TurnManager.ChangeState(new KnockBackState());
+        }
     }
 
     public void ExitState()
     {
-        // UI 끄기
-        // InputManager 액션 구독 해제
-        // 액션 구독 해제
-        Managers.InputManager.RhythmAttackEnable(false);
-        Managers.TurnManager.FeverTimeController.HideFeverTime();
-        Managers.TurnManager.FeverTimeController.OnFeverAttackEvent -= FeverAttack;
-        Managers.TurnManager.FeverTimeController.OnFeverEndEvent -= CheckState;
+
     }
 
     public void FixedUpdateState()
     {
-        
+
     }
 
     public void UpdateState()
     {
-        Managers.TurnManager.FeverTimeController.UpdateFeverTimer();
-    }
 
-    void FeverAttack()
-    {
-        Managers.TurnManager.Player.Attack();
-        Managers.TurnManager.CurrentEnemy.TakeDamage(2);
-        Managers.CameraManager.ShakeCamera();
-        SoundManager.Instance.PlayPerfectSound();
     }
 
     void CheckState()
@@ -60,7 +65,6 @@ public class FeverTimeState : ITurnState
             Managers.TurnManager.CurrentEnemyIndex++;
             Managers.CameraManager.AddMember(Managers.TurnManager.CurrentEnemy.transform, 0.5f, 1f);
             Managers.TurnManager.ChangeState(new MoveState());
-
         }
         else
         {
@@ -68,7 +72,7 @@ public class FeverTimeState : ITurnState
             {
                 // 풀 콤보라면, 다시 슬롯머신 상태로
                 // 원 모어 UI를 띄우고, 슬롯머신 시간도 1초 줄임
-                Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatBarUISystem>().ShowOneMoreUI();
+                Managers.TurnManager.BeatBarPanelBehaviour.OneMoreUIBehaviour.Show();
                 Managers.TurnManager.ChangeState(new SlotState());
             }
             else

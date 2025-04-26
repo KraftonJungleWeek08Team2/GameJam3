@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class SkillBook
 {
@@ -9,8 +8,11 @@ public class SkillBook
     {
         // 스킬 등록
         // _skills[CombinationType.조합이름] = new 스킬스크립트();
-        _skills[CombinationType.ThreeOfAKind] = new Heal(1);
-        _skills[CombinationType.Sequential] = new FeverTime();
+        _skills[CombinationType.ThreeOfAKindEven] = new Heal(1);
+        _skills[CombinationType.ThreeOfAKindOdd] = new ThreeOddSkill(25);
+        _skills[CombinationType.AllOdd] = new OddSkill(6);
+        _skills[CombinationType.AllEven] = new EvenSkill(6);
+        _skills[CombinationType.Jackpot] = new Jackpot();
     }
     
     public void TryActivateSkill(CombinationType? type)

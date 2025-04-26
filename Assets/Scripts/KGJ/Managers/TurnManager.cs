@@ -27,6 +27,11 @@ public class TurnManager
     public FeverTimeController FeverTimeController => _feverTimeController;
     FeverTimeController _feverTimeController;
 
+    public SkillManager SkillManager => _skillManager;
+    SkillManager _skillManager;
+
+
+
     public void Init()
     {
         Player = GameObject.FindAnyObjectByType<Player>();
@@ -36,6 +41,7 @@ public class TurnManager
         _enemySpawner = GameObject.FindAnyObjectByType<EnemySpawner>();
         _enemyHpUI = GameObject.FindAnyObjectByType<UI_EnemyHp>();
         _feverTimeController = GameObject.FindAnyObjectByType<FeverTimeController>();
+        _skillManager = GameObject.FindAnyObjectByType<SkillManager>();
         CurrentEnemyIndex = 0;
 
         _currentState = new MoveState();
