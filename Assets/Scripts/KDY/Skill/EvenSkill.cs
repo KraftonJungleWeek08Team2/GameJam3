@@ -13,7 +13,9 @@ public class EvenSkill : ISkill
     public void Execute()
     {
         // 적 위치에 스킬 이펙트 생성
-        Object.Instantiate(skillEffect, Managers.TurnManager.CurrentEnemy.transform.position, Quaternion.identity);
+        GameObject go = Object.Instantiate(skillEffect, Managers.TurnManager.CurrentEnemy.transform.position, Quaternion.identity);
+        Object.Destroy(go, 5f); // 5초 후 파괴
+
         //TODO : 짝수 스킬 사운드
         Managers.TurnManager.CurrentEnemy.TakeDamage(damageValue);
         Managers.CameraManager.ShakeCamera();
