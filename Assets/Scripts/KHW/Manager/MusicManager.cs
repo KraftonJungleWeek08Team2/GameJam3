@@ -182,10 +182,8 @@ public class MusicManager : MonoBehaviour
         float noteExpectedTime = beat * beatInterval;
         
         // 현재 위치와 노트 예상 타이밍의 오차
-        float offset = currentPosition - noteExpectedTime;
+        float offset = relativePosition - noteExpectedTime;
 
-
-        //Debug.Log($"KHW : currentPosition = {currentPosition}, noteExpectedTime = {noteExpectedTime}, offset = {offset} ");
         return offset;
     }
 }
