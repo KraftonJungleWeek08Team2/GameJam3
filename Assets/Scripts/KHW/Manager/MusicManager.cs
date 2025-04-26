@@ -91,7 +91,7 @@ public class MusicManager : MonoBehaviour
 
         loopStartSamples = (int)(loopStartTime * musicSource.clip.frequency); //48000을 노래 시작시간에 곱한 비트레이트.
         loopEndSamples = (int)(loopEndTime * musicSource.clip.frequency); //48000을 노래 종료시간에 곱한 비트레이트.
-        loopLengthSamples = loopEndSamples - loopStartSamples; //루프 구간의 비트레이트.
+        loopLengthSamples = loopEndSamples - loopStartSamples; //루프 구간의 비트레이트. 이 값을 비트레이트에서 빼주는 것.
 
         loopBeatCount = Mathf.FloorToInt((loopEndTime - loopStartTime) / beatInterval); //루프 사이의 비트 갯수? 왜필요하지....
         Debug.Log($"SetMusic: clip={musicSource.clip.name}, noteInterval={beatInterval}, loopBeatCount={loopBeatCount}, loopStartTime={loopStartTime}, loopEndTime={loopEndTime}");
@@ -129,12 +129,8 @@ public class MusicManager : MonoBehaviour
             currentPosition = (float)(AudioSettings.dspTime - startTime);
 
             // 루프 후 비트 상태 동기화
-            currentBeat = loopCount * loopBeatCount;
+            //currentBeat = loopCount * loopBeatCount;
             lastBeatTrigger = -1f; // 비트 트리거 초기화
-
-            // 루프 시작 지점에서 첫 비트 강제 호출
-            //OnBeatAction?.Invoke(currentBeat);
-            //OnNextBeatAction?.Invoke(currentBeat + 1);
 
             Debug.Log($"Music Looped! Loop Count: {loopCount}, timeSamples: {musicSource.timeSamples}, currentBeat: {currentBeat}, currentPosition: {currentPosition}");
         }
@@ -162,19 +158,8 @@ public class MusicManager : MonoBehaviour
         {
             lastBeatTrigger = beatStartTime;
             OnBeatAction?.Invoke(newBeat);
-            Debug.Log("OnBeatACtion Triggered" + newBeat);
             currentBeat = newBeat;
         }
-
-        // 비트 중간점 (다음 비트 예측)
-        // float midPointTime = beatStartTime + (beatInterval * 0.5f);
-        // if (relativePosition >= (newBeat * beatInterval + beatInterval * 0.5f) && midPointTime > lastMidPointTrigger)
-        // {
-        //     currentBeat = newBeat + 1;
-        //     lastReportedBeat = currentBeat;
-        //     lastMidPointTrigger = midPointTime;
-        //     OnNextBeatAction?.Invoke(currentBeat);
-        // }
     }
 
     /// <summary>
@@ -182,7 +167,7 @@ public class MusicManager : MonoBehaviour
     /// </summary>
     /// <param name="offsetFromCurrentBeat">비트 시작으로부터의 오프셋(초). 양수면 비트 이후, 음수면 비트 이전.</param>
     /// <returns>노트의 예상 타이밍과의 오차(초). 양수는 늦음, 음수는 빠름.</returns>
-    public float GetTimingOffset(float offsetFromCurrentBeat)
+    public float GetTimingOffset(float beat)
     {
         if (!musicSource.isPlaying || currentPosition <= 0f)
         {
@@ -194,16 +179,13 @@ public class MusicManager : MonoBehaviour
         
         // 현재 비트 계산
         int currentBeat = Mathf.FloorToInt(relativePosition / beatInterval);
-        
-        // 비트의 시작 시간
-        float beatStartTime = (currentBeat * beatInterval) - (loopCount * (loopEndTime - loopStartTime));
-        
-        // 노트의 예상 타이밍 = 비트 시작 + offsetFromCurrentBeat
-        float noteExpectedTime = beatStartTime + offsetFromCurrentBeat * beatInterval;
+        float noteExpectedTime = beat * beatInterval;
         
         // 현재 위치와 노트 예상 타이밍의 오차
         float offset = currentPosition - noteExpectedTime;
 
+
+        //Debug.Log($"KHW : currentPosition = {currentPosition}, noteExpectedTime = {noteExpectedTime}, offset = {offset} ");
         return offset;
     }
 }

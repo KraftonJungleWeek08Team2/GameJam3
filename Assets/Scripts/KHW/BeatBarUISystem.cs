@@ -17,7 +17,7 @@ public class BeatBarUISystem : MonoBehaviour
     GameObject breakText;
     [SerializeField] ComboCountBehaviour comboCountBehaviour; //inspector.
     [SerializeField] OneMoreUIBehaviour oneMoreUIBehaviour;
-    
+    public SkillDescriptionBehaviour skillDescriptionBehaviour;
 
     void Start()
     {   
@@ -38,6 +38,8 @@ public class BeatBarUISystem : MonoBehaviour
     /// <summary> 참조 초기화 </summary>
     private void InitializeReferences()
     {
+        skillDescriptionBehaviour = FindAnyObjectByType<SkillDescriptionBehaviour>();
+        oneMoreUIBehaviour = FindAnyObjectByType<OneMoreUIBehaviour>();
         accuracyPos = transform.Find("Accuracy Position").transform;
         attackNoteObject = (GameObject)Resources.Load("KHW/Prefabs/NoteObject/AttackNoteObject");
         defaultBeatLineObject = (GameObject)Resources.Load("KHW/Prefabs/NoteObject/RestNoteObject");
@@ -122,5 +124,10 @@ public class BeatBarUISystem : MonoBehaviour
         oneMoreUIBehaviour.Show();
     }
 
+
+    public void ShowSkillDescriptionUI(string description)
+    {
+        skillDescriptionBehaviour.Show(beatBarSystem.currentSlotInfo, description);
+    }
 
 }

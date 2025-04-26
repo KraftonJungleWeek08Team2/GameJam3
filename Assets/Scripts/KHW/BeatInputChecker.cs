@@ -19,8 +19,7 @@ public class BeatInputChecker : MonoBehaviour
         beatBarSystem = GetComponent<BeatBarSystem>(); //비트바 시스템.
         beatBarUISystem = GetComponent<BeatBarUISystem>(); //UI 점근
 
-        beatBarSystem.OnEnableBeatBarAction += EnableInputChecker; //비트바 시스템 활성화시 클래스 활성화
-        beatBarSystem.OnDisableBeatBarAction += DisableInputChecker; //비트바 시스템 비활성화시 클래스 비활성화
+        SubscribeAction();
 
         isWorking = false;
         currentCombo = 0;
@@ -29,7 +28,6 @@ public class BeatInputChecker : MonoBehaviour
     void EnableInputChecker()
     {
         EnableInputSystem();
-        SubscribeAction();
         InitializeProperties();
     }
 
@@ -42,13 +40,15 @@ public class BeatInputChecker : MonoBehaviour
     void DisableInputChecker()
     {
         DisableInputSystem();
-        UnsubscribeAction();
+        //UnsubscribeAction();
 
         isWorking = false;
     }
 
     void EnableInputSystem()
     {
+        // 기존 구독 해제 (중복 방지)
+        Managers.InputManager.OnRhythmAttackEvent -= Attack;
         Managers.InputManager.OnRhythmAttackEvent += Attack;
     }
 
@@ -66,18 +66,17 @@ public class BeatInputChecker : MonoBehaviour
     }
     void UnsubscribeAction()
     {
-        //Action
-        beatBarSystem.OnEnableBeatBarAction -= EnableInputSystem;
-        beatBarSystem.OnDisableBeatBarAction -= DisableInputSystem;
+        beatBarSystem.OnEnableBeatBarAction -= EnableInputChecker;
+        beatBarSystem.OnDisableBeatBarAction -= DisableInputChecker;
     }
 
     private float CheckAccuracyWithCurrentBeat()
     {
-        Debug.Log("현재 비트 : " + beatBarSystem.CurrentMusicBeat + beatBarSystem.currentNote.OffsetBeat);
+        Debug.Log("현재 비트 : " + beatBarSystem.CurrentMusicBeat + " " + beatBarSystem.currentNote.OffsetBeat);
         
-        float accuracy = 1 - Mathf.Abs(MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat) * MusicManager.Instance.beatInterval) / 0.4f + 0.05f;
+        float accuracy = 1 - Mathf.Abs(MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat + beatBarSystem.currentNote.Beat)) / 0.4f + 0.05f;
 
-        Debug.Log("정확도 : " + accuracy);
+        //Debug.Log("정확도 : " + accuracy);
 
         return accuracy;
 
@@ -87,30 +86,36 @@ public class BeatInputChecker : MonoBehaviour
     {
         float accuracy = CheckAccuracyWithCurrentBeat();
 
+        Debug.Log($"KHW : 현재 노트의 비트 : {beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat}");
+        Debug.Log($"KHW : 현재 노래의 비트 : {MusicManager.Instance.currentBeat}");
+
         if(accuracy > 0.9) //Perfect Attack.
         {
             OnAttackEvent?.Invoke(AccuracyType.Perfect);
             beatBarUISystem.ShowPerfectText();
             currentCombo++;
-            ChangeCurrentNote();
+            beatBarUISystem.ShowComboCount(currentCombo);
             
             if(beatBarSystem.currentNote.IsLast)
             {
                 OnEndRhythmEvent?.Invoke(isFullCombo);
             }
-
+            
+            ChangeCurrentNote();
         } 
         else if(accuracy > 0.6)
         {
             OnAttackEvent?.Invoke(AccuracyType.Good); 
             beatBarUISystem.ShowGoodText();
             currentCombo++;
-            ChangeCurrentNote();
 
+            beatBarUISystem.ShowComboCount(currentCombo);
             if(beatBarSystem.currentNote.IsLast)
             {
                 OnEndRhythmEvent?.Invoke(isFullCombo);
             }
+
+            ChangeCurrentNote();
         }
         else if(accuracy <= 0.6 && accuracy > 0.05) //bad.
         {
@@ -118,20 +123,21 @@ public class BeatInputChecker : MonoBehaviour
             isFullCombo = false;
             beatBarUISystem.ShowBreakText();
             currentCombo = 0;
-            ChangeCurrentNote();
+
+            beatBarUISystem.ShowComboCount(currentCombo);
             if(beatBarSystem.currentNote.IsLast)
             {
                 OnEndRhythmEvent?.Invoke(isFullCombo);
             }
 
-
+            ChangeCurrentNote();
         }
         else //상관없는 입력
         {
             //Do Nothing.
         }
         
-        beatBarUISystem.ShowComboCount(currentCombo);
+
     }
 
     /// <summary> 노트의 소유권을 넘깁니다. </summary>
@@ -151,7 +157,7 @@ public class BeatInputChecker : MonoBehaviour
 
     private void CheckPassedCurrentBeat()
     {
-        float currentOffsetFromCurrentBeat = MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat);
+        float currentOffsetFromCurrentBeat = MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat + beatBarSystem.currentNote.Beat);
 
         if(currentOffsetFromCurrentBeat > 0.4) //지나침!
         {
@@ -159,7 +165,7 @@ public class BeatInputChecker : MonoBehaviour
             beatBarUISystem.ShowBreakText();
             currentCombo = 0;
             beatBarUISystem.ShowComboCount(currentCombo);
-
+            isFullCombo = false;
             if(beatBarSystem.currentNote.IsLast)
             {
                 OnEndRhythmEvent?.Invoke(isFullCombo);
@@ -169,7 +175,8 @@ public class BeatInputChecker : MonoBehaviour
 
     void OnDestroy()
     {
-        UnsubscribeAction();  //파괴시 구독 해제.
+        UnsubscribeAction();
+        DisableInputSystem(); // 입력 이벤트 구독 해제
     }
 
 

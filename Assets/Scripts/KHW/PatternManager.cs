@@ -52,7 +52,6 @@ public class PatternManager : MonoBehaviour
         int endOffset = 0;
         List<Note> generatedNoteList = new List<Note>();
 
-        Debug.Log($"GetNoteListBySlotInfo: triggerBeat={triggerBeat}, SlotCount={slotInfo.SlotCount}");
         for (int i = 0; i < slotInfo.SlotCount; i++)
         {
             int slotNumber = slotInfo.GetValue(i);
@@ -73,11 +72,10 @@ public class PatternManager : MonoBehaviour
             {
                 int adjustedBeat = triggerBeat + note.Beat + endOffset;
                 generatedNoteList.Add(new Note(adjustedBeat, note.OffsetBeat, note.IsLast));
-                Debug.Log($"Added Note: Original Beat={note.Beat}, Adjusted Beat={adjustedBeat}, OffsetBeat={note.OffsetBeat}, IsLast={note.IsLast}");
+                Debug.Log($"KHW : {adjustedBeat} , {note.OffsetBeat}");
             }
 
             endOffset += Mathf.Max(0, beatPattern.endBeatOffset); // 음수 방지
-            Debug.Log($"Updated endOffset={endOffset} for BeatPattern {slotNumber}");
         }
 
         if (generatedNoteList.Count > 0)
@@ -87,10 +85,7 @@ public class PatternManager : MonoBehaviour
                 generatedNoteList[generatedNoteList.Count - 1].OffsetBeat,
                 true
             );
-            Debug.Log("Set last note IsLast=true");
         }
-
-        Debug.Log($"GetNoteListBySlotInfo: Generated {generatedNoteList.Count} notes.");
         return generatedNoteList;
     }
 }
