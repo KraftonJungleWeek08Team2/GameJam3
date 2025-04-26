@@ -21,7 +21,6 @@ public class SkillBook
     {
         if (type.HasValue && _skills.TryGetValue(type.Value, out var skill))
         {
-            Debug.Log($"[KGJ] : {type.Value.ToString()}");
             skill.Execute();
         }
     }
