@@ -8,7 +8,7 @@ public class Heal : ISkill
     {
         healValue = value;
     }
-    public void Execute(Action onComplete)
+    public void Execute()
     {
         //TODO : 힐 이펙트 
         Managers.SkillManager.HealSkill();
@@ -16,7 +16,6 @@ public class Heal : ISkill
         Managers.TurnManager.Player.TakeHeal(healValue);
 
         ShowSkillDescriptionUI();
-        onComplete?.Invoke();
     }
 
     void ShowSkillDescriptionUI()

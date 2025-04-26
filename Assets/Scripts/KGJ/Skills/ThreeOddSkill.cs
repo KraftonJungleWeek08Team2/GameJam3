@@ -10,7 +10,7 @@ public class ThreeOddSkill : ISkill
         _damage = value;
     }
 
-    public void Execute(Action onComplete)
+    public void Execute()
     {
         Managers.SkillManager.AttackSkill();
         Managers.TurnManager.CurrentEnemy.TakeDamage(_damage);
@@ -18,7 +18,6 @@ public class ThreeOddSkill : ISkill
         Managers.TurnManager.Player.Attack();
 
         ShowSkillDescriptionUI();
-        onComplete?.Invoke();
     }
 
     void ShowSkillDescriptionUI()

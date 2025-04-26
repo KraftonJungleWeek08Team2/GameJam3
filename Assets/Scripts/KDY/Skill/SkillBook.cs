@@ -5,7 +5,6 @@ using UnityEngine;
 public class SkillBook
 {
     private readonly Dictionary<CombinationType, ISkill> _skills = new Dictionary<CombinationType, ISkill>();
-    public Action OnCompleteEvent;
 
     public SkillBook()
     {
@@ -15,7 +14,7 @@ public class SkillBook
         _skills[CombinationType.ThreeOfAKindOdd] = new ThreeOddSkill(25);
         _skills[CombinationType.AllOdd] = new OddSkill(6);
         _skills[CombinationType.AllEven] = new EvenSkill(6);
-        _skills[CombinationType.Jackpot] = new Jackpot();
+        _skills[CombinationType.Jackpot] = new JackpotSkill();
     }
     
     public void TryActivateSkill(CombinationType? type)
@@ -23,7 +22,7 @@ public class SkillBook
         if (type.HasValue && _skills.TryGetValue(type.Value, out var skill))
         {
             Debug.Log($"[KGJ] : {type.Value.ToString()}");
-            skill.Execute(OnCompleteEvent);
+            skill.Execute();
         }
     }
 }

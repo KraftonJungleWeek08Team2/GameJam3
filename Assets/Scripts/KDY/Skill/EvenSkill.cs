@@ -13,7 +13,7 @@ public class EvenSkill : ISkill
         damageValue = value;
         skillEffect = Resources.Load<GameObject>("KMS/SkillEffects/hit Even");
     }
-    public void Execute(Action onComplete)
+    public void Execute()
     {
         // 적 위치에 스킬 이펙트 생성
         GameObject go = Object.Instantiate(skillEffect, Managers.TurnManager.CurrentEnemy.transform.position, Quaternion.identity);
@@ -25,7 +25,6 @@ public class EvenSkill : ISkill
         Managers.TurnManager.Player.Attack();
 
         ShowSkillDescriptionUI();
-        onComplete?.Invoke();
     }
 
     void ShowSkillDescriptionUI()
