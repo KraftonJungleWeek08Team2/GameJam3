@@ -1937,6 +1937,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_FeverTime
       objectReference: {fileID: 0}
+    - target: {fileID: 7718830414058137428, guid: 1ba00f6939e13df40a2b429af5bb7988, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718830414058137428, guid: 1ba00f6939e13df40a2b429af5bb7988, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8332121582526529107, guid: 1ba00f6939e13df40a2b429af5bb7988, type: 3}
       propertyPath: m_Pivot.x
       value: 0
