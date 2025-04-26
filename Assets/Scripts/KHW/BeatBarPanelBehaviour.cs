@@ -88,6 +88,7 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         musicManager.OnNextBeatAction += UpdateCurrentBeat;
         musicManager.OnBeatAction += GenerateNewNote;
         oneMoreUIBehaviour = FindAnyObjectByType<OneMoreUIBehaviour>();
+        skillDescriptionBehaviour = FindAnyObjectByType<SkillDescriptionBehaviour>();
 
         beatBarCanvas = transform.parent.GetComponent<Canvas>();
         beatBarCanvas.enabled = false;
@@ -235,6 +236,11 @@ public class BeatBarPanelBehaviour : MonoBehaviour
         comboCountBehaviour.UpdateComboCount(currentComboCount);
     }
 
+    public SkillDescriptionBehaviour skillDescriptionBehaviour;
+    public void ShowSkillDescriptionUI(string description)
+    {
+        skillDescriptionBehaviour.Show(currentSlotInfo, description);
+    }
 
     void OnDestroy()
     {

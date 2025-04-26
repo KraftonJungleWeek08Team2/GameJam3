@@ -1,5 +1,7 @@
 public class Jackpot : ISkill
 {
+    string description = "JackPot";
+
     public void Execute()
     {
         Managers.SkillManager.SevenSkill();
@@ -7,5 +9,13 @@ public class Jackpot : ISkill
         Managers.TurnManager.Player.TakeHeal(777);
         Managers.CameraManager.ShakeCamera();
         Managers.TurnManager.Player.Attack();
+
+        ShowSkillDescriptionUI();
+    }
+
+    
+    void ShowSkillDescriptionUI()
+    {
+        Managers.TurnManager.BeatBarPanelBehaviour.ShowSkillDescriptionUI(description);
     }
 }
