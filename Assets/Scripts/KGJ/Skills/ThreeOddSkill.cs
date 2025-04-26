@@ -22,6 +22,6 @@ public class ThreeOddSkill : ISkill
 
     void ShowSkillDescriptionUI()
     {
-        Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
     }
 }
