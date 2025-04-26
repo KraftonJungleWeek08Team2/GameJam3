@@ -63,6 +63,10 @@ MonoBehaviour:
   perfectSound: {fileID: 8300000, guid: e50068582e780a44484d8940832efbb5, type: 3}
   perfectSoundVolume: 1
   goodSoundVolume: 0.5
+  slotLoadSound: {fileID: 8300000, guid: 04dab245266068f40a0e82de2d59e8dd, type: 3}
+  slotLoadSoundVolume: 1
+  slotResultSound: {fileID: 8300000, guid: ebdbb5c31276f5441a4881d3efc49273, type: 3}
+  slotResultSoundVolume: 1
 --- !u!82 &4949397561713623248
 AudioSource:
   m_ObjectHideFlags: 0

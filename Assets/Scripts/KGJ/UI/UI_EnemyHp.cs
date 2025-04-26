@@ -39,7 +39,6 @@ public class UI_EnemyHp : MonoBehaviour
         {
             hp = (float)Managers.TurnManager.CurrentEnemy.GetComponent<Enemy>().hp / _maxhp;
         }
-        Debug.Log("[KGJ]" + hp);
         _slider.value = hp;
     }
 }

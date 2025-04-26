@@ -142,6 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6d76ceb857e3d4f946e2c076bb209e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicIndex: 0
-  noteInterval: 0
-  currentBeat: 0
+  musicIndex: 1
+  musicSource: {fileID: 0}
+  beatInterval: 0
