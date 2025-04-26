@@ -30,7 +30,8 @@ public class TurnManager
     public SkillManager SkillManager => _skillManager;
     SkillManager _skillManager;
 
-
+    public SkillBook SkillBook => _skillBook;
+    SkillBook _skillBook;
 
     public void Init()
     {
@@ -42,6 +43,7 @@ public class TurnManager
         _enemyHpUI = GameObject.FindAnyObjectByType<UI_EnemyHp>();
         _feverTimeController = GameObject.FindAnyObjectByType<FeverTimeController>();
         _skillManager = GameObject.FindAnyObjectByType<SkillManager>();
+        _skillBook = new SkillBook();
         CurrentEnemyIndex = 0;
 
         _currentState = new MoveState();

@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Jackpot : ISkill
 {
     string description = "JackPot";
 
-    public void Execute()
+    public void Execute(Action onComplete)
     {
         Debug.Log("KGJ : Jackpot!!!!!!!");
         Managers.SkillManager.SevenSkill();
@@ -14,6 +15,7 @@ public class Jackpot : ISkill
         Managers.TurnManager.Player.Attack();
 
         ShowSkillDescriptionUI();
+        onComplete?.Invoke();
     }
 
     

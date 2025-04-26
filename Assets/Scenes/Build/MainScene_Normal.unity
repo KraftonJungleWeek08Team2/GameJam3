@@ -897,6 +897,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin_Ani_UI(7,H,A)
       objectReference: {fileID: 0}
+    - target: {fileID: 6166072438572939474, guid: 30c9753bdb9f5ef47817fc342122c77b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

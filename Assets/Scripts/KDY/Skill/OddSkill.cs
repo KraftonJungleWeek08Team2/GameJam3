@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class OddSkill : ISkill
 {
@@ -12,7 +13,7 @@ public class OddSkill : ISkill
         damageValue = value;
         skillEffect = Resources.Load<GameObject>("KMS/SkillEffects/hit Odd");
     }
-    public void Execute()
+    public void Execute(Action onComplete)
     {
         // 적 위치에 스킬 이펙트 생성
         GameObject go = Object.Instantiate(skillEffect, Managers.TurnManager.CurrentEnemy.transform.position, Quaternion.identity);
@@ -24,6 +25,7 @@ public class OddSkill : ISkill
         Managers.TurnManager.Player.Attack();
 
         ShowSkillDescriptionUI();
+        onComplete?.Invoke();
     }
 
     void ShowSkillDescriptionUI()

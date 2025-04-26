@@ -1,4 +1,5 @@
-using Unity.VisualScripting;
+
+using System;
 
 public class ThreeOddSkill : ISkill
 {
@@ -9,7 +10,7 @@ public class ThreeOddSkill : ISkill
         _damage = value;
     }
 
-    public void Execute()
+    public void Execute(Action onComplete)
     {
         Managers.SkillManager.AttackSkill();
         Managers.TurnManager.CurrentEnemy.TakeDamage(_damage);
@@ -17,6 +18,7 @@ public class ThreeOddSkill : ISkill
         Managers.TurnManager.Player.Attack();
 
         ShowSkillDescriptionUI();
+        onComplete?.Invoke();
     }
 
     void ShowSkillDescriptionUI()

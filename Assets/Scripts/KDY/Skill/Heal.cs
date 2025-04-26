@@ -1,4 +1,4 @@
-using UnityEngine;
+using System;
 
 public class Heal : ISkill
 {
@@ -8,7 +8,7 @@ public class Heal : ISkill
     {
         healValue = value;
     }
-    public void Execute()
+    public void Execute(Action onComplete)
     {
         //TODO : 힐 이펙트 
         Managers.SkillManager.HealSkill();
@@ -16,6 +16,7 @@ public class Heal : ISkill
         Managers.TurnManager.Player.TakeHeal(healValue);
 
         ShowSkillDescriptionUI();
+        onComplete?.Invoke();
     }
 
     void ShowSkillDescriptionUI()
