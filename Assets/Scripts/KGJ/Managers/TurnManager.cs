@@ -12,8 +12,8 @@ public class TurnManager
     public SlotMachineV2 SlotMachine => _slotMachine;
     SlotMachineV2 _slotMachine;
 
-    public BeatBarPanelBehaviour BeatBarPanelBehaviour => _beatBarPanelBehaviour;
-    BeatBarPanelBehaviour _beatBarPanelBehaviour;
+    public BeatBarSystem BeatBarPanelBehaviour => _beatBarPanelBehaviour;
+    BeatBarSystem _beatBarPanelBehaviour;
 
     public ParallaxBackground ParallaxBackground => _parallaxBackground;
     ParallaxBackground _parallaxBackground;
@@ -37,7 +37,7 @@ public class TurnManager
     {
         Player = GameObject.FindAnyObjectByType<Player>();
         _slotMachine = GameObject.FindAnyObjectByType<SlotMachineV2>();
-        _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarPanelBehaviour>();
+        _beatBarPanelBehaviour = GameObject.FindAnyObjectByType<BeatBarSystem>();
         _parallaxBackground = GameObject.FindAnyObjectByType<ParallaxBackground>();
         _enemySpawner = GameObject.FindAnyObjectByType<EnemySpawner>();
         _enemyHpUI = GameObject.FindAnyObjectByType<UI_EnemyHp>();
