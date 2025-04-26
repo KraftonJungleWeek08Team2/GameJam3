@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timerText: {fileID: 0}
   _reels: []
-  _baseSpinSpeed: 750
+  _baseSpinSpeed: 500
   _resultUIManager: {fileID: 0}
+  _timerSlider: {fileID: 0}
