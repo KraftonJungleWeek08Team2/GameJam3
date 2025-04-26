@@ -153,7 +153,7 @@ public class BeatInputChecker : MonoBehaviour
     {
         float currentOffsetFromCurrentBeat = MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat);
 
-        if(currentOffsetFromCurrentBeat > 0.1) //지나침!
+        if(currentOffsetFromCurrentBeat > 0.4) //지나침!
         {
             ChangeCurrentNote();
             beatBarUISystem.ShowBreakText();

@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 public class AttackState : ITurnState 
 {
     SlotInfo _slotInfo;
@@ -10,9 +13,9 @@ public class AttackState : ITurnState
     {
         Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnEndRhythmEvent += ChangeNextState;
         Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnAttackEvent += Attack;
-        Managers.TurnManager.BeatBarPanelBehaviour.OnEndRhythmEvent += ChangeSkillState;
-        Managers.TurnManager.BeatBarPanelBehaviour.OnAttackEvent += Attack;
-        Managers.InputManager.RhythmAttackEnable(true); // InputManager의 액션 맵을 RhythmAttack으로 변경
+        Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnEndRhythmEvent += ChangeSkillState;
+        //Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnEndRhythmEvent += Attack;
+        //Managers.InputManager.RhythmAttackEnable(true); // InputManager의 액션 맵을 RhythmAttack으로 변경
         Managers.TurnManager.BeatBarPanelBehaviour.ActivateBeatBar(_slotInfo); // BeatBar 동작 시작
     }
 
@@ -33,8 +36,8 @@ public class AttackState : ITurnState
         Managers.TurnManager.SlotMachine.HideResult(); // SlotMachine 결과 숨기기
         Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnEndRhythmEvent -= ChangeNextState; // BeatBar 종료 액션 해제
         Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnAttackEvent -= Attack; // BeatBar 공격 액션 해제
-        Managers.TurnManager.BeatBarPanelBehaviour.OnEndRhythmEvent -= ChangeSkillState;
-        Managers.TurnManager.BeatBarPanelBehaviour.OnAttackEvent -= Attack; // BeatBar 공격 액션 해제
+        //Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnEndRhythmEventOnEndRhythmEvent -= ChangeSkillState;
+        //Managers.TurnManager.BeatBarPanelBehaviour.GetComponent<BeatInputChecker>().OnEndRhythmEventOnAttackEvent -= Attack; // BeatBar 공격 액션 해제
     }
 
     void ChangeNextState(bool isSuccess)
@@ -47,7 +50,7 @@ public class AttackState : ITurnState
                 case CombinationType.Jackpot:
 
                     break;
-                case CombinationType.ThreeOfAKind:
+                case CombinationType.ThreeOfAKindOdd:
 
                     break;
                 case CombinationType.Sequential:
@@ -101,6 +104,7 @@ public class AttackState : ITurnState
                 Managers.TurnManager.ChangeState(new KnockBackState());
             }
         }
+    }
     void ChangeSkillState(bool isSuccess)
     {
         Managers.TurnManager.ChangeState(new SkillState(_slotInfo, isSuccess));
@@ -126,4 +130,5 @@ public class AttackState : ITurnState
                 break;
         }
     }
+    
 }
