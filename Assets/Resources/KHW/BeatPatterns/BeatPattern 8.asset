@@ -29,12 +29,12 @@ MonoBehaviour:
     offsetBeat: 0
     isLast: 0
   - beat: 4
-    offsetBeat: 0.5
+    offsetBeat: 0.33
+    isLast: 0
+  - beat: 4
+    offsetBeat: 0.66
     isLast: 0
   - beat: 5
-    offsetBeat: 0.5
+    offsetBeat: 0
     isLast: 0
-  - beat: 6
-    offsetBeat: 0.5
-    isLast: 0
-  endBeatOffset: 8
+  endBeatOffset: 6
