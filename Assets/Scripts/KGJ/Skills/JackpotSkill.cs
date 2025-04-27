@@ -8,12 +8,10 @@ public class JackpotSkill : ISkill
     public void Execute()
     {
         Managers.SkillManager.SevenSkill();
-        Managers.TurnManager.CurrentEnemy.TakeDamage(777);
-        Managers.TurnManager.Player.TakeHeal(777);
+        Managers.TurnManager.CurrentEnemy.TakeDamage(77);
+        Managers.TurnManager.Player.TakeHeal(7);
         Managers.CameraManager.ShakeCamera();
         Managers.TurnManager.Player.Attack();
-
-        //ShowSkillDescriptionUI();
     }
 
 
