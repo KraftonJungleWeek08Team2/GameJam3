@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private EnemyInfo _data;
-
     public int maxHp { get; private set; }
     public int hp { get; private set; }
     public int damage { get; private set; }
@@ -15,17 +13,13 @@ public class Enemy : MonoBehaviour, IDamageable
     UI_EnemyHp _enemyHpUI;
 
     // 스포너에서 값 넘겨줌
-    public void Init(EnemyInfo data)
+    public void Init(int enemyMaxHp, int enemyDamage, float enemyMoveSpeed)
     {
-        _data      = data;
-        hp = data.maxHp + (Managers.TurnManager.CurrentEnemyIndex * data.maxHp);
+        hp = enemyMaxHp;
         maxHp = hp;
-        damage = data.damage;
-        _moveSpeed = data.moveSpeed;
+        damage = enemyDamage;
+        _moveSpeed = enemyMoveSpeed;
         isMoving   = true;
-        
-        //크기도 점점 커지게
-        transform.localScale = new Vector3(transform.localScale.x + (Managers.TurnManager.CurrentEnemyIndex * 0.1f), transform.localScale.y + (Managers.TurnManager.CurrentEnemyIndex * 0.1f), 1);
     }
 
     private void Start()
