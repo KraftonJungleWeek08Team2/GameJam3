@@ -16,7 +16,7 @@ public class FeverTimeController : MonoBehaviour
     {
         _feverTimeUI = GetComponent<Canvas>();
         _timerSlider = GetComponentInChildren<Slider>();
-        _feverTimeUI.enabled = false;
+        _feverTimeUI.enabled = true;
     }
 
     public void ShowFeverTime()
