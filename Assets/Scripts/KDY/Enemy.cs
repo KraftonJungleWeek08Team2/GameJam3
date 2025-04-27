@@ -53,6 +53,11 @@ public class Enemy : MonoBehaviour, IDamageable
         _animator.Play("Hit");
         _enemyHpUI.UpdateEnemyUI();
     }
+
+    public void PlayAttack()
+    {
+        _animator.Play("Attack");
+    }
     
     public void IsDie()
     {
@@ -62,10 +67,14 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
+    public void PlayDeath()
+    {
+        _animator.Play("Death");
+    }
+
     public void Die()
     {
         isMoving = true;
         Debug.Log("Enemy has died.");
-        _animator.Play("Death");
     }
 }

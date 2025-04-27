@@ -35,7 +35,7 @@ public class AttackState : ITurnState
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatInputChecker>().OnEndRhythmEvent -= ChangeSkillState;
         Managers.InputManager.RhythmAttackEnable(false); // InputManager의 액션 맵 구독 끊기
     }
-
+    
     void ChangeSkillState(bool isSuccess)
     {
         Managers.TurnManager.ChangeState(new SkillState(_slotInfo, isSuccess));

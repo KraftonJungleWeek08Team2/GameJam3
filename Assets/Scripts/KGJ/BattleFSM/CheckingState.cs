@@ -1,18 +1,41 @@
+using UnityEngine;
+
 /// <summary>
-/// CheckingState에서 할 일 : 풀콤, 적 체력에 따라 knockback, move, slot으로 넘겨주기
+/// CheckingState에서 할 일 : 풀콤, 적 체력에 따라 knockback, move, slot으로 넘겨주기, 스킬 후 딜레이
 /// </summary>
 public class CheckingState : ITurnState
 {
     bool _isSuccess;
+    CombinationType? _combi;
 
-    public CheckingState(bool isSuccess)
+    // 대기 시간 관련 변수
+    float _intervalTimer = 0;
+    bool _isTimerRunning = false;
+    const float INTERVAL = 1.25f;
+
+    ITurnState _nextState;
+
+    public CheckingState(bool isSuccess, CombinationType? combi)
     {
         _isSuccess = isSuccess;
+        _combi = combi;
     }
 
     public void EnterState()
     {
-        CheckState();
+        if (_combi == null)
+        {
+            // 스킬 조합이 없다면 딜레이 업승ㅁ
+            CheckState();
+            ChangeNextState();
+        }
+        else
+        {
+            // 스킬 조합이 존재하거나 풀콤보 실패 시 딜레이 존재
+            InitTimer();
+            CheckState();
+            _isTimerRunning = true;
+        }
     }
 
     public void ExitState()
@@ -21,36 +44,66 @@ public class CheckingState : ITurnState
     }
 
     public void FixedUpdateState() { }
-    public void UpdateState() { }
-
-    void CheckState()
+    public void UpdateState() 
     {
-        // 적 hp와 풀콤 여부와 슬롯 스킬 체크해서 상태 변경, onemore ui도 여기서 제어
-        if (Managers.TurnManager.CurrentEnemy.hp <= 0)
+        if (_isTimerRunning)
         {
-            Managers.TurnManager.EnemyHpUI.HideEnemyUI(); // 적 체력 UI 숨기기
-            Managers.CameraManager.RemoveMember(Managers.TurnManager.CurrentEnemy.transform);
-            Managers.TurnManager.CurrentEnemy.Die();
+            UpdateTimer();
+        }
+    }
 
+    void InitTimer()
+    {
+        _intervalTimer = 0;
+        _isTimerRunning = false;
+    }
+
+    void UpdateTimer()
+    {
+        _intervalTimer += Time.deltaTime;
+        if (_intervalTimer >= INTERVAL)
+        {
+            ChangeNextState();
+        }
+    }
+
+    void ChangeNextState()
+    {
+        if (_nextState is MoveState)
+        {
+            Managers.TurnManager.CurrentEnemy.Die();
             // EnemySpawner에서 적을 생성하고 CurrentEnemy에 넣어줌
             Managers.TurnManager.CurrentEnemy = Managers.TurnManager.EnemySpawner.Spawn();
             Managers.TurnManager.CurrentEnemyIndex++;
             Managers.CameraManager.AddMember(Managers.TurnManager.CurrentEnemy.transform, 0.5f, 1f);
-            Managers.TurnManager.ChangeState(new MoveState());
+        }
+        else if (_nextState is SlotState)
+        {
+            Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowOneMoreUI();
+        }
+        Managers.TurnManager.ChangeState(_nextState);
+    }
+
+    void CheckState()
+    {
+        if (Managers.TurnManager.CurrentEnemy.hp <= 0)
+        {
+            Managers.TurnManager.EnemyHpUI.HideEnemyUI(); // 적 체력 UI 숨기기
+            Managers.CameraManager.RemoveMember(Managers.TurnManager.CurrentEnemy.transform);
+            Managers.TurnManager.CurrentEnemy.PlayDeath();
+
+            
+            _nextState = new MoveState();
         }
         else
         {
             if (_isSuccess)
             {
-                // 풀 콤보라면, 다시 슬롯머신 상태로
-                // 원 모어 UI를 띄우고, 슬롯머신 시간도 1초 줄임
-                Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowOneMoreUI();
-                Managers.TurnManager.ChangeState(new SlotState());
+                _nextState = new SlotState();
             }
             else
             {
-                // 풀 콤보가 아니라면, 플레이어가 데미지를 입고 넉백되며 다시 MoveState로 전환
-                Managers.TurnManager.ChangeState(new KnockBackState());
+                _nextState = new KnockBackState();
             }
         }
     }
