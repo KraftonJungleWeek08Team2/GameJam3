@@ -1,3 +1,6 @@
+/// <summary>
+/// FeverTimeSTate에서 하는 일 : isFever라면 FeverTime update 실행, 아니라면 바로 CheckingState로 넘겨주기
+/// </summary>
 public class FeverTimeState : ITurnState
 {
     bool _isSuccess;
@@ -10,7 +13,6 @@ public class FeverTimeState : ITurnState
         _isFever = isFever;
     }
 
-    // FeverTime에서 할 일 : isFever라면 FeverTime update 실행, 아니라면 바로 CheckingState로 넘겨주기
     public void EnterState()
     {
         if (!_isFever)

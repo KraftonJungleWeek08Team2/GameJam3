@@ -1,6 +1,8 @@
+/// <summary>
+/// CheckingState에서 할 일 : 풀콤, 적 체력에 따라 knockback, move, slot으로 넘겨주기
+/// </summary>
 public class CheckingState : ITurnState
 {
-    // CheckingState에서 할 일 : 풀콤, 적 체력에 따라 knockback, move, slot으로 넘겨주기
     bool _isSuccess;
 
     public CheckingState(bool isSuccess)
