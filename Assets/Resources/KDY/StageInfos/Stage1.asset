@@ -15,54 +15,67 @@ MonoBehaviour:
   stageNumber: 1
   spawnSequence:
   - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+    enemyType: 0
     maxHp: 40
     damage: 1
     moveSpeed: 4
   - prefab: {fileID: 1068943834837579497, guid: bd8dc5b975b200b46b0419e5279e3643, type: 3}
+    enemyType: 0
     maxHp: 52
     damage: 1
     moveSpeed: 4
   - prefab: {fileID: 1068943834837579497, guid: a3cf7083844039a4b89b604c588b1224, type: 3}
+    enemyType: 0
     maxHp: 64
     damage: 1
     moveSpeed: 4
   - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+    enemyType: 1
     maxHp: 105
     damage: 2
     moveSpeed: 3
   - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+    enemyType: 0
     maxHp: 40
     damage: 1
     moveSpeed: 5
   - prefab: {fileID: 1068943834837579497, guid: bd8dc5b975b200b46b0419e5279e3643, type: 3}
+    enemyType: 0
     maxHp: 52
     damage: 1
     moveSpeed: 5
   - prefab: {fileID: 1068943834837579497, guid: a3cf7083844039a4b89b604c588b1224, type: 3}
+    enemyType: 0
     maxHp: 64
     damage: 1
     moveSpeed: 5
   - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+    enemyType: 1
     maxHp: 117
     damage: 2
     moveSpeed: 3
   - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+    enemyType: 0
     maxHp: 40
     damage: 1
     moveSpeed: 6
   - prefab: {fileID: 1068943834837579497, guid: bd8dc5b975b200b46b0419e5279e3643, type: 3}
+    enemyType: 0
     maxHp: 52
     damage: 1
     moveSpeed: 6
   - prefab: {fileID: 1068943834837579497, guid: a3cf7083844039a4b89b604c588b1224, type: 3}
+    enemyType: 0
     maxHp: 64
     damage: 1
     moveSpeed: 6
   - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+    enemyType: 1
     maxHp: 129
     damage: 2
     moveSpeed: 3
   - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+    enemyType: 2
     maxHp: 310
     damage: 3
     moveSpeed: 2

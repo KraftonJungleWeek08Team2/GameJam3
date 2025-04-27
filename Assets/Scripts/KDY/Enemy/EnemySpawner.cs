@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject go = Instantiate(info.prefab, _spawnPoint.position, Quaternion.identity);
         Enemy enemy = go.GetComponent<Enemy>();
-        enemy.Init(info.maxHp, info.damage, info.moveSpeed);
+        enemy.Init(info.maxHp, info.damage, info.moveSpeed, info.enemyType);
 
         return enemy;
     }
