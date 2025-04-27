@@ -67,7 +67,8 @@ public class AttackState : ITurnState
                 if (_isUIActive)
                 {
                     Debug.Log("[KGJ] TryHideSkillDescriptionUI");
-                    Managers.TurnManager.SkillBook.TryHideSkillDescriptionUI(_combi);
+                    Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().skillDescriptionBehaviour.FastHide();
+                    //Managers.TurnManager.SkillBook.TryHideSkillDescriptionUI(_combi);
                     _isUIActive = false;
                 }
                 break;

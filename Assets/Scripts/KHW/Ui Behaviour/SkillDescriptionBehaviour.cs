@@ -46,6 +46,11 @@ public class SkillDescriptionBehaviour : MonoBehaviour
         
     }
 
+    public void FastHide()
+    {
+        skillDescriptionCanvas.enabled = false;
+    }
+
     public void StartHide()
     {
         StartCoroutine(Hide());

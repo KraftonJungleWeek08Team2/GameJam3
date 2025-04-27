@@ -920,8 +920,8 @@ MonoBehaviour:
 
     Deal Additional Damage.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7a3272cdc6af11c47b079ec87c484acc, type: 2}
-  m_sharedMaterial: {fileID: 8713497941104468337, guid: 7a3272cdc6af11c47b079ec87c484acc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1cca1ddf7c563474a94bd5bcc7770338, type: 2}
+  m_sharedMaterial: {fileID: -888736713196025049, guid: 1cca1ddf7c563474a94bd5bcc7770338, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1892,6 +1892,10 @@ PrefabInstance:
     - target: {fileID: 51309803885875541, guid: 1ba00f6939e13df40a2b429af5bb7988, type: 3}
       propertyPath: m_Name
       value: UI_FeverTime
+      objectReference: {fileID: 0}
+    - target: {fileID: 51309803885875541, guid: 1ba00f6939e13df40a2b429af5bb7988, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7718830414058137428, guid: 1ba00f6939e13df40a2b429af5bb7988, type: 3}
       propertyPath: m_AnchorMax.x

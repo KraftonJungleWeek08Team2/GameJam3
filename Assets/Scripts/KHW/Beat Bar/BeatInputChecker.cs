@@ -170,6 +170,7 @@ public class BeatInputChecker : MonoBehaviour
 
         if(currentOffsetFromCurrentBeat > 0.4) //지나침!
         {
+            OnAttackEvent?.Invoke(AccuracyType.Miss);
             ChangeCurrentNote();
             beatBarUISystem.ShowBreakText();
             currentCombo = 0;
