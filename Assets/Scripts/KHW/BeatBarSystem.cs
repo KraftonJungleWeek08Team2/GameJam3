@@ -101,8 +101,7 @@ public class BeatBarSystem : MonoBehaviour
 
     void GenerateNewNote(int currentBeat)
     {
-        Debug.Log("Generate New Note");
-        //beatBarUISystem.ShowBasicBeatLine();
+        beatBarUISystem.ShowBasicBeatLine();
 
         if(attackEnable)
         {
