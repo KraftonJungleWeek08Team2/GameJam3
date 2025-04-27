@@ -1,6 +1,3 @@
-
-using System;
-
 public class ThreeOddSkill : ISkill
 {
     int _damage;
