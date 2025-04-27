@@ -8,7 +8,7 @@ public class SlotMachineV2 : MonoBehaviour
 {
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private ReelController[] _reels;      // 3개의 ReelController
-    [SerializeField] private float _baseSpinSpeed = 500f; // 회전 속도
+    [SerializeField] private float _baseSpinSpeed = 750f; // 회전 속도
     [SerializeField] private ResultUIManager _resultUIManager; // 결과 UI
     [SerializeField] private Slider _timerSlider; // 타이머 슬라이더 UI
 
@@ -56,13 +56,21 @@ public class SlotMachineV2 : MonoBehaviour
         _currentReel = 0;
         _slotCanvas.enabled = true;
         _slotInfo = new SlotInfo(_reels.Length);
-
+        
+        int failCount = Managers.TurnManager.CombinationFailCount; // 조합 안나온 횟수
+        float slowRate = Mathf.Min(failCount * 0.1f, 0.5f); // 보정치
+        Debug.Log("조합 안나온 횟수 : " + failCount + "현재 보정치 : " + slowRate);
         // 모두 스핀 시작 & 콜백 구독
         for (int i = 0; i < _reels.Length; i++)
         {
             _reels[i].Init();
             _reels[i].OnReelStopped += HandleReelStopped;
-            _reels[i].StartSpin(_baseSpinSpeed + (i*150));
+            //스핀 실패한 횟수만큼 보정치(실패할수록 천천히 돌게)
+            //Managers.TurnManager.FailRollCount;
+            float baseSpeed = _baseSpinSpeed + (i * 150);
+            float adjustedSpeed = baseSpeed * (1f - slowRate);
+            Debug.Log(adjustedSpeed);
+            _reels[i].StartSpin(adjustedSpeed);
         }
         _isSpinning = true;
         Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
@@ -169,11 +177,7 @@ public class SlotMachineV2 : MonoBehaviour
         _reels[_currentReel].OnReelStopped -= HandleReelStopped;
         
         // 슬롯이 멈출때까지 대기
-        if (_coroutine == null)
-        {
-            
-            StartCoroutine(WaitReelsStop());
-        }
+        StartCoroutine(WaitReelsStop());
         // 값 저장
         _slotInfo.SetValue(_currentReel, value);
         _currentReel++;
@@ -189,7 +193,7 @@ public class SlotMachineV2 : MonoBehaviour
     private void OnAllSlotsConfirmed()
     {
         if (_coroutine == null)
-            StartCoroutine(WaitOneFrame());
+            _coroutine = StartCoroutine(WaitOneFrame());
     }
 
     public void HideResult()
@@ -205,7 +209,6 @@ public class SlotMachineV2 : MonoBehaviour
             yield return null;
         }
         SoundManager.Instance.PlaySlotLoadSound();
-        _coroutine = null;
     }
 
     IEnumerator WaitOneFrame()
@@ -218,10 +221,22 @@ public class SlotMachineV2 : MonoBehaviour
         
         yield return new WaitForSeconds(0.3f);
 
+            
+        _coroutine = null;
 
         // FIX : SlotMachineV2 내부에서 성공/실패 여부 검사 후 액션 발생
         if (IsSlotSuccess())
         {
+            //아무 조합이 없을때
+            if (CombinationChecker.Check(_slotInfo) == null)
+            {
+                Managers.TurnManager.CombinationFailCount++; // 조합 안나온 횟수 증가
+            }
+            else
+            {
+                // 조합이 나왔을때
+                Managers.TurnManager.CombinationFailCount = 0;
+            }
             _resultUIManager.ShowResult(result);
             OnSlotSuccessEvent?.Invoke(_slotInfo);
         }
@@ -229,8 +244,6 @@ public class SlotMachineV2 : MonoBehaviour
         {
             OnSlotFailEvent?.Invoke();
         }
-            
-        _coroutine = null;
     }    
 
     private bool IsSlotSuccess()

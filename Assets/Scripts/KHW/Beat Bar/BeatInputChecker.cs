@@ -2,6 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum AccuracyType
+{
+    Perfect,
+    Good,
+    Miss
+}
+
+
 public class BeatInputChecker : MonoBehaviour
 {
     BeatBarSystem beatBarSystem; //비트바 시스템
@@ -72,7 +81,7 @@ public class BeatInputChecker : MonoBehaviour
 
     private float CheckAccuracyWithCurrentBeat()
     {
-        Debug.Log("현재 비트 : " + beatBarSystem.CurrentMusicBeat + " " + beatBarSystem.currentNote.OffsetBeat);
+        //Debug.Log("현재 비트 : " + beatBarSystem.CurrentMusicBeat + " " + beatBarSystem.currentNote.OffsetBeat);
         
         float accuracy = 1 - Mathf.Abs(MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat + beatBarSystem.currentNote.Beat)) / 0.4f + 0.05f;
 
@@ -86,8 +95,8 @@ public class BeatInputChecker : MonoBehaviour
     {
         float accuracy = CheckAccuracyWithCurrentBeat();
 
-        Debug.Log($"KHW : 현재 노트의 비트 : {beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat}");
-        Debug.Log($"KHW : 현재 노래의 비트 : {MusicManager.Instance.currentBeat}");
+        //Debug.Log($"KHW : 현재 노트의 비트 : {beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat}");
+        //Debug.Log($"KHW : 현재 노래의 비트 : {MusicManager.Instance.currentBeat}");
 
         if(accuracy > 0.9) //Perfect Attack.
         {

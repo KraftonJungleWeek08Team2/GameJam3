@@ -7,6 +7,7 @@ public class TurnManager
 
     public Enemy CurrentEnemy;
     public int CurrentEnemyIndex = 0; // 적 숫자
+    public int CombinationFailCount = 0; // 룰렛에서 조합 안나온 횟수
     public Player Player;
 
     public SlotMachineV2 SlotMachine => _slotMachine;
@@ -45,6 +46,7 @@ public class TurnManager
         _skillManager = GameObject.FindAnyObjectByType<SkillManager>();
         _skillBook = new SkillBook();
         CurrentEnemyIndex = 0;
+        CombinationFailCount = 0;
 
         _currentState = new MoveState();
     }

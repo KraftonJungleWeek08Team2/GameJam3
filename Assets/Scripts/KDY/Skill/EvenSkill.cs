@@ -6,7 +6,7 @@ public class EvenSkill : ISkill
     private int damageValue;
     //스킬 이펙트 파티클
     private GameObject skillEffect;
-    private string description = "Deal Additional Damage.";
+    private string description = "작은 추가 대미지를 줍니다.";
     public EvenSkill(int value)
     {
         damageValue = value;
