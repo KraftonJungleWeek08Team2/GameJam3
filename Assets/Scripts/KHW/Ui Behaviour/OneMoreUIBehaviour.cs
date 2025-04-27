@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -47,4 +48,5 @@ public class OneMoreUIBehaviour : MonoBehaviour
             oneMoreUICanvas.enabled = false; // 캔버스 비활성화
         }
     }
+
 }

@@ -43,8 +43,8 @@ public class CheckingState : ITurnState
             if (_isSuccess)
             {
                 // 풀 콤보라면, 다시 슬롯머신 상태로
-                // 원 모어 UI를 띄움
-                Managers.TurnManager.BeatBarPanelBehaviour.OneMoreUIBehaviour.Show();
+                // 원 모어 UI를 띄우고, 슬롯머신 시간도 1초 줄임
+                Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowOneMoreUI();
                 Managers.TurnManager.ChangeState(new SlotState());
             }
             else

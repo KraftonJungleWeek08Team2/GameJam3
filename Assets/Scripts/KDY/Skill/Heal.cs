@@ -20,6 +20,6 @@ public class Heal : ISkill
 
     void ShowSkillDescriptionUI()
     {
-        Managers.TurnManager.BeatBarPanelBehaviour.ShowSkillDescriptionUI(description);
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
     }
 }

@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 1448699406327881864}
   - component: {fileID: 6618113528562914154}
   - component: {fileID: 7199063975758082078}
-  - component: {fileID: 4001227430526638847}
+  - component: {fileID: 7087892041076253063}
+  - component: {fileID: 3692665360198404113}
+  - component: {fileID: 1536594591912802455}
+  - component: {fileID: 1880563521555582301}
   m_Layer: 5
   m_Name: Panel_Beat Bar
   m_TagString: Untagged
@@ -79,7 +82,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4001227430526638847
+--- !u!114 &7087892041076253063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,26 +91,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 3092201709330891515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9466c361738f8e44fa99bca13e886d33, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c7b3b40af83dc34ca1c2d3c04c785e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseBeat: 0
-  endBeat: 0
-  currentMusicBeat: 0
-  musicManager: {fileID: 0}
-  attackNoteObject: {fileID: 0}
-  restNoteObject: {fileID: 0}
-  accuracyPos: {fileID: 0}
-  perfectText: {fileID: 0}
-  goodText: {fileID: 0}
-  breakText: {fileID: 0}
-  attackBeatCounts: 
-  currentBeatInputted: 0
-  beatBarCanvas: {fileID: 0}
-  noteMargin: 3
-  isFullCombo: 1
-  currentComboCount: 0
+  noteMargin: 2
+  beatBarMargin: 2
+  attackEnable: 0
+--- !u!114 &3692665360198404113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3092201709330891515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68a67cc68ca480488629164789448ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   comboCountBehaviour: {fileID: 1214536789885837174}
+  oneMoreUIBehaviour: {fileID: 0}
+  skillDescriptionBehaviour: {fileID: 0}
+--- !u!114 &1536594591912802455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3092201709330891515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238ab87ef0ed8fc4686eeea8e488a6a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1880563521555582301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3092201709330891515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b05ba20871428e3418a1f60dc65101f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3530906978853559342
 GameObject:
   m_ObjectHideFlags: 0

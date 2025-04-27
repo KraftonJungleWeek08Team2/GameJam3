@@ -21,7 +21,7 @@ public class FeverTimeState : ITurnState
             return;
         }
         // UI 켜주기 
-        Managers.TurnManager.BeatBarPanelBehaviour.ShowSkillDescriptionUI(description);
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
         // InputManager 액션 구독 (ATTACK)
         Managers.InputManager.RhythmAttackEnable(true);
         Managers.TurnManager.FeverTimeController.ShowFeverTime();

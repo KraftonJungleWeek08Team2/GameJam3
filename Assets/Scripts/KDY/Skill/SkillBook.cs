@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillBook
 {
     private readonly Dictionary<CombinationType, ISkill> _skills = new Dictionary<CombinationType, ISkill>();
-
+    
     public SkillBook()
     {
         // 스킬 등록
@@ -21,8 +20,10 @@ public class SkillBook
     {
         if (type.HasValue && _skills.TryGetValue(type.Value, out var skill))
         {
-            Debug.Log($"[KGJ] : {type.Value.ToString()}");
+            Debug.Log("[KGJ] "+type.Value.ToString());
             skill.Execute();
         }
+
+        
     }
 }
