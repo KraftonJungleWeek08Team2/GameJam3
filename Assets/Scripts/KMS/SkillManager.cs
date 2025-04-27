@@ -12,6 +12,8 @@ public class SkillManager : MonoBehaviour
     Coin_Ani_UI_Heal _healAni;
     Coin_Ani_UI_Attack _attackAni;
 
+
+
     private void Start()
     {
         _sevenAni = FindAnyObjectByType<Coin_Ani_UI_777>();
