@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class Heal : ISkill
 {
@@ -25,6 +26,7 @@ public class Heal : ISkill
 
     public void HideSkillDescriptionUI()
     {
+        Debug.Log("HideSkillDescriptionUI");
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
     }
 }

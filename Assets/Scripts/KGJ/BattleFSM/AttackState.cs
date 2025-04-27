@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class AttackState : ITurnState 
 {
     SlotInfo _slotInfo;
@@ -64,6 +66,7 @@ public class AttackState : ITurnState
             case AccuracyType.Miss:
                 if (_isUIActive)
                 {
+                    Debug.Log("[KGJ] TryHideSkillDescriptionUI");
                     Managers.TurnManager.SkillBook.TryHideSkillDescriptionUI(_combi);
                     _isUIActive = false;
                 }

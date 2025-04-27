@@ -23,6 +23,7 @@ public class CheckingState : ITurnState
 
     public void EnterState()
     {
+        Managers.TurnManager.SkillBook.TryHideSkillDescriptionUI(_combi);
         if (_combi == null)
         {
             // 스킬 조합이 없다면 딜레이 업승ㅁ
@@ -81,6 +82,7 @@ public class CheckingState : ITurnState
         {
             Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowOneMoreUI();
         }
+        
         Managers.TurnManager.ChangeState(_nextState);
     }
 
