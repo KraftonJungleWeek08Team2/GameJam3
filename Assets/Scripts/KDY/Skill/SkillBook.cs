@@ -14,6 +14,7 @@ public class SkillBook
         _skills[CombinationType.AllOdd] = new OddSkill(6);
         _skills[CombinationType.AllEven] = new EvenSkill(6);
         _skills[CombinationType.Jackpot] = new JackpotSkill();
+        _skills[CombinationType.Sequential] = new StraightSkill();
     }
 
     public void TryShowSkillDescriptionUI(CombinationType? type)

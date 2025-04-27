@@ -20,7 +20,7 @@ public class FeverTimeState : ITurnState
         if (_combi == CombinationType.Sequential)
         { 
             // UI 켜주기 
-            Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
+            // Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
             // InputManager 액션 구독 (ATTACK)
             Managers.InputManager.RhythmAttackEnable(true);
             Managers.TurnManager.FeverTimeController.ShowFeverTime();
