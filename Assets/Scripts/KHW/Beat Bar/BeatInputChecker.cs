@@ -2,6 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum AccuracyType
+{
+    Perfect,
+    Good,
+    Miss
+}
+
+
 public class BeatInputChecker : MonoBehaviour
 {
     BeatBarSystem beatBarSystem; //비트바 시스템

@@ -894,7 +894,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 52.00003, y: 15.000076}
-  m_SizeDelta: {x: 800, y: 200}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1340746949
 MonoBehaviour:
@@ -916,12 +916,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[1,2,3]
-
-    Deal Additional Damage.'
+  m_text: "[1,2,3]\n6\uC758 \uCD94\uAC00 \uB300\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7a3272cdc6af11c47b079ec87c484acc, type: 2}
-  m_sharedMaterial: {fileID: 8713497941104468337, guid: 7a3272cdc6af11c47b079ec87c484acc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1cca1ddf7c563474a94bd5bcc7770338, type: 2}
+  m_sharedMaterial: {fileID: -888736713196025049, guid: 1cca1ddf7c563474a94bd5bcc7770338, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -945,8 +943,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1060,7 +1058,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1085,7 +1083,7 @@ Transform:
   m_GameObject: {fileID: 1438976813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -0.86899996, z: -10}
+  m_LocalPosition: {x: -1, y: 0.63100004, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
