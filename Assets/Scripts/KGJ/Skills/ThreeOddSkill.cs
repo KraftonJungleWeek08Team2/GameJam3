@@ -4,7 +4,7 @@ using System;
 public class ThreeOddSkill : ISkill
 {
     int _damage;
-    string description = "Deal Huge Amount Of Additional Damage";
+    string description = "큰 추가 대미지를 줍니다.";
     public ThreeOddSkill(int value)
     {
         _damage = value;

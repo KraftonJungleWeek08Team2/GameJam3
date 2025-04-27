@@ -3,10 +3,11 @@ using System;
 public class Heal : ISkill
 {
     private int healValue;
-    private string description = "Restore HP.";
+    private string description;
     public Heal(int value)
     {
         healValue = value;
+        description = "체력을 약간 회복합니다.";
     }
     public void Execute()
     {
