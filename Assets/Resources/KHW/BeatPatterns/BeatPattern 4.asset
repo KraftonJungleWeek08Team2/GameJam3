@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteList:
   - beat: 0
-    offsetBeat: 0.5
+    offsetBeat: 0
     isLast: 0
   - beat: 1
     offsetBeat: 0
     isLast: 0
   - beat: 1
-    offsetBeat: 0.5
+    offsetBeat: 0.33
     isLast: 0
-  - beat: 2
-    offsetBeat: 0.5
+  - beat: 1
+    offsetBeat: 0.66
     isLast: 0
-  endBeatOffset: 4
+  endBeatOffset: 3

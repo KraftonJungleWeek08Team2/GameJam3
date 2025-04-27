@@ -101,7 +101,7 @@ public class BeatBarSystem : MonoBehaviour
 
     void GenerateNewNote(int currentBeat)
     {
-        beatBarUISystem.ShowBasicBeatLine();
+
 
         if(attackEnable)
         {
@@ -114,19 +114,22 @@ public class BeatBarSystem : MonoBehaviour
             
             List<Note> notes = currentNotes.Where(n => n.Beat == targetBeat).ToList();
 
-            Debug.Log($"GenerateNewNote: currentBeat={currentBeat}, targetBeat={targetBeat}, notes.Count={notes.Count}");
+            
             if (notes.Count > 0)
             {
                 foreach (var note in notes)
                 {
                     float timeDelay = note.OffsetBeat * noteInterval;
-                    beatBarUISystem.GenerateNoteUI(timeDelay);
+                    beatBarUISystem.GenerateNoteUI(timeDelay + 0.03f);
+                    Debug.Log($"KHW : {timeDelay} 초 지연 후 노트 생성");
                 }
             }
             else
             {
                 Debug.Log($"No notes for targetBeat={targetBeat}");
             }
+
+            beatBarUISystem.ShowBasicBeatLine();
         }
 
     }
@@ -137,7 +140,7 @@ public class BeatBarSystem : MonoBehaviour
         if(currentIndexOfNote < currentNotes.Count) //안끝남.
         {
             currentNote = currentNotes[currentIndexOfNote]; //다음 노트로 현재 노트를 변경.
-            Debug.Log($" 현재 노트의 기본비트 : {currentNote.Beat}, 현재 노트의 오프셋 비트 : {currentNote.OffsetBeat}");
+            Debug.Log($" 새 노트의 기본비트 : {currentNote.Beat}, 현재 노트의 오프셋 비트 : {currentNote.OffsetBeat}");
         }
         else if(currentIndexOfNote >= currentNotes.Count) //끝
         {
