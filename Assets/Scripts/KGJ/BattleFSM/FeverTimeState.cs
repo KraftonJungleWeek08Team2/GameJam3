@@ -8,7 +8,6 @@ public class FeverTimeState : ITurnState
     string description = "Fever Time.";
     
 
-    // TODO
     // OnEndRhythmEvent가 Invoke되었을 때, IntervalTimer를 시작하고, IntervalTimer가 끝났을때, CheckState 실행해서 다음으로 넘겨준다.
     public FeverTimeState(bool isSuccess, CombinationType? combi)
     {

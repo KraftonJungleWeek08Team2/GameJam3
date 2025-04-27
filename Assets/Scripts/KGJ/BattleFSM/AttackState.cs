@@ -66,9 +66,7 @@ public class AttackState : ITurnState
             case AccuracyType.Miss:
                 if (_isUIActive)
                 {
-                    Debug.Log("[KGJ] TryHideSkillDescriptionUI");
                     Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().skillDescriptionBehaviour.FastHide();
-                    //Managers.TurnManager.SkillBook.TryHideSkillDescriptionUI(_combi);
                     _isUIActive = false;
                 }
                 break;
