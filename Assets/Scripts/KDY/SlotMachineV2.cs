@@ -62,7 +62,7 @@ public class SlotMachineV2 : MonoBehaviour
         {
             _reels[i].Init();
             _reels[i].OnReelStopped += HandleReelStopped;
-            _reels[i].StartSpin(_baseSpinSpeed + (i*i*200));
+            _reels[i].StartSpin(_baseSpinSpeed + (i*150));
         }
         _isSpinning = true;
         Managers.InputManager.OnSlotEvent += ConfirmCurrentSlot;
