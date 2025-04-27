@@ -6,7 +6,6 @@ public class TurnManager
     private ITurnState _currentState;
 
     public Enemy CurrentEnemy;
-    public int CurrentEnemyIndex = 0; // 적 숫자
     public int CombinationFailCount = 0; // 룰렛에서 조합 안나온 횟수
     public Player Player;
 
@@ -19,8 +18,8 @@ public class TurnManager
     public ParallaxBackground ParallaxBackground => _parallaxBackground;
     ParallaxBackground _parallaxBackground;
 
-    public EnemySpawner EnemySpawner => _enemySpawner;
-    EnemySpawner _enemySpawner;
+    public StageManager StageManager => _stageManager;
+    StageManager _stageManager;
 
     public UI_EnemyHp EnemyHpUI => _enemyHpUI;
     UI_EnemyHp _enemyHpUI;
@@ -40,12 +39,12 @@ public class TurnManager
         _slotMachine = GameObject.FindAnyObjectByType<SlotMachineV2>();
         _beatBarSystem = GameObject.FindAnyObjectByType<BeatBarSystem>();
         _parallaxBackground = GameObject.FindAnyObjectByType<ParallaxBackground>();
-        _enemySpawner = GameObject.FindAnyObjectByType<EnemySpawner>();
+        _stageManager = GameObject.FindAnyObjectByType<StageManager>();
         _enemyHpUI = GameObject.FindAnyObjectByType<UI_EnemyHp>();
         _feverTimeController = GameObject.FindAnyObjectByType<FeverTimeController>();
         _skillManager = GameObject.FindAnyObjectByType<SkillManager>();
         _skillBook = new SkillBook();
-        CurrentEnemyIndex = 0;
+        _stageManager.SpawnNext();
         CombinationFailCount = 0;
 
         _currentState = new MoveState();
