@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public int maxHp { get; private set; }
     public int hp { get; private set; }
     public int damage { get; private set; }
+    public EnemyType enemyType { get; private set; }
     private Animator _animator;
     private float _moveSpeed;
     
@@ -13,12 +14,13 @@ public class Enemy : MonoBehaviour, IDamageable
     UI_EnemyHp _enemyHpUI;
 
     // 스포너에서 값 넘겨줌
-    public void Init(int enemyMaxHp, int enemyDamage, float enemyMoveSpeed)
+    public void Init(int enemyMaxHp, int enemyDamage, float enemyMoveSpeed, EnemyType type)
     {
         hp = enemyMaxHp;
         maxHp = hp;
         damage = enemyDamage;
         _moveSpeed = enemyMoveSpeed;
+        enemyType = type;
         isMoving   = true;
     }
 
