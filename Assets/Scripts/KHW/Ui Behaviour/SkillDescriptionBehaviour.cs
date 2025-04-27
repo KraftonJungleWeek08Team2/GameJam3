@@ -10,10 +10,21 @@ public class SkillDescriptionBehaviour : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI skillDescriptionText;
 
+    [Header("Animiation Properties")]
+    [SerializeField] private Animator animator;
+    int beatAnimId;
+    int failAnimId;
+    int successAnimId;
+    int resetAnimId;
+
     void Awake()
     {
         skillDescriptionCanvas = GetComponent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
+        animator = GetComponent<Animator>();
+
+        InitializeAnimationID();
+
         skillDescriptionText = transform.Find("Skill Description").GetComponent<TextMeshProUGUI>();
         if (skillDescriptionCanvas == null || canvasGroup == null)
         {
@@ -25,51 +36,52 @@ public class SkillDescriptionBehaviour : MonoBehaviour
         skillDescriptionCanvas.enabled = false; // 초기 상태: 비활성화
     }
 
+    void Start()
+    {
+        MusicManager.Instance.OnBeatAction -= BeatUI;
+        MusicManager.Instance.OnBeatAction += BeatUI;
+    }
+
+    private void InitializeAnimationID()
+    {
+        beatAnimId = Animator.StringToHash("Beat");
+        failAnimId = Animator.StringToHash("Fail");
+        successAnimId = Animator.StringToHash("Success");
+        resetAnimId = Animator.StringToHash("Reset");
+    }
+
     public void Show(SlotInfo slotInfo, string description)
     {
         if (skillDescriptionCanvas == null || canvasGroup == null) return;
         //내용바꾸기
         skillDescriptionText.text = "[" + slotInfo.GetValue(0) + "," + slotInfo.GetValue(1) + "," + slotInfo.GetValue(2) +"]\n" + description;
 
-
-
-
-
+        canvasGroup.alpha = 1;
         skillDescriptionCanvas.enabled = true;
-        canvasGroup.alpha = 1f; // 완전히 불투명
-        StopAllCoroutines(); // 이전 코루틴 중지
-
-
-
-
-
-        
+        animator.SetTrigger(resetAnimId);
     }
 
+    /// <summary> 실패시 실행. </summary>
     public void FastHide()
     {
-        skillDescriptionCanvas.enabled = false;
+        animator.SetTrigger(failAnimId);
     }
 
+    /// <summary> 성공시 실행. </summary>
     public void StartHide()
     {
-        StartCoroutine(Hide());
+        animator.SetTrigger(successAnimId);
     }
 
-    private IEnumerator Hide()
+    /// <summary> 음악 비트시 실행 </summary>
+    /// <param name="currentBeat"></param>
+    private void BeatUI(int currentBeat)
     {
-        float elapsed = 0f;
-        while (elapsed < transparentTime)
-        {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsed / transparentTime); // 페이드 아웃
-            yield return null;
-        }
-        canvasGroup.alpha = 0f; // 최종적으로 완전히 투명
-        if (skillDescriptionCanvas != null)
-        {
-            skillDescriptionCanvas.enabled = false; // 캔버스 비활성화
-        }
+        animator.SetTrigger(beatAnimId);
     }
 
+    private void OnDestroy()
+    {
+        MusicManager.Instance.OnBeatAction -= BeatUI;
+    }
 }
