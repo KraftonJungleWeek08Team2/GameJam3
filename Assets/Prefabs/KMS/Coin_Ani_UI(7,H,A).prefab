@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fevertime: {fileID: 4155791313982198283}
-  _feverTime: 2
+  _feverTime: 4
 --- !u!1001 &2734481366602525022
 PrefabInstance:
   m_ObjectHideFlags: 0

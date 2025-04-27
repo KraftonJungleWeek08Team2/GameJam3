@@ -8,7 +8,7 @@ public class FeverTimeController : MonoBehaviour
     public Action OnFeverEndEvent;
 
     [SerializeField] GameObject _fevertime;
-    [SerializeField] float _feverTime = 2f;
+    [SerializeField] float _feverTime = 4f;
     float _feverTimer = 0f;
     Slider _timerSlider;
     
