@@ -42,6 +42,11 @@ public class SkillDescriptionBehaviour : MonoBehaviour
 
 
 
+        
+    }
+
+    public void StartHide()
+    {
         StartCoroutine(Hide());
     }
 

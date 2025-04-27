@@ -23,12 +23,16 @@ public class EvenSkill : ISkill
         Managers.CameraManager.ShakeCamera();
         Managers.TurnManager.Player.Attack();
 
-        ShowSkillDescriptionUI();
+        //ShowSkillDescriptionUI();
     }
 
-    void ShowSkillDescriptionUI()
+    public void ShowSkillDescriptionUI()
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
     }
-    
+
+    public void HideSkillDescriptionUI()
+    {
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
+    }
 }

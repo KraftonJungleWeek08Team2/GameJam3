@@ -15,11 +15,16 @@ public class Heal : ISkill
         //TODO : 힐 사운드
         Managers.TurnManager.Player.TakeHeal(healValue);
 
-        ShowSkillDescriptionUI();
+        //ShowSkillDescriptionUI();
     }
 
-    void ShowSkillDescriptionUI()
+    public void ShowSkillDescriptionUI()
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
+    }
+
+    public void HideSkillDescriptionUI()
+    {
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
     }
 }
