@@ -1,5 +1,6 @@
-using UnityEngine;
-
+/// <summary>
+/// SkillState에서 하는 일 : 스킬켜고 적에게 데미지 주고 바로 FeverTime으로 넘겨주기 
+/// </summary>
 public class SkillState : ITurnState
 {
     SlotInfo _slotInfo;
@@ -11,10 +12,6 @@ public class SkillState : ITurnState
         _isSuccess = isSuccess;
     }
 
-    // TODO
-    // SkillState에서 할 일 : 스킬켜고 적에게 데미지 주고 바로 FeverTime으로 넘겨주기 
-
-
     public void EnterState()
     {
         if (_isSuccess)
@@ -23,7 +20,7 @@ public class SkillState : ITurnState
         }
         else
         {
-            Managers.TurnManager.ChangeState(new FeverTimeState(false, false));
+            Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess, null));
         }
     }
 
@@ -31,22 +28,11 @@ public class SkillState : ITurnState
     {
         CombinationType? combi = CombinationChecker.Check(_slotInfo);
 
-        if (combi == null)
+        if (combi != CombinationType.Sequential)
         {
-            Debug.Log("[KGJ] Skill is null");
-            Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess, false));
-        }
-        else if (combi == CombinationType.Sequential)
-        {
-            Debug.Log("[KGJ] Skill is sequential");
-            Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess, true));
-        }
-        else
-        {
-            Debug.Log($"[KGJ] SkillState : {combi.Value.ToString()}");
             Managers.TurnManager.SkillBook.TryActivateSkill(combi);
-            Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess, false));
         }
+        Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess, combi));
     }
 
     public void ExitState()
