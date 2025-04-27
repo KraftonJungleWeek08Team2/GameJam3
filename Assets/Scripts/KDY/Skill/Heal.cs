@@ -1,12 +1,14 @@
 using System;
+using UnityEngine;
 
 public class Heal : ISkill
 {
     private int healValue;
-    private string description = "Restore HP.";
+    private string description;
     public Heal(int value)
     {
         healValue = value;
+        description = "체력을 약간 회복합니다.";
     }
     public void Execute()
     {
@@ -15,11 +17,17 @@ public class Heal : ISkill
         //TODO : 힐 사운드
         Managers.TurnManager.Player.TakeHeal(healValue);
 
-        ShowSkillDescriptionUI();
+        //ShowSkillDescriptionUI();
     }
 
-    void ShowSkillDescriptionUI()
+    public void ShowSkillDescriptionUI()
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
+    }
+
+    public void HideSkillDescriptionUI()
+    {
+        Debug.Log("HideSkillDescriptionUI");
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
     }
 }

@@ -1,12 +1,15 @@
-using System;
 using UnityEngine;
 
 public class AttackState : ITurnState 
 {
     SlotInfo _slotInfo;
+    CombinationType? _combi;
+    bool _isUIActive;
+
     public AttackState(SlotInfo slotInfo)
     {
         _slotInfo = slotInfo;
+        _combi = CombinationChecker.Check(slotInfo);
     }
 
     public void EnterState()
@@ -15,6 +18,9 @@ public class AttackState : ITurnState
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatInputChecker>().OnEndRhythmEvent += ChangeSkillState;
         Managers.InputManager.RhythmAttackEnable(true); // InputManager의 액션 맵을 RhythmAttack으로 변경
         Managers.TurnManager.BeatBarSystem.ActivateBeatBar(_slotInfo); // BeatBar 동작 시작
+        // _combi 스킬에 맞는 ui 띄워주기, ui없으면 안띄워주기
+        Managers.TurnManager.SkillBook.TryShowSkillDescriptionUI(_combi);
+        _isUIActive = true;
     }
 
     public void UpdateState()
@@ -38,7 +44,7 @@ public class AttackState : ITurnState
     
     void ChangeSkillState(bool isSuccess)
     {
-        Managers.TurnManager.ChangeState(new SkillState(_slotInfo, isSuccess));
+        Managers.TurnManager.ChangeState(new SkillState(_combi, isSuccess));
     }
 
     void Attack(AccuracyType accuracy)
@@ -58,6 +64,11 @@ public class AttackState : ITurnState
                 Managers.TurnManager.Player.Attack();
                 break;
             case AccuracyType.Miss:
+                if (_isUIActive)
+                {
+                    Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().skillDescriptionBehaviour.FastHide();
+                    _isUIActive = false;
+                }
                 break;
         }
     }

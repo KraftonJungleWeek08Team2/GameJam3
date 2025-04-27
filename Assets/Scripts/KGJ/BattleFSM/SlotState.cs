@@ -41,7 +41,6 @@ public class SlotState : ITurnState
 
     void ChangeStateToAttack(SlotInfo slotInfo)
     {
-        // TODO : 이곳에서 slotInfo에 따라 다른 ui 표출할 수 있음
         Managers.TurnManager.ChangeState(new AttackState(slotInfo));
     }
 

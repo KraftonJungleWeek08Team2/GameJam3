@@ -1,10 +1,7 @@
-
-using System;
-
 public class ThreeOddSkill : ISkill
 {
     int _damage;
-    string description = "Deal Huge Amount Of Additional Damage";
+    string description = "큰 추가 대미지를 줍니다.";
     public ThreeOddSkill(int value)
     {
         _damage = value;
@@ -17,11 +14,16 @@ public class ThreeOddSkill : ISkill
         Managers.CameraManager.ShakeCamera();
         Managers.TurnManager.Player.Attack();
 
-        ShowSkillDescriptionUI();
+        //ShowSkillDescriptionUI();
     }
 
-    void ShowSkillDescriptionUI()
+    public void ShowSkillDescriptionUI()
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
+    }
+
+    public void HideSkillDescriptionUI()
+    {
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
     }
 }

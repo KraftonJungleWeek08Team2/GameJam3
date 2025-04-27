@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -8,6 +7,7 @@ public class SkillDescriptionBehaviour : MonoBehaviour
     [SerializeField] private Canvas skillDescriptionCanvas;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private float transparentTime = 2f;
+
     [SerializeField] private TextMeshProUGUI skillDescriptionText;
 
     void Awake()
@@ -43,6 +43,16 @@ public class SkillDescriptionBehaviour : MonoBehaviour
 
 
 
+        
+    }
+
+    public void FastHide()
+    {
+        skillDescriptionCanvas.enabled = false;
+    }
+
+    public void StartHide()
+    {
         StartCoroutine(Hide());
     }
 

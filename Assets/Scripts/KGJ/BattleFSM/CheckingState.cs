@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -36,6 +37,7 @@ public class CheckingState : ITurnState
             CheckState();
             _isTimerRunning = true;
         }
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
     }
 
     public void ExitState()
@@ -81,6 +83,7 @@ public class CheckingState : ITurnState
         {
             Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowOneMoreUI();
         }
+        
         Managers.TurnManager.ChangeState(_nextState);
     }
 

@@ -3,12 +3,12 @@
 /// </summary>
 public class SkillState : ITurnState
 {
-    SlotInfo _slotInfo;
     bool _isSuccess;
+    CombinationType? _combi;
 
-    public SkillState(SlotInfo slotInfo, bool isSuccess)
+    public SkillState(CombinationType? combi, bool isSuccess)
     {
-        _slotInfo = slotInfo;
+        _combi = combi;
         _isSuccess = isSuccess;
     }
 
@@ -26,13 +26,11 @@ public class SkillState : ITurnState
 
     void HandleSuccessfulSkill()
     {
-        CombinationType? combi = CombinationChecker.Check(_slotInfo);
-
-        if (combi != CombinationType.Sequential)
+        if (_combi != CombinationType.Sequential)
         {
-            Managers.TurnManager.SkillBook.TryActivateSkill(combi);
+            Managers.TurnManager.SkillBook.TryActivateSkill(_combi);
         }
-        Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess, combi));
+        Managers.TurnManager.ChangeState(new FeverTimeState(_isSuccess, _combi));
     }
 
     public void ExitState()

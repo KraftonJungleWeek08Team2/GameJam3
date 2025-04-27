@@ -8,7 +8,6 @@ public class FeverTimeState : ITurnState
     string description = "Fever Time.";
     
 
-    // TODO
     // OnEndRhythmEvent가 Invoke되었을 때, IntervalTimer를 시작하고, IntervalTimer가 끝났을때, CheckState 실행해서 다음으로 넘겨준다.
     public FeverTimeState(bool isSuccess, CombinationType? combi)
     {
@@ -21,7 +20,7 @@ public class FeverTimeState : ITurnState
         if (_combi == CombinationType.Sequential)
         { 
             // UI 켜주기 
-            Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
+            // Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
             // InputManager 액션 구독 (ATTACK)
             Managers.InputManager.RhythmAttackEnable(true);
             Managers.TurnManager.FeverTimeController.ShowFeverTime();

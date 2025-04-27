@@ -7,7 +7,7 @@ public class OddSkill : ISkill
     private int damageValue;
     //스킬 이펙트 파티클
     private GameObject skillEffect;
-    private string description = "Deal Additional Damage.";
+    private string description = "작은 추가 대미지를 줍니다.";
     public OddSkill(int value)
     {
         damageValue = value;
@@ -24,11 +24,16 @@ public class OddSkill : ISkill
         Managers.CameraManager.ShakeCamera();
         Managers.TurnManager.Player.Attack();
 
-        ShowSkillDescriptionUI();
+        //ShowSkillDescriptionUI();
     }
 
-    void ShowSkillDescriptionUI()
+    public void ShowSkillDescriptionUI()
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
+    }
+
+    public void HideSkillDescriptionUI()
+    {
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
     }
 }

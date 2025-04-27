@@ -25,7 +25,7 @@ public class MusicManager : MonoBehaviour
     [Header("Playing Information")]
     private double startTime; //현재 루프 기준 노래의 시작 시간....
     public int currentBeat { get; private set; }
-    private float currentPosition;
+    public float currentPosition;
     private float lastBeatTrigger = -1f;
     private int loopCount = 0;
     private int loopBeatCount;

@@ -14,16 +14,30 @@ public class SkillBook
         _skills[CombinationType.AllOdd] = new OddSkill(6);
         _skills[CombinationType.AllEven] = new EvenSkill(6);
         _skills[CombinationType.Jackpot] = new JackpotSkill();
+        _skills[CombinationType.Sequential] = new StraightSkill();
     }
-    
+
+    public void TryShowSkillDescriptionUI(CombinationType? type)
+    {
+        if (type.HasValue && _skills.TryGetValue(type.Value, out var skill))
+        {
+            skill.ShowSkillDescriptionUI();
+        }
+    }
+
+    public void TryHideSkillDescriptionUI(CombinationType? type)
+    {
+        if (type.HasValue && _skills.TryGetValue(type.Value, out var skill))
+        {
+            skill.HideSkillDescriptionUI();
+        }
+    }
+
     public void TryActivateSkill(CombinationType? type)
     {
         if (type.HasValue && _skills.TryGetValue(type.Value, out var skill))
         {
-            Debug.Log("[KGJ] "+type.Value.ToString());
             skill.Execute();
         }
-
-        
     }
 }

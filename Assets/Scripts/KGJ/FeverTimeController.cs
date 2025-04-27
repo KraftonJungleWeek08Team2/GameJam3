@@ -7,36 +7,35 @@ public class FeverTimeController : MonoBehaviour
     public Action OnFeverAttackEvent;
     public Action OnFeverEndEvent;
 
-    Canvas _feverTimeUI;
-    [SerializeField] float _feverTime = 2f;
+    [SerializeField] GameObject _fevertime;
+    [SerializeField] float _feverTime = 4f;
     float _feverTimer = 0f;
     Slider _timerSlider;
     
     void Start()
     {
-        _feverTimeUI = GetComponent<Canvas>();
         _timerSlider = GetComponentInChildren<Slider>();
-        _feverTimeUI.enabled = true;
+        _fevertime.SetActive(false);
     }
 
     public void ShowFeverTime()
     {
         _feverTimer = 0f;
         _timerSlider.value = 1f;
-        _feverTimeUI.enabled = true;
+        _fevertime.SetActive(true);
         Managers.InputManager.OnRhythmAttackEvent += FeverAttack;
     }
 
     public void HideFeverTime()
     {
-        _feverTimeUI.enabled = false;
+        _fevertime.SetActive(false);
         Managers.InputManager.OnRhythmAttackEvent -= FeverAttack;
     }
 
     public void UpdateFeverTimer()
     {
         _feverTimer += Time.deltaTime;
-        _timerSlider.value = _feverTime / _feverTimer;
+        _timerSlider.value = 1 - (_feverTimer / _feverTime);
         if (_feverTimer >= _feverTime)
         {
             OnFeverEndEvent?.Invoke();
