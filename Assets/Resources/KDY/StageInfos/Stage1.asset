@@ -29,7 +29,7 @@ MonoBehaviour:
     maxHp: 64
     damage: 1
     moveSpeed: 4
-  - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+  - prefab: {fileID: 1068943834837579497, guid: 4b83478b8d0252e48afdfe31157b6760, type: 3}
     enemyType: 1
     maxHp: 105
     damage: 2
@@ -49,7 +49,7 @@ MonoBehaviour:
     maxHp: 64
     damage: 1
     moveSpeed: 5
-  - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+  - prefab: {fileID: 1068943834837579497, guid: 4b83478b8d0252e48afdfe31157b6760, type: 3}
     enemyType: 1
     maxHp: 117
     damage: 2
@@ -69,12 +69,12 @@ MonoBehaviour:
     maxHp: 64
     damage: 1
     moveSpeed: 6
-  - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+  - prefab: {fileID: 1068943834837579497, guid: 4b83478b8d0252e48afdfe31157b6760, type: 3}
     enemyType: 1
     maxHp: 129
     damage: 2
     moveSpeed: 3
-  - prefab: {fileID: 1068943834837579497, guid: 28a6cf02c65753a42a0207c9d116a845, type: 3}
+  - prefab: {fileID: 1068943834837579497, guid: 4685dbf16a29cdb4cbabf40248ea32de, type: 3}
     enemyType: 2
     maxHp: 310
     damage: 3
