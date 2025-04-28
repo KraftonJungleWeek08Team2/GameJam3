@@ -128,7 +128,7 @@ public class BeatInputChecker : MonoBehaviour
             DisableCurrentNote(currentNoteIndex, AccuracyType.Good);
             ChangeCurrentNote();
         }
-        else if(accuracy <= 0.5 && accuracy > 0.05) //bad.
+        else if(accuracy <= 0.5 && accuracy > 0.00) //bad.
         {
             OnAttackEvent?.Invoke(AccuracyType.Miss);
             isFullCombo = false;
