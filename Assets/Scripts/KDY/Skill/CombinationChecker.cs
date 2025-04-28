@@ -20,8 +20,8 @@ public static class CombinationChecker
         }
             
 
-        // 연속 오름차순
-        if (b == a + 1 && c == b + 1)
+        // 연속 오름차순, 내림차순
+        if ((b == a + 1 && c == b + 1) || (b == a - 1 && c == b - 1))
             return CombinationType.Sequential;
 
         // 모두 홀수
