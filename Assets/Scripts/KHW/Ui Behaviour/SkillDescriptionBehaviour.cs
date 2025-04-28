@@ -15,6 +15,8 @@ public class SkillDescriptionBehaviour : MonoBehaviour
     int successAnimId;
     int resetAnimId;
 
+    Coroutine _offCoroutine;
+
     void Awake()
     {
         skillDescriptionCanvas = GetComponent<Canvas>();
@@ -69,22 +71,26 @@ public class SkillDescriptionBehaviour : MonoBehaviour
     public void FastHide()
     {
         animator.SetBool(failAnimId, true);
-        StartCoroutine(OffCoroutine());
+        if (_offCoroutine == null)
+            StartCoroutine(OffCoroutine());
     }
 
     /// <summary> 성공시 실행. </summary>
     public void StartHide()
     {
         Debug.Log("Start hide");
+        animator.Play(successAnimId);
         animator.SetBool(successAnimId, true);
-        StartCoroutine(OffCoroutine());
+        if (_offCoroutine == null)
+            StartCoroutine(OffCoroutine());
     }
 
     IEnumerator OffCoroutine()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         animator.SetBool(failAnimId, false);
         animator.SetBool(successAnimId, false);
+        _offCoroutine = null;
     }
 
     /// <summary> 음악 비트시 실행 </summary>

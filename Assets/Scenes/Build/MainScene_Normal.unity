@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2888444191429185671, guid: 8d326c35f035b6d4798f95f3748d7d30, type: 3}
+      propertyPath: _baseSpinSpeed
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8969013679383106079, guid: 8d326c35f035b6d4798f95f3748d7d30, type: 3}
       propertyPath: m_Name
       value: SlotMachineV2

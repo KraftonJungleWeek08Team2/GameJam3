@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// FeverTimeState에서 하는 일 : isFever라면 FeverTime update 실행, 아니라면 바로 CheckingState로 넘겨주기
 /// </summary>
@@ -36,6 +38,15 @@ public class FeverTimeState : ITurnState
         // UI 끄기
         // InputManager 액션 구독 해제
         // 액션 구독 해제
+        if (_combi == null)
+        {
+            Debug.Log($"[KGJ] no skill");
+        }
+        else
+        {
+            Debug.Log($"[KGJ] {_combi.Value.ToString()}");
+        }
+
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
         if (_combi == CombinationType.Sequential)
         {
