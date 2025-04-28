@@ -16,10 +16,10 @@ MonoBehaviour:
   - beat: 0
     offsetBeat: 0
     isLast: 0
-  - beat: 1
+  - beat: 0
+    offsetBeat: 0.5
+    isLast: 0
+  - beat: 2
     offsetBeat: 0
     isLast: 0
-  - beat: 3
-    offsetBeat: 0
-    isLast: 0
-  endBeatOffset: 5
+  endBeatOffset: 4

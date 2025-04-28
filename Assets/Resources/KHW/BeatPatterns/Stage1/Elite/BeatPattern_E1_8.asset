@@ -19,10 +19,13 @@ MonoBehaviour:
   - beat: 1
     offsetBeat: 0
     isLast: 0
-  - beat: 3
+  - beat: 2
     offsetBeat: 0
     isLast: 0
   - beat: 4
+    offsetBeat: 0
+    isLast: 0
+  - beat: 5
     offsetBeat: 0
     isLast: 0
   - beat: 6
@@ -34,7 +37,4 @@ MonoBehaviour:
   - beat: 8
     offsetBeat: 0
     isLast: 0
-  - beat: 9
-    offsetBeat: 0
-    isLast: 0
-  endBeatOffset: 6
+  endBeatOffset: 10
