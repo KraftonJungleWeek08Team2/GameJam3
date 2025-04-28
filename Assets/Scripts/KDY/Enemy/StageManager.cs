@@ -9,15 +9,17 @@ public class StageManager : MonoBehaviour
     [SerializeField] private EnemySpawner _spawner;
     [SerializeField] float _fadeDuration = 4f;
     Image _fadeoutImage;
-    int _sceneIndex;
+    public int _sceneIndex;
     Color _transparentColor = new Color(0f, 0f, 0f, 0f);
 
     public int nextIndex = 0;
+    public int stageIndex = 0;
 
     private void Awake()
     {
         _sceneIndex = SceneManager.GetActiveScene().buildIndex;
         _fadeoutImage = FindAnyObjectByType<UI_BlackImage>().GetComponent<Image>();
+        stageIndex = _stageInfo.spawnSequence.Count;
 
         if (_sceneIndex == 5) // MainScene_Noraml이라면 투명으로 시작
         {

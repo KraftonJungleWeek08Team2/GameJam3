@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class SkillBook
 {
@@ -22,14 +21,6 @@ public class SkillBook
         if (type.HasValue && _skills.TryGetValue(type.Value, out var skill))
         {
             skill.ShowSkillDescriptionUI();
-        }
-    }
-
-    public void TryHideSkillDescriptionUI(CombinationType? type)
-    {
-        if (type.HasValue && _skills.TryGetValue(type.Value, out var skill))
-        {
-            skill.HideSkillDescriptionUI();
         }
     }
 

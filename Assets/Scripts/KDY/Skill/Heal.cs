@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Heal : ISkill
@@ -16,18 +15,10 @@ public class Heal : ISkill
         Managers.SkillManager.HealSkill();
         //TODO : 힐 사운드
         Managers.TurnManager.Player.TakeHeal(healValue);
-
-        //ShowSkillDescriptionUI();
     }
 
     public void ShowSkillDescriptionUI()
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
-    }
-
-    public void HideSkillDescriptionUI()
-    {
-        Debug.Log("HideSkillDescriptionUI");
-        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
     }
 }

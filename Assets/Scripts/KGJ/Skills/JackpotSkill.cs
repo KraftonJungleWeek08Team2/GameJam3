@@ -16,9 +16,4 @@ public class JackpotSkill : ISkill
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
     }
-
-    public void HideSkillDescriptionUI()
-    {
-        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
-    }
 }

@@ -13,17 +13,10 @@ public class ThreeOddSkill : ISkill
         Managers.TurnManager.CurrentEnemy.TakeDamage(_damage);
         Managers.CameraManager.ShakeCamera();
         Managers.TurnManager.Player.Attack();
-
-        //ShowSkillDescriptionUI();
     }
 
     public void ShowSkillDescriptionUI()
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
-    }
-
-    public void HideSkillDescriptionUI()
-    {
-        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
     }
 }

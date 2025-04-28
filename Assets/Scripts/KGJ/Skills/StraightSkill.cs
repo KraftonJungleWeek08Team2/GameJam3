@@ -11,9 +11,4 @@ public class StraightSkill : ISkill
     {
         Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().ShowSkillDescriptionUI(description);
     }
-
-    public void HideSkillDescriptionUI()
-    {
-        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
-    }
 }

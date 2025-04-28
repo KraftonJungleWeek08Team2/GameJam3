@@ -17,10 +17,13 @@ public class GameManager
     bool _isStageClear = false;
 
     Canvas _gameOverCanvas;
+    UI_GameOver _gameOverUI;
 
     public void Init()
     {
-        _gameOverCanvas = GameObject.FindAnyObjectByType<UI_GameOver>().GetComponent<Canvas>();
+        _gameOverUI = GameObject.FindAnyObjectByType<UI_GameOver>();
+        _gameOverCanvas = _gameOverUI.GetComponent<Canvas>();
+        
         _gameOverCanvas.enabled = false;
         IsGameOver = false;
         IsStageClear = false;
@@ -35,6 +38,7 @@ public class GameManager
     public void GameOver()
     {
         IsGameOver = true;
+        _gameOverUI.UpdateProgressText();
         _gameOverCanvas.enabled = true;
         Managers.TurnManager.ChangeState(new GameoverState());
     }
