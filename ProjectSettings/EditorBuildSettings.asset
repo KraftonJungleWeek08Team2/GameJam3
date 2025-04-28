@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Build/MainScene_Normal.unity
     guid: fbe91957632b4d343950dc3947dd419c
+  - enabled: 1
+    path: Assets/Scenes/KMS/HowToPlay_1.unity
+    guid: 5402b9045f4b3a5469d2cbb94ab47388
+  - enabled: 1
+    path: Assets/Scenes/KMS/HowToPlay_2.unity
+    guid: 8bd7338fb75708342bbbd8f9a1f90e39
+  - enabled: 1
+    path: Assets/Scenes/KMS/HowToPlay_3.unity
+    guid: bea4d39977802c44daa445c2a047a41c
+  - enabled: 1
+    path: Assets/Scenes/KMS/HowToPlay_4.unity
+    guid: 7a293299eb8b4e44d8c7dcc4d92a4ed3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: b63d24e82ebdd7d47b200a91f029765d, type: 3}
   m_UseUCBPForAssetBundles: 0
