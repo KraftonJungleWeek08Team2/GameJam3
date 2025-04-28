@@ -1,19 +1,11 @@
-using System;
-using UnityEngine;
-
-public class JackpotSkill : ISkill
+public class StraightSkill : ISkill
 {
-    string description = "JackPot";
+    private string description = "Fever Time.";
 
     public void Execute()
     {
-        Managers.SkillManager.SevenSkill();
-        Managers.TurnManager.CurrentEnemy.TakeDamage(77);
-        Managers.TurnManager.Player.TakeHeal(7);
-        Managers.CameraManager.ShakeCamera();
-        Managers.TurnManager.Player.Attack();
-    }
 
+    }
 
     public void ShowSkillDescriptionUI()
     {

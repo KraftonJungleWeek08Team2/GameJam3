@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fevertime: {fileID: 4155791313982198283}
-  _feverTime: 2
+  _feverTime: 4
 --- !u!1001 &2734481366602525022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9140092281489579672, guid: 7690b62ba4b671b498fae3db715eea22, type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9140092281489579672, guid: 7690b62ba4b671b498fae3db715eea22, type: 3}
       propertyPath: m_SortingOrder
@@ -394,7 +394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4400227871068149601, guid: 1ba00f6939e13df40a2b429af5bb7988, type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7718830414058137428, guid: 1ba00f6939e13df40a2b429af5bb7988, type: 3}
       propertyPath: m_AnchorMax.x

@@ -74,9 +74,8 @@ public class CheckingState : ITurnState
         if (_nextState is MoveState)
         {
             Managers.TurnManager.CurrentEnemy.Die();
-            // EnemySpawner에서 적을 생성하고 CurrentEnemy에 넣어줌
-            Managers.TurnManager.CurrentEnemy = Managers.TurnManager.EnemySpawner.Spawn();
-            Managers.TurnManager.CurrentEnemyIndex++;
+            // StageManager 적 생성
+            Managers.TurnManager.StageManager.SpawnNext();
             Managers.CameraManager.AddMember(Managers.TurnManager.CurrentEnemy.transform, 0.5f, 1f);
         }
         else if (_nextState is SlotState)

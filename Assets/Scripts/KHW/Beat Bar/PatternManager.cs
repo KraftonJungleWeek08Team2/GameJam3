@@ -41,7 +41,7 @@ public class PatternManager : MonoBehaviour
         }
     }
 
-    public List<Note> GetNoteListBySlotInfo(int triggerBeat, SlotInfo slotInfo)
+    public List<Note> GetNoteListBySlotInfo(int triggerBeat, SlotInfo slotInfo) //enum
     {
         if (BeatPatternDatabase == null)
         {

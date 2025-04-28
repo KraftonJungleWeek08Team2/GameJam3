@@ -834,6 +834,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1438976815}
+    - target: {fileID: 615102226119672068, guid: 30c9753bdb9f5ef47817fc342122c77b, type: 3}
+      propertyPath: _feverTime
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4318720440378106192, guid: 30c9753bdb9f5ef47817fc342122c77b, type: 3}
       propertyPath: m_Name
       value: Coin_Ani_UI(7,H,A)
