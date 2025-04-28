@@ -24,6 +24,7 @@ public class CheckingState : ITurnState
 
     public void EnterState()
     {
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
         if (_combi == null)
         {
             // 스킬 조합이 없다면 딜레이 업승ㅁ
@@ -37,7 +38,7 @@ public class CheckingState : ITurnState
             CheckState();
             _isTimerRunning = true;
         }
-        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
+
     }
 
     public void ExitState()
@@ -71,6 +72,7 @@ public class CheckingState : ITurnState
 
     void ChangeNextState()
     {
+        //Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
         if (_nextState is MoveState)
         {
             Managers.TurnManager.CurrentEnemy.Die();

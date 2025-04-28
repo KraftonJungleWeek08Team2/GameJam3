@@ -49,7 +49,7 @@ public class SlotMachineTutorial : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(0))
         {
             ConfirmCurrentSlot();
         }
