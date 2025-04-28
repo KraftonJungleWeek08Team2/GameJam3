@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class BeatBarBehaviour : MonoBehaviour
 {
+    
     [SerializeField] private int beatMargin = 2; // 노트가 중앙에 도달하는 비트 수
     [SerializeField] private RectTransform leftCircle; // 왼쪽 원
     [SerializeField] private RectTransform rightCircle; // 오른쪽 원
     [SerializeField] private float initialDistance = 200f; // 초기 거리 (픽셀, 양쪽 원의 시작 위치)
+    [SerializeField] private GameObject disappearEffectObject; //사라질 때 보일 파티클. 프리팹.
     
     private float smallingTime; // 애니메이션 지속 시간
     private float elapsedTime;
     private Vector2 leftInitialPos;
     private Vector2 rightInitialPos;
+    public string noteIndex;
 
     void Start()
     {
@@ -47,7 +50,29 @@ public class BeatBarBehaviour : MonoBehaviour
             leftCircle.localPosition = Vector2.zero;
             rightCircle.localPosition = Vector2.zero;
 
-            Destroy(gameObject);
+            GetComponent<CanvasGroup>().alpha = 0;
+        }
+    }
+
+    [SerializeField] private GameObject perfectNoteEffect;
+    [SerializeField] private GameObject goodNoteEffect;
+    [SerializeField] private GameObject missNoteEffect;
+
+    public void Disappear(AccuracyType accuracyType)
+    {
+        GetComponent<CanvasGroup>().alpha = 0;
+
+        if(accuracyType == AccuracyType.Perfect)
+        {
+            Instantiate(perfectNoteEffect, transform);
+        }
+        if(accuracyType == AccuracyType.Good)
+        {
+            Instantiate(goodNoteEffect, transform);
+        }
+        if(accuracyType == AccuracyType.Miss)
+        {
+            Instantiate(missNoteEffect, transform);
         }
     }
 }

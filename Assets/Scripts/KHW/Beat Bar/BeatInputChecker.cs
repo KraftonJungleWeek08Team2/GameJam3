@@ -94,8 +94,8 @@ public class BeatInputChecker : MonoBehaviour
     void Attack()
     {
         float accuracy = CheckAccuracyWithCurrentBeat();
-
-        //Debug.Log($"KHW : 현재 노트의 비트 : {beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat}");
+        string currentNoteIndex = (beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat).ToString();
+        Debug.Log($"KHW : 현재 노트의 비트 : {beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat}");
         //Debug.Log($"KHW : 현재 노래의 비트 : {MusicManager.Instance.currentBeat}");
 
         if(accuracy > 0.8) //Perfect Attack.
@@ -109,7 +109,7 @@ public class BeatInputChecker : MonoBehaviour
             {
                 OnEndRhythmEvent?.Invoke(isFullCombo);
             }
-            
+            DisableCurrentNote(currentNoteIndex, AccuracyType.Perfect);
             ChangeCurrentNote();
         } 
         else if(accuracy > 0.5)
@@ -124,6 +124,7 @@ public class BeatInputChecker : MonoBehaviour
                 OnEndRhythmEvent?.Invoke(isFullCombo);
             }
 
+            DisableCurrentNote(currentNoteIndex, AccuracyType.Good);
             ChangeCurrentNote();
         }
         else if(accuracy <= 0.5 && accuracy > 0.05) //bad.
@@ -139,6 +140,7 @@ public class BeatInputChecker : MonoBehaviour
                 OnEndRhythmEvent?.Invoke(isFullCombo);
             }
 
+            DisableCurrentNote(currentNoteIndex, AccuracyType.Miss);
             ChangeCurrentNote();
         }
         else //상관없는 입력
@@ -167,10 +169,13 @@ public class BeatInputChecker : MonoBehaviour
     private void CheckPassedCurrentBeat()
     {
         float currentOffsetFromCurrentBeat = MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat + beatBarSystem.currentNote.Beat);
+        string currentNoteIndex = (beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat).ToString();
+        //Debug.Log($"KHW : 현재 노트의 비트 : {beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat}");
 
         if(currentOffsetFromCurrentBeat > 0.2) //지나침!
         {
             OnAttackEvent?.Invoke(AccuracyType.Miss);
+            DisableCurrentNote(currentNoteIndex, AccuracyType.Miss);
             ChangeCurrentNote();
             beatBarUISystem.ShowBreakText();
             currentCombo = 0;
@@ -181,6 +186,11 @@ public class BeatInputChecker : MonoBehaviour
                 OnEndRhythmEvent?.Invoke(isFullCombo);
             }
         }
+    }
+
+    void DisableCurrentNote(string index, AccuracyType accuracyType)
+    {
+        beatBarUISystem.NoteInputted(index, accuracyType);
     }
 
     void OnDestroy()

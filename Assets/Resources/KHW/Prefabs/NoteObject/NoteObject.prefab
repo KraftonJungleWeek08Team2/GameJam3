@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 1224557089678141080}
   - component: {fileID: -8290583001076698931}
   - component: {fileID: 7146175923051513252}
+  - component: {fileID: 5346864014834098495}
   m_Layer: 5
   m_Name: NoteObject
   m_TagString: Untagged
@@ -209,6 +210,23 @@ MonoBehaviour:
   leftCircle: {fileID: 1090179767742413825}
   rightCircle: {fileID: 2855929053621322691}
   initialDistance: 850
+  disappearEffectObject: {fileID: 0}
+  noteIndex: 
+  perfectNoteEffect: {fileID: 422261934745655632, guid: a529af1d7da5ef64ca60abf5282d240b, type: 3}
+  goodNoteEffect: {fileID: 422261934745655632, guid: ad7451499b0879043b7f3b315265e028, type: 3}
+  missNoteEffect: {fileID: 422261934745655632, guid: 46a58c69c641f2540b8c442c1814221e, type: 3}
+--- !u!225 &5346864014834098495
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047908017910296716}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6092320320884534882
 GameObject:
   m_ObjectHideFlags: 0

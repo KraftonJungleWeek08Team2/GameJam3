@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BeatBarUISystem : MonoBehaviour
@@ -16,6 +17,8 @@ public class BeatBarUISystem : MonoBehaviour
     [SerializeField] ComboCountBehaviour comboCountBehaviour; //inspector.
     [SerializeField] OneMoreUIBehaviour oneMoreUIBehaviour;
     public SkillDescriptionBehaviour skillDescriptionBehaviour;
+    public Transform AttackNoteTransforms;
+    public Transform centralBarTransform;
 
     void Start()
     {   
@@ -44,6 +47,8 @@ public class BeatBarUISystem : MonoBehaviour
         perfectText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/PerfectTextObject");
         goodText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/GoodTextObject");
         breakText = (GameObject)Resources.Load("KHW/Prefabs/AccuracyText/MissTextObject");
+        centralBarTransform = transform.GetChild(1);
+        AttackNoteTransforms = transform.GetChild(0);
     }
 
     /// <summary> 비트 바 캔버스 활성화 </summary>
@@ -78,14 +83,28 @@ public class BeatBarUISystem : MonoBehaviour
         UnSubscribeAction();
     }
 
-    public void GenerateNoteUI(float timeDelay)
+    public void GenerateNoteUI(float timeDelay, string noteIndex)
     {
-        Invoke("GenerateNote", timeDelay);
+        StartCoroutine(GenerateNoteAfterTimeDelay(timeDelay, noteIndex));
     }
 
-    private void GenerateNote()
+    private IEnumerator GenerateNoteAfterTimeDelay(float timeDelay, string noteIndex)
     {
-        Instantiate(attackNoteObject, transform);
+        yield return new WaitForSeconds(timeDelay);
+        GameObject newAttackNote = Instantiate(attackNoteObject, AttackNoteTransforms);
+        newAttackNote.GetComponent<BeatBarBehaviour>().noteIndex = noteIndex;
+    }
+    public void NoteInputted(string noteIndex, AccuracyType accuracyType)
+    {
+        // attackNoteTransform의 모든 자식 오브젝트를 순회
+        foreach (Transform child in AttackNoteTransforms)
+        {
+            BeatBarBehaviour note = child.GetComponent<BeatBarBehaviour>();
+            if (note != null && note.noteIndex == noteIndex)
+            {
+                note.Disappear(accuracyType);
+            }
+        }
     }
 
     //TODO-KHW : 기본 박자선 필요하면 채우기.

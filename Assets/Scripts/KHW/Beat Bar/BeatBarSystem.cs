@@ -120,7 +120,7 @@ public class BeatBarSystem : MonoBehaviour
                 foreach (var note in notes)
                 {
                     float timeDelay = note.OffsetBeat * noteInterval;
-                    beatBarUISystem.GenerateNoteUI(timeDelay + 0.03f);
+                    beatBarUISystem.GenerateNoteUI(timeDelay + 0.025f, (targetBeat + note.OffsetBeat).ToString());
                     Debug.Log($"KHW : {timeDelay} 초 지연 후 노트 생성");
                 }
             }
@@ -152,7 +152,7 @@ public class BeatBarSystem : MonoBehaviour
     public void DisableBeatBar()
     {
         OnDisableBeatBarAction?.Invoke();
-
+        
         attackEnable = false;
         UnsubscribeAction();
     }
