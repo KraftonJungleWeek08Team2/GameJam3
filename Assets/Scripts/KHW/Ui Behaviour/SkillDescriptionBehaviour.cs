@@ -51,24 +51,40 @@ public class SkillDescriptionBehaviour : MonoBehaviour
     public void Show(SlotInfo slotInfo, string description)
     {
         if (skillDescriptionCanvas == null || canvasGroup == null) return;
+
+        if(CombinationChecker.Check(slotInfo) == null) return;
+
         //내용바꾸기
         skillDescriptionText.text = "[" + slotInfo.GetValue(0) + "," + slotInfo.GetValue(1) + "," + slotInfo.GetValue(2) +"]\n" + description;
 
         canvasGroup.alpha = 1;
         skillDescriptionCanvas.enabled = true;
+
+        animator.SetBool(successAnimId, false);
+        animator.SetBool(failAnimId, false);
         animator.SetTrigger(resetAnimId);
     }
 
     /// <summary> 실패시 실행. </summary>
     public void FastHide()
     {
-        animator.SetTrigger(failAnimId);
+        animator.SetBool(failAnimId, true);
+        StartCoroutine(OffCoroutine());
     }
 
     /// <summary> 성공시 실행. </summary>
     public void StartHide()
     {
-        animator.SetTrigger(successAnimId);
+        Debug.Log("Start hide");
+        animator.SetBool(successAnimId, true);
+        StartCoroutine(OffCoroutine());
+    }
+
+    IEnumerator OffCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        animator.SetBool(failAnimId, false);
+        animator.SetBool(successAnimId, false);
     }
 
     /// <summary> 음악 비트시 실행 </summary>

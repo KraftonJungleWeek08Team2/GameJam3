@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.115765885, b: 0, a: 0.08627451}
+  m_Color: {r: 1, g: 0.115765885, b: 0, a: 0.05882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 33.896, y: 24.514, z: 18.277}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -832, y: 116}
+  m_AnchoredPosition: {x: -857, y: -149}
   m_SizeDelta: {x: 1300, y: 200}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8538042963960091988
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.22568513, b: 0, a: 0.08627451}
+  m_Color: {r: 1, g: 0.22568513, b: 0, a: 0.05882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -463,7 +463,7 @@ RectTransform:
   - {fileID: 4010437729280923}
   - {fileID: 3904541955071047998}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 89.392, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -558,8 +558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillDescriptionCanvas: {fileID: 0}
   canvasGroup: {fileID: 0}
-  transparentTime: 2
   skillDescriptionText: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!95 &1059907962222093031
 Animator:
   serializedVersion: 7
