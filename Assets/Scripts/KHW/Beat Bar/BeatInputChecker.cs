@@ -83,7 +83,7 @@ public class BeatInputChecker : MonoBehaviour
     {
         //Debug.Log("현재 비트 : " + beatBarSystem.CurrentMusicBeat + " " + beatBarSystem.currentNote.OffsetBeat);
         
-        float accuracy = 1 - Mathf.Abs(MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat + beatBarSystem.currentNote.Beat)) / 0.2f + 0.05f;
+        float accuracy = 1 - Mathf.Abs(MusicManager.Instance.GetTimingOffset(beatBarSystem.currentNote.OffsetBeat + beatBarSystem.currentNote.Beat)) / 0.2f;
 
         //Debug.Log("정확도 : " + accuracy);
 
@@ -94,8 +94,9 @@ public class BeatInputChecker : MonoBehaviour
     void Attack()
     {
         float accuracy = CheckAccuracyWithCurrentBeat();
+        Debug.Log($"KHW : 정확도 : {accuracy}");
         string currentNoteIndex = (beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat).ToString();
-        Debug.Log($"KHW : 현재 노트의 비트 : {beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat}");
+        //Debug.Log($"KHW : 현재 노트의 비트 : {beatBarSystem.currentNote.Beat + beatBarSystem.currentNote.OffsetBeat}");
         //Debug.Log($"KHW : 현재 노래의 비트 : {MusicManager.Instance.currentBeat}");
 
         if(accuracy > 0.8) //Perfect Attack.
@@ -127,7 +128,7 @@ public class BeatInputChecker : MonoBehaviour
             DisableCurrentNote(currentNoteIndex, AccuracyType.Good);
             ChangeCurrentNote();
         }
-        else if(accuracy <= 0.5 && accuracy > 0.05) //bad.
+        else if(accuracy <= 0.5 && accuracy > 0.00) //bad.
         {
             OnAttackEvent?.Invoke(AccuracyType.Miss);
             isFullCombo = false;

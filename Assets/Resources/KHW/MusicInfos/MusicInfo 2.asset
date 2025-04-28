@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4ec73cd5ef46a4bb4ed85faa2d4703, type: 3}
   m_Name: MusicInfo 2
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: f705ed7b364a4f442976866ac89897c4, type: 3}
+  music: {fileID: 8300000, guid: a68b273aa7cec194daf9017580b80c44, type: 3}
   songName: Such A Blue Sky
   songIndex: 2
   startDelay: 0
