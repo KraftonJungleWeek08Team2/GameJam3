@@ -16,4 +16,4 @@ MonoBehaviour:
   - beat: 0
     offsetBeat: 0
     isLast: 0
-  endBeatOffset: 1
+  endBeatOffset: 2
