@@ -52,13 +52,13 @@ public class TurnManager
 
     public void UpdateState()
     {
-        if (!Managers.GameManager.IsGameOver)
+        if (!Managers.GameManager.IsGameOver && !Managers.GameManager.IsStageClear)
             CurrentState?.UpdateState();
     }
 
     public void FixedUpdateState()
     {
-        if (!Managers.GameManager.IsGameOver)
+        if (!Managers.GameManager.IsGameOver && !Managers.GameManager.IsStageClear)
             CurrentState?.FixedUpdateState();
     }
 

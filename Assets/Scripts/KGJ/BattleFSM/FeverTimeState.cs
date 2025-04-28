@@ -36,6 +36,7 @@ public class FeverTimeState : ITurnState
         // UI 끄기
         // InputManager 액션 구독 해제
         // 액션 구독 해제
+        Managers.TurnManager.BeatBarSystem.GetComponent<BeatBarUISystem>().HideSkillDescriptionUI();
         if (_combi == CombinationType.Sequential)
         {
             Managers.InputManager.RhythmAttackEnable(false);

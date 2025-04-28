@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Build/MainScene_Normal.unity
     guid: fbe91957632b4d343950dc3947dd419c
+  - enabled: 1
+    path: Assets/Scenes/Build/MainScene_Hard.unity
+    guid: 240d477cf3e68734ab095b169879c5d0
+  - enabled: 1
+    path: Assets/Scenes/Build/ClearScene.unity
+    guid: a94093d4f8797c84d84afdf047262f74
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: b63d24e82ebdd7d47b200a91f029765d, type: 3}
   m_UseUCBPForAssetBundles: 0

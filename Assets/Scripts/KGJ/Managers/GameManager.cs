@@ -9,6 +9,13 @@ public class GameManager
     }
     bool _isGameOver = false;
 
+    public bool IsStageClear
+    {
+        get { return _isStageClear; }
+        set { _isStageClear = value; }
+    }
+    bool _isStageClear = false;
+
     Canvas _gameOverCanvas;
 
     public void Init()
@@ -16,6 +23,13 @@ public class GameManager
         _gameOverCanvas = GameObject.FindAnyObjectByType<UI_GameOver>().GetComponent<Canvas>();
         _gameOverCanvas.enabled = false;
         IsGameOver = false;
+        IsStageClear = false;
+    }
+
+    public void StageClear()
+    {
+        IsStageClear = true;
+        Managers.TurnManager.ChangeState(new StageClearState());
     }
 
     public void GameOver()
