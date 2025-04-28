@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class AttackState : ITurnState 
 {
     SlotInfo _slotInfo;
