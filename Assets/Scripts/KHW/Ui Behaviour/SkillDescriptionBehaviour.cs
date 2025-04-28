@@ -6,8 +6,6 @@ public class SkillDescriptionBehaviour : MonoBehaviour
 {
     [SerializeField] private Canvas skillDescriptionCanvas;
     [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private float transparentTime = 2f;
-
     [SerializeField] private TextMeshProUGUI skillDescriptionText;
 
     [Header("Animiation Properties")]
