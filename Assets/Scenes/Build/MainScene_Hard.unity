@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2888444191429185671, guid: 8d326c35f035b6d4798f95f3748d7d30, type: 3}
+      propertyPath: _baseSpinSpeed
+      value: 750
+      objectReference: {fileID: 0}
     - target: {fileID: 8969013679383106079, guid: 8d326c35f035b6d4798f95f3748d7d30, type: 3}
       propertyPath: m_Name
       value: SlotMachineV2
@@ -737,6 +741,10 @@ PrefabInstance:
     - target: {fileID: 2527519226772800745, guid: 4703568278c9bb34e8d344e6764d3db3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467567870995422807, guid: 4703568278c9bb34e8d344e6764d3db3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6670539413424065623, guid: 4703568278c9bb34e8d344e6764d3db3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1362,10 +1370,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 202250487283478610, guid: 79992a6a84af4bd42bf4980d48352df8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7b054f3771820044cbc1c75b977fc431, type: 3}
     - target: {fileID: 2032483639366070844, guid: 79992a6a84af4bd42bf4980d48352df8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1818,7 +1822,6 @@ SceneRoots:
   - {fileID: 889975000}
   - {fileID: 1921892499}
   - {fileID: 2016825975}
-  - {fileID: 6060079149067535681}
   - {fileID: 1918671717}
   - {fileID: 393971800}
   - {fileID: 341375179}
@@ -1827,5 +1830,6 @@ SceneRoots:
   - {fileID: 538422768}
   - {fileID: 1200095859}
   - {fileID: 1044733639}
+  - {fileID: 6060079149067535681}
   - {fileID: 497995395}
   - {fileID: 872221041}
